@@ -1,0 +1,4 @@
+export const FETCH_CLIENTS = 'FETCH_CLIENTS';
+export const SET_CLIENT_LIST = 'SET_CLIENT_LIST';
+
+export const UPDATE_CLIENT = 'UPDATE_CLIENT';
