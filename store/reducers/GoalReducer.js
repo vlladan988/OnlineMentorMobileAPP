@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { SET_GOAL } from '../actionTypes/GoalActionTypes';
+import { SET_GOAL, RESET_GOAL } from '../actionTypes/GoalActionTypes';
 
 const initialState = {
   goal: []
@@ -12,5 +12,7 @@ export default (state = initialState, action) =>
       case SET_GOAL:
         draft.goal = action.payload;
         break;
+      case RESET_GOAL:
+        return initialState;
     }
   });

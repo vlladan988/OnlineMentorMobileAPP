@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Image,
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  ScrollView
-} from 'react-native';
+import { Image, View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import * as ImagePicker from 'expo-image-picker';
 import * as Icon from '@expo/vector-icons';
@@ -21,6 +14,7 @@ import {
   getGallery,
   saveGallery
 } from '../../../../store/actions/GalleryActions';
+import { userSelector } from '../../../../store/selectors/UserSelector';
 
 const AddImage = () => {
   const dispatch = useDispatch();
@@ -30,9 +24,10 @@ const AddImage = () => {
   const [sideImage, setSideImage] = useState(null);
 
   const isStandardModalVisible = useSelector(showStandardPopUp());
+  const user = useSelector(userSelector());
 
   useEffect(() => {
-    dispatch(getGallery(11));
+    dispatch(getGallery(user.id));
   }, []);
 
   const pickImage = async typeImage => {
@@ -51,7 +46,7 @@ const AddImage = () => {
     }
   };
 
-  const handleUploadPhoto = () =>
+  const handleUploadPhoto = () => {
     dispatch(
       saveGallery([
         frontImage && frontImage.base64,
@@ -59,11 +54,15 @@ const AddImage = () => {
         sideImage && sideImage.base64
       ])
     );
+    setFrontImage(null);
+    setBackImage(null);
+    setSideImage(null);
+  };
 
   return (
     <>
       <AllPhotoRequiredModal visible={isStandardModalVisible} />
-      <ScrollView>
+      <>
         <View style={styles.pickerWrapper}>
           <TouchableOpacity
             style={styles.button}
@@ -161,7 +160,7 @@ const AddImage = () => {
         <TouchableOpacity style={styles.saveButton} onPress={handleUploadPhoto}>
           <Text style={styles.saveButtonText}>{$t('common.save')}</Text>
         </TouchableOpacity>
-      </ScrollView>
+      </>
     </>
   );
 };
@@ -206,13 +205,31 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     width: 250
   },
+  pickerWrapper: {
+    elevation: 24,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 12
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.0
+  },
   saveButton: {
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: Colors.cloudColor,
     borderRadius: 5,
+    elevation: 24,
     marginVertical: 15,
     paddingVertical: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 12
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.0,
     width: '80%'
   },
   saveButtonText: {

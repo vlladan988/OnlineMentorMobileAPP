@@ -1,7 +1,6 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import Colors from '../../../../constants/Colors';
-import Measurements from '../../../../components/Client/Home/Measurements';
 import Gallery from '../../../../components/Client/Home/Gallery/Gallery';
 import Profile from '../../../../components/Client/Home/Profile/Profile';
 import Goals from '../../../../components/Client/Home/Goal/Goals';
@@ -9,7 +8,6 @@ import Goals from '../../../../components/Client/Home/Goal/Goals';
 const ProfileComp = () => <Profile />;
 const GoalsComp = () => <Goals />;
 const GalleryComp = () => <Gallery />;
-const MeasurementsComp = () => <Measurements title={'Measurements'} />;
 
 export default createMaterialTopTabNavigator(
   {
@@ -29,13 +27,6 @@ export default createMaterialTopTabNavigator(
       screen: GalleryComp,
       navigationOptions: {
         tabBarLabel: 'Gallery'
-      }
-    },
-
-    Measurements: {
-      screen: MeasurementsComp,
-      navigationOptions: {
-        tabBarLabel: 'Measurements'
       }
     }
   },

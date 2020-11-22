@@ -14,5 +14,15 @@ export default {
   close: 'close',
   delete: 'delete-forever',
   phone: 'phone',
-  edit: 'playlist-add'
+  edit: 'playlist-add',
+  dots: 'dots-three-vertical',
+  userEdit: 'user-edit',
+  userAdd: 'user-plus',
+  logout: 'power-off',
+  facebook: 'facebook',
+  instagram: 'instagram',
+  body: 'ios-body',
+  age: 'tree',
+  success: 'checkcircle',
+  city: 'location-city'
 };

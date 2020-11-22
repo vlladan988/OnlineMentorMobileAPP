@@ -8,9 +8,7 @@ import { setGoal } from '../actions/GoalActions';
 export function* handleGetGoal({ payload }) {
   try {
     yield put(setLoader(true));
-    const { data: goal } = yield call(goalService.getGoal, {
-      params: { id: payload }
-    });
+    const { data: goal } = yield call(goalService.getGoal, payload);
     yield put(setGoal(goal));
   } catch (error) {
     yield put(setGlobalError(true));

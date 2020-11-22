@@ -26,7 +26,6 @@ export function* userLogin({ payload }) {
     yield call(authService.login, payload.credentials);
     NavigationService.navigate('AuthLoading');
   } catch (error) {
-    // console.log('sss', error);
     if (error.response.status === 401) {
       yield put(setSignInError(true));
     } else {
@@ -82,7 +81,13 @@ export function* userSignUp({ payload }) {
     NavigationService.navigate('AuthLoading');
   } catch (error) {
     if (error.response.status === 422) {
-      yield put(setSignUpErrors(error.response.data.errors));
+      yield put(
+        setSignUpErrors(
+          error.response.data.error.email
+            ? { message: error.response.data.error.email }
+            : { message: error.response.data.error.confirm_password }
+        )
+      );
     } else if (error.response.status === 401) {
       yield put(setSignInError(true));
     } else {
@@ -113,7 +118,6 @@ export function* forgotPassword({ payload }) {
     yield call(authService.forgotPassword, payload.credentials);
     NavigationService.navigate('ResetPasswordSuccess');
   } catch (error) {
-    // console.log('err', error.response);
     if (error.response.status === 401) {
       yield put(setForgotPasswordError(true));
     } else {

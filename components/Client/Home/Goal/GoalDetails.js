@@ -16,7 +16,6 @@ import SetGoalTimeModal from '../../../shared/modal/SetGoalTimeModal';
 import { userSelector } from '../../../../store/selectors/UserSelector';
 import { getGoal, updateGoal } from '../../../../store/actions/GoalActions';
 import { goalSelector } from '../../../../store/selectors/GoalSelector';
-import { inputType } from '../../../../helpers/InputType';
 
 const GoalDetails = () => {
   const dispatch = useDispatch();
@@ -36,7 +35,7 @@ const GoalDetails = () => {
   const handleUpdateGoal = () => {
     dispatch(
       updateGoal({
-        id: user.id,
+        clientId: user.id,
         currentWeight,
         goalWeight,
         description,
@@ -53,14 +52,18 @@ const GoalDetails = () => {
 
   useEffect(
     () => {
-      setGoalTime(moment(goal.end_at).format('ll'));
-      setCurrentTime(moment(goal.start_at).format('ll'));
-      setCurrentWeight(goal.current_weight);
-      setGoalWeight(goal.final_weight);
-      setDescription(goal.description);
+      resetInputData();
     },
     [goal]
   );
+
+  const resetInputData = () => {
+    setGoalTime(moment(goal.end_at).format('ll'));
+    setCurrentTime(moment(goal.start_at).format('ll'));
+    setCurrentWeight(goal.current_weight);
+    setGoalWeight(goal.final_weight);
+    setDescription(goal.description);
+  };
 
   const saveCurrentDate = selectedDate => {
     setCurrentTime(moment(selectedDate).format('ll'));
@@ -75,9 +78,14 @@ const GoalDetails = () => {
     handleShowSaveButton();
   };
 
+  const cancelChanges = () => {
+    resetInputData();
+    handleHideSaveButton();
+  };
+
   const setTextField = (text, type) => {
-    if (inputType(type)) setCurrentWeight(text);
-    else if (inputType(type)) setGoalWeight(text);
+    if (type === 'current') setCurrentWeight(text);
+    else if (type === 'goal') setGoalWeight(text);
     else setDescription(text);
     handleShowSaveButton();
   };
@@ -112,7 +120,7 @@ const GoalDetails = () => {
                 keyboardType="numeric"
                 color={Colors.cloudColor}
               />
-              <Text>{$t('client.kg')}</Text>
+              <Text> {$t('client.kg')}</Text>
             </View>
           </View>
           <View style={styles.inputFields}>
@@ -126,7 +134,7 @@ const GoalDetails = () => {
                 keyboardType="numeric"
                 color={Colors.cloudColor}
               />
-              <Text>{$t('client.kg')}</Text>
+              <Text> {$t('client.kg')}</Text>
             </View>
           </View>
         </View>
@@ -161,7 +169,7 @@ const GoalDetails = () => {
         <View style={styles.buttonsWrapper}>
           <TouchableOpacity
             style={styles.saveButtonWrapper}
-            onPress={handleHideSaveButton}
+            onPress={cancelChanges}
           >
             <Text style={styles.buttonText}>{$t('common.cancel')}</Text>
           </TouchableOpacity>
@@ -211,12 +219,21 @@ const styles = StyleSheet.create({
     paddingVertical: 10
   },
   inputField: {
+    paddingLeft: 15,
     textAlign: 'center'
   },
   inputFieldContainer: {
+    elevation: 18,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 10
+    marginTop: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9
+    },
+    shadowOpacity: 0.48,
+    shadowRadius: 11.95
   },
   inputFieldDescWrapper: {
     borderBottomColor: Colors.lightGray,

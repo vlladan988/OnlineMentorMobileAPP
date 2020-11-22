@@ -3,13 +3,13 @@ import { StyleSheet, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import background from '../../../../assets/images/LightBackground.png';
-import GoalHeaderImage from './GoalHeaderImage';
 import GoalDetails from './GoalDetails';
+import SharedGoalHeaderImage from '../../../shared/SharedGoalHeaderImage';
 
 const Goals = () => {
   return (
     <View source={background} style={styles.container}>
-      <GoalHeaderImage />
+      <SharedGoalHeaderImage />
       <KeyboardAwareScrollView enableOnAndroid>
         <GoalDetails />
       </KeyboardAwareScrollView>

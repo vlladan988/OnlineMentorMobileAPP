@@ -28,6 +28,15 @@ const ProfileDetails = ({ user }) => {
         <Text style={styles.descriptionText}>{user.description}</Text>
       </View>
       <View style={styles.credWrapper}>
+        <Icon.SimpleLineIcons
+          name={IconName.user}
+          color={Colors.cloudColor}
+          size={26}
+          style={styles.icon}
+        />
+        <Text style={styles.credText}>{user.full_name}</Text>
+      </View>
+      <View style={styles.credWrapper}>
         <Icon.Octicons
           name={IconName.home}
           color={Colors.cloudColor}
@@ -74,13 +83,21 @@ const styles = StyleSheet.create({
   },
   credWrapper: {
     alignItems: 'center',
+    elevation: 18,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 30,
-    paddingVertical: 5
+    paddingVertical: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 9
+    },
+    shadowOpacity: 0.48,
+    shadowRadius: 11.95
   },
   descWrapper: {
-    height: 150,
+    height: 120,
     paddingVertical: 20
   },
   descriptionText: {

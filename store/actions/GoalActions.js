@@ -1,7 +1,8 @@
 import {
   GET_GOAL,
   SET_GOAL,
-  UPDATE_GOAL
+  UPDATE_GOAL,
+  RESET_GOAL
 } from '../actionTypes/GoalActionTypes';
 
 export const getGoal = payload => ({
@@ -17,4 +18,7 @@ export const setGoal = payload => ({
 export const updateGoal = payload => ({
   type: UPDATE_GOAL,
   payload
+});
+export const resetGoal = () => ({
+  type: RESET_GOAL
 });

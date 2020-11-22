@@ -11,7 +11,8 @@ import HomeScreenTrainer from '../screens/main/TrainerScreen/Home/HomeScreenTrai
 import SettingsScreen from '../screens/main/TrainerScreen/Settings/SettingsScreen';
 import LeftSlider from '../screens/main/LeftSlider';
 import ChangePassword from '../screens/main/profile/ChangePassword';
-import EditProfile from '../screens/main/profile/EditProfile';
+import ClientCreate from '../screens/auth/ClientCreate';
+import EditProfileScreen from '../screens/main/TrainerScreen/Profile/EditProfileScreen';
 import HandleTabBarLabelStyle from '../helpers/HandleTabBarLabelStyle';
 import Colors from '../constants/Colors';
 import NutritionScreen from '../screens/main/TrainerScreen/Nutrition/NutritionScreen';
@@ -19,11 +20,40 @@ import IconName from '../constants/IconName';
 import WorkoutScreen from '../screens/main/TrainerScreen/Workout/WorkoutScreen';
 import ChatScreen from '../screens/main/TrainerScreen/ChatScreen/ChatScreen';
 import HeaderBarStyle from '../constants/HeaderBarStyle';
+import WelcomeScreen from '../screens/main/TrainerScreen/WelcomeScreen';
+import { addHeaderLeftNavigator, addHeaderRightNavigator } from '../helpers';
+import Layout from '../constants/Layout';
 
 const HomeStack = createStackNavigator({
-  Home: HomeScreenTrainer,
+  Welcome: WelcomeScreen,
+  Home: {
+    screen: HomeScreenTrainer,
+    navigationOptions: ({ navigation }) => {
+      const headerLeftNav = addHeaderLeftNavigator(navigation);
+      const headerRightNav = addHeaderRightNavigator(navigation);
+      return {
+        ...headerLeftNav,
+        ...headerRightNav,
+        headerStyle: HeaderBarStyle,
+        headerTitleStyle: { color: Colors.white, fontWeight: 'bold' },
+        title: 'Home'
+      };
+    }
+  },
+  ClientCreate,
   ChangePassword,
-  EditProfile
+  EditProfile: {
+    screen: EditProfileScreen,
+    navigationOptions: ({ navigation }) => {
+      const headerLeftNav = addHeaderLeftNavigator(navigation);
+      return {
+        ...headerLeftNav,
+        headerStyle: HeaderBarStyle,
+        headerTitleStyle: { color: Colors.white, fontWeight: 'bold' },
+        title: 'Update profile'
+      };
+    }
+  }
 });
 
 /* eslint-disable react/prop-types, react/display-name */
@@ -176,6 +206,8 @@ export default createDrawerNavigator(
     BottomTabNavigator: BottomTabNavigator
   },
   {
-    contentComponent: LeftSlider
+    drawerWidth: Layout.window.width - 80,
+    contentComponent: LeftSlider,
+    overlayColor: 0.9
   }
 );

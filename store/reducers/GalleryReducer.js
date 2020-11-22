@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { SET_GALLERY } from '../actionTypes/GalleryActionTypes';
+import { SET_GALLERY, RESET_GALLERY } from '../actionTypes/GalleryActionTypes';
 
 const initialState = {
   userGallery: []
@@ -12,5 +12,7 @@ export default (state = initialState, action) =>
       case SET_GALLERY:
         draft.userGallery = action.payload;
         break;
+      case RESET_GALLERY:
+        return initialState;
     }
   });

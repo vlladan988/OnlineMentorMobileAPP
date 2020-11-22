@@ -5,18 +5,17 @@ import {
   Modal,
   StyleSheet,
   TextInput,
-  TouchableOpacity,
-  ImageBackground
+  TouchableOpacity
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import * as Icon from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import $t from 'i18n';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import Colors from '../../../constants/Colors';
 import IconName from '../../../constants/IconName';
-import background from '../../../assets/images/LightBackground.png';
 import { updateClient } from '../../../store/actions/ClientActions';
 import { isCredEmpty } from '../../../helpers/IsCredEmpty';
 
@@ -33,7 +32,7 @@ const EditClientProfileModal = ({ isVisible, closeModal, user }) => {
   const handleUpdateClient = () => {
     dispatch(
       updateClient({
-        id: user.id,
+        clientId: user.id,
         age: isCredEmpty(age) ? user.age : age,
         weight: isCredEmpty(weight) ? user.weight : weight,
         height: isCredEmpty(height) ? user.height : height,
@@ -54,10 +53,9 @@ const EditClientProfileModal = ({ isVisible, closeModal, user }) => {
   return (
     <Modal animationType="slide" transparent={true} visible={isVisible}>
       <View style={styles.container}>
-        <ImageBackground
-          style={styles.modalWrapper}
-          imageStyle={styles.imageBorderRadius}
-          source={background}
+        <LinearGradient
+          colors={['#3f5069', '#33445d', '#202e46']}
+          style={styles.gradientWrapper}
         >
           <KeyboardAwareScrollView enableOnAndroid>
             <View style={styles.itemWrapper}>
@@ -69,6 +67,7 @@ const EditClientProfileModal = ({ isVisible, closeModal, user }) => {
                   onChangeText={text => setAge(text)}
                   value={age}
                   placeholder={String(user.age)}
+                  placeholderTextColor={Colors.lightGray}
                   textAlign={'center'}
                 />
               </View>
@@ -82,6 +81,7 @@ const EditClientProfileModal = ({ isVisible, closeModal, user }) => {
                   onChangeText={text => setWeight(text)}
                   value={weight}
                   placeholder={String(user.weight)}
+                  placeholderTextColor={Colors.lightGray}
                   textAlign={'center'}
                 />
                 <Text style={styles.unit}>{$t('client.kg')}</Text>
@@ -96,6 +96,7 @@ const EditClientProfileModal = ({ isVisible, closeModal, user }) => {
                   onChangeText={text => setHeight(text)}
                   value={height}
                   placeholder={String(user.height)}
+                  placeholderTextColor={Colors.lightGray}
                   textAlign={'center'}
                 />
                 <Text style={styles.unit}>{$t('client.cm')}</Text>
@@ -112,6 +113,7 @@ const EditClientProfileModal = ({ isVisible, closeModal, user }) => {
                 onChangeText={text => setDesc(text)}
                 value={desc}
                 placeholder={String(user.description)}
+                placeholderTextColor={Colors.backgroundAppColor}
                 textAlign={'center'}
               />
             </View>
@@ -123,6 +125,7 @@ const EditClientProfileModal = ({ isVisible, closeModal, user }) => {
                   onChangeText={text => setCity(text)}
                   value={city}
                   placeholder={String(user.city)}
+                  placeholderTextColor={Colors.lightGray}
                   textAlign={'center'}
                 />
               </View>
@@ -136,6 +139,7 @@ const EditClientProfileModal = ({ isVisible, closeModal, user }) => {
                   onChangeText={text => setPhoneNumber(text)}
                   value={phoneNumber}
                   placeholder={String(user.phone_number)}
+                  placeholderTextColor={Colors.lightGray}
                   textAlign={'center'}
                 />
               </View>
@@ -150,11 +154,11 @@ const EditClientProfileModal = ({ isVisible, closeModal, user }) => {
           <Icon.Fontisto
             style={styles.closeIcon}
             name={IconName.close}
-            color={Colors.warningColor}
+            color={Colors.light}
             size={30}
             onPress={closeModal}
           />
-        </ImageBackground>
+        </LinearGradient>
       </View>
     </Modal>
   );
@@ -223,9 +227,10 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
     width: '100%'
   },
-  imageBorderRadius: {
-    borderTopEndRadius: 50,
-    borderTopStartRadius: 50
+  gradientWrapper: {
+    borderRadius: 40,
+    height: '85%',
+    paddingTop: 50
   },
   inputCredWrapper: {
     borderBottomColor: Colors.cloudColor,
@@ -269,15 +274,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     width: '100%'
   },
-  modalWrapper: {
-    backgroundColor: Colors.light,
-    borderTopEndRadius: 50,
-    borderTopStartRadius: 50,
-    paddingVertical: 50,
-    resizeMode: 'contain',
-    width: '100%'
-  },
   unit: {
+    color: Colors.light,
     position: 'absolute',
     right: -10,
     top: 0

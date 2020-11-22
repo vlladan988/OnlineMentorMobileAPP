@@ -23,12 +23,34 @@ import {
   passwordChange,
   updateUser
 } from '../sagas/ActiveUserSagas';
-import { FETCH_CLIENTS, UPDATE_CLIENT } from '../actionTypes/ClientActionTypes';
-import { handleFetchClients, handleUpdateClient } from './ClientSagas';
+import {
+  FETCH_CLIENTS,
+  UPDATE_CLIENT,
+  GET_CLIENT,
+  ADD_CLIENT,
+  DELETE_CLIENT
+} from '../actionTypes/ClientActionTypes';
+import {
+  handleFetchClients,
+  handleUpdateClient,
+  handleGetClient,
+  handleAddClient,
+  handleDeleteClient
+} from './ClientSagas';
 import { GET_GOAL, UPDATE_GOAL } from '../actionTypes/GoalActionTypes';
 import { handleGetGoal, handleUpdateGoal } from './GoalSagas';
-import { handleGetGallery, handleSaveGallery } from './GallerySagas';
-import { GET_GALLERY, SAVE_GALLERY } from '../actionTypes/GalleryActionTypes';
+import {
+  handleGetGallery,
+  handleSaveGallery,
+  handleDeleteGallery
+} from './GallerySagas';
+import {
+  GET_GALLERY,
+  SAVE_GALLERY,
+  DELETE_GALLERY
+} from '../actionTypes/GalleryActionTypes';
+import { handleUpdateTrainer } from './TrainerSagas';
+import { UPDATE_TRAINER } from '../actionTypes/TrainerActionTypes';
 
 export default function* rootSaga() {
   yield all([
@@ -47,6 +69,11 @@ export default function* rootSaga() {
     takeLatest(GET_GOAL, handleGetGoal),
     takeLatest(UPDATE_GOAL, handleUpdateGoal),
     takeLatest(GET_GALLERY, handleGetGallery),
-    takeLatest(SAVE_GALLERY, handleSaveGallery)
+    takeLatest(SAVE_GALLERY, handleSaveGallery),
+    takeLatest(DELETE_GALLERY, handleDeleteGallery),
+    takeLatest(GET_CLIENT, handleGetClient),
+    takeLatest(ADD_CLIENT, handleAddClient),
+    takeLatest(UPDATE_TRAINER, handleUpdateTrainer),
+    takeLatest(DELETE_CLIENT, handleDeleteClient)
   ]);
 }

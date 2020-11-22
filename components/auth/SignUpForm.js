@@ -6,7 +6,6 @@ import * as Icon from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { TextInputField } from '../shared/FormFields';
-import { signUpValidationRules } from '../../validation/auth';
 import $t from 'i18n';
 import ErrorText from '../shared/Text/ErrorText';
 import Colors from '../../constants/Colors';
@@ -18,10 +17,9 @@ export const SignUpForm = ({ onSubmit, signUpErrors }) => (
       full_name: '',
       email: '',
       password: '',
-      c_password: ''
+      confirm_password: ''
     }}
     onSubmit={onSubmit}
-    validationSchema={signUpValidationRules}
   >
     {({ handleSubmit }) => (
       <View style={styles.container}>
@@ -59,7 +57,10 @@ export const SignUpForm = ({ onSubmit, signUpErrors }) => (
             />
           </View>
         </View>
-        <ErrorText error={!!signUpErrors.email} message={signUpErrors.email} />
+        <ErrorText
+          error={!!signUpErrors.message}
+          message={signUpErrors.message}
+        />
         <View style={styles.inputFieldWrapper}>
           <Icon.MaterialCommunityIcons
             name={IconName.password}
@@ -87,7 +88,7 @@ export const SignUpForm = ({ onSubmit, signUpErrors }) => (
           />
           <View style={styles.input}>
             <Field
-              name="c_password"
+              name="confirm_password"
               component={TextInputField}
               secureTextEntry
               placeholder={$t('auth.confirmPassword')}

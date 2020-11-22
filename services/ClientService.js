@@ -1,15 +1,16 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  CLIENT: '/client',
-  GOALS_CREATE: '/client/goalCreate',
-  GOALS: '/client/goals',
-  SAVE_GALLERY: '/client/gallery'
+  CLIENTS: '/clients/'
 };
 
 class ClientService extends ApiService {
-  getClients = params => this.apiClient.get(ENDPOINTS.CLIENT, params);
-  updateUser = params => this.apiClient.put(ENDPOINTS.CLIENT, params);
+  getClients = params => this.apiClient.get(ENDPOINTS.CLIENTS, params);
+  addClient = params => this.apiClient.post(ENDPOINTS.CLIENTS, params);
+  showClient = params => this.apiClient.get(ENDPOINTS.CLIENTS + params);
+  updateClient = params =>
+    this.apiClient.put(ENDPOINTS.CLIENTS + params.clientId, params);
+  deleteClient = params => this.apiClient.delete(ENDPOINTS.CLIENTS + params);
 }
 
 const clientService = new ClientService();

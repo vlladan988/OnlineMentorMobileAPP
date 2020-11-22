@@ -40,7 +40,7 @@ const SignUpScreen = () => {
     >
       <SafeAreaView>
         <KeyboardAwareScrollView enableOnAndroid>
-          <LoginHeader />
+          <LoginHeader screen={'addTrainer'} />
           <SharedTrainerClientChooseButton
             userType={value => setSelected(value)}
           />

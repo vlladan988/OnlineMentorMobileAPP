@@ -10,7 +10,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import SettingsScreen from '../screens/main/TrainerScreen/Settings/SettingsScreen';
 import LeftSlider from '../screens/main/LeftSlider';
 import ChangePassword from '../screens/main/profile/ChangePassword';
-import EditProfile from '../screens/main/profile/EditProfile';
+// // import EditProfile from '../screens/main/profile/EditProfile';
 import HandleTabBarLabelStyle from '../helpers/HandleTabBarLabelStyle';
 import Colors from '../constants/Colors';
 import NutritionScreen from '../screens/main/TrainerScreen/Nutrition/NutritionScreen';
@@ -19,24 +19,24 @@ import WorkoutScreen from '../screens/main/TrainerScreen/Workout/WorkoutScreen';
 import ChatScreen from '../screens/main/TrainerScreen/ChatScreen/ChatScreen';
 import HeaderBarStyle from '../constants/HeaderBarStyle';
 import HomeScreenClient from '../screens/main/ClientScreen/Home/HomeScreenClient';
-import { addHeaderLeftNavigator } from '../helpers';
+import { addHeaderRightNavigator } from '../helpers';
 
 const HomeStack = createStackNavigator({
   Home: {
     screen: HomeScreenClient,
     navigationOptions: ({ navigation }) => {
-      const headerLeftNav = addHeaderLeftNavigator(navigation);
+      const headerRightNav = addHeaderRightNavigator(navigation);
 
       return {
-        ...headerLeftNav,
+        ...headerRightNav,
         title: 'Home',
         headerStyle: HeaderBarStyle,
         headerTitleStyle: { color: Colors.white, fontWeight: 'bold' }
       };
     }
   },
-  ChangePassword,
-  EditProfile
+  ChangePassword
+  // EditProfile
 });
 
 /* eslint-disable react/prop-types, react/display-name */

@@ -1,13 +1,17 @@
 import React from 'react';
-import { ImageBackground, StyleSheet } from 'react-native';
+import { ImageBackground, StyleSheet, ScrollView } from 'react-native';
 
 import background from '../../../../assets/images/LightBackground.png';
 import AddImage from './AddImage';
+import GallerySlider from './GallerySlider';
 
 const Gallery = () => {
   return (
     <ImageBackground source={background} style={styles.backgroundImage}>
-      <AddImage />
+      <ScrollView>
+        <AddImage />
+        <GallerySlider />
+      </ScrollView>
     </ImageBackground>
   );
 };

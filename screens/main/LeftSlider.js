@@ -1,36 +1,21 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Button,
-  View,
-  SafeAreaView,
-  TouchableOpacity,
-  Text
-} from 'react-native';
-import { useDispatch } from 'react-redux';
+import { StyleSheet, SafeAreaView } from 'react-native';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import $t from 'i18n';
-import { logout } from '../../store/actions/UserActions';
+
+import { userSelector } from '../../store/selectors/UserSelector';
+import DetailSliderComp from './DetailSliderComp';
+import OptionSliderComp from './OptionSliderComp';
+import HeaderSliderComp from './HeaderSliderComp';
 
 const LeftSlider = ({ navigation }) => {
-  const dispatch = useDispatch();
-  const _signOutAsync = async () => {
-    dispatch(logout());
-  };
+  const user = useSelector(userSelector());
+
   return (
     <SafeAreaView style={styles.container}>
-      <View>
-        <Button onPress={navigation.closeDrawer} title="Close me" />
-        <TouchableOpacity onPress={() => navigation.navigate('ChangePassword')}>
-          <Text>{$t('profile.changePassword.changePassword')}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('EditProfile')}>
-          <Text>{$t('profile.updateUser.updateProfile')}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={_signOutAsync}>
-          <Text>Logout</Text>
-        </TouchableOpacity>
-      </View>
+      <HeaderSliderComp trainer={user} />
+      <DetailSliderComp trainer={user} />
+      <OptionSliderComp navigation={navigation} />
     </SafeAreaView>
   );
 };

@@ -1,0 +1,1 @@
+export const UPDATE_TRAINER = 'UPDATE_TRAINER';

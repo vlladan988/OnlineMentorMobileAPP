@@ -19,11 +19,11 @@ const StandardNotificationModal = ({ visible }) => {
       <View style={styles.container}>
         <View style={styles.modalWrapper}>
           <Text style={styles.messageText}>{popUpMessage}</Text>
-          <Icon.Fontisto
+          <Icon.AntDesign
             style={styles.closeIcon}
-            name={IconName.close}
-            size={26}
-            color={Colors.warningColor}
+            name={IconName.success}
+            size={36}
+            color={Colors.cloudColor}
             onPress={closeModal}
           />
         </View>
@@ -41,9 +41,8 @@ StandardNotificationModal.propTypes = {
 
 const styles = StyleSheet.create({
   closeIcon: {
-    position: 'absolute',
-    right: 10,
-    top: 10
+    paddingHorizontal: 20,
+    paddingTop: 20
   },
   container: {
     alignItems: 'center',
@@ -59,7 +58,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.light,
     borderRadius: 10,
     paddingHorizontal: 40,
-    paddingVertical: 50,
+    paddingVertical: 20,
     width: '85%'
   }
 });

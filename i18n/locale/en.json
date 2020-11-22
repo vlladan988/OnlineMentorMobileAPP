@@ -8,7 +8,14 @@
     "cancel": "Cancel",
     "offline": "Please check your Internet connection",
     "save": "Save",
-    "date": "Date"
+    "date": "Date",
+    "city": "City",
+    "mainSport": "Main sport",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "desc": "Description",
+    "yes": "Yes",
+    "no": "No"
   },
   "auth": {
     "signUp": "Sign up",
@@ -17,8 +24,11 @@
     "enterLastName": "Enter your last name",
     "enterFullName": "Full name",
     "enterEmail": "Enter your email",
+    "enterClientEmail": "Enter client email",
     "enterPassword": "Enter your password",
+    "enterClientPassword": "Enter client password",
     "confirmPassword": "Confirm your password",
+    "confirmClientPassword": "Confirm client password",
     "passwordsMustMatch": "Passwords must match",
     "changePass": "Change password",
     "haveAccountLogIn": "Already have an account? Log in!",
@@ -34,6 +44,7 @@
     "invalidToken": "Invalid or expired token",
     "passwordResetSucces": "Your password has been successfully reseted, check your Email.",
     "tigsAcademy": "Online Mentor",
+    "addClient": "Create Client",
     "register": "Register Here",
     "guestRegister": "Register Guest Here",
     "guestRegisterMessage": "You will get full access training plan, nutrition plan for every day and online chat for 9.99$ per month.",
@@ -106,10 +117,12 @@
     "city": "City",
     "phone": "Phone",
     "setGoal": "Set goal",
+    "clientGoalText": "Client goal",
     "current": "Current",
     "goal": "Goal",
     "start": "Start",
-    "end": "End"
+    "end": "End",
+    "deleteGallery": "Delete Gallery ?"
   },
   "gallery": {
     "front": "Front",
