@@ -83,18 +83,10 @@ const styles = StyleSheet.create({
   },
   credWrapper: {
     alignItems: 'center',
-    elevation: 18,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 30,
-    paddingVertical: 5,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 9
-    },
-    shadowOpacity: 0.48,
-    shadowRadius: 11.95
+    paddingVertical: 5
   },
   descWrapper: {
     height: 120,

@@ -8,7 +8,7 @@ import * as Icon from '@expo/vector-icons';
 
 import TabBarIcon from '../components/TabBarIcon';
 import SettingsScreen from '../screens/main/TrainerScreen/Settings/SettingsScreen';
-import LeftSlider from '../screens/main/LeftSlider';
+import ClientLeftSlider from '../screens/main/ClientLeftSlider';
 import ChangePassword from '../screens/main/profile/ChangePassword';
 // // import EditProfile from '../screens/main/profile/EditProfile';
 import HandleTabBarLabelStyle from '../helpers/HandleTabBarLabelStyle';
@@ -20,6 +20,7 @@ import ChatScreen from '../screens/main/TrainerScreen/ChatScreen/ChatScreen';
 import HeaderBarStyle from '../constants/HeaderBarStyle';
 import HomeScreenClient from '../screens/main/ClientScreen/Home/HomeScreenClient';
 import { addHeaderRightNavigator } from '../helpers';
+import Layout from '../constants/Layout';
 
 const HomeStack = createStackNavigator({
   Home: {
@@ -189,6 +190,8 @@ export default createDrawerNavigator(
     BottomTabNavigator: BottomTabNavigator
   },
   {
-    contentComponent: LeftSlider
+    drawerWidth: Layout.window.width - 70,
+    contentComponent: ClientLeftSlider,
+    overlayColor: 0.9
   }
 );

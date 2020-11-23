@@ -9,7 +9,7 @@ import * as Icon from '@expo/vector-icons';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreenTrainer from '../screens/main/TrainerScreen/Home/HomeScreenTrainer';
 import SettingsScreen from '../screens/main/TrainerScreen/Settings/SettingsScreen';
-import LeftSlider from '../screens/main/LeftSlider';
+import TrainerLeftSlider from '../screens/main/TrainerLeftSlider';
 import ChangePassword from '../screens/main/profile/ChangePassword';
 import ClientCreate from '../screens/auth/ClientCreate';
 import EditProfileScreen from '../screens/main/TrainerScreen/Profile/EditProfileScreen';
@@ -206,8 +206,8 @@ export default createDrawerNavigator(
     BottomTabNavigator: BottomTabNavigator
   },
   {
-    drawerWidth: Layout.window.width - 80,
-    contentComponent: LeftSlider,
+    drawerWidth: Layout.window.width - 70,
+    contentComponent: TrainerLeftSlider,
     overlayColor: 0.9
   }
 );

@@ -49,8 +49,8 @@ import {
   SAVE_GALLERY,
   DELETE_GALLERY
 } from '../actionTypes/GalleryActionTypes';
-import { handleUpdateTrainer } from './TrainerSagas';
-import { UPDATE_TRAINER } from '../actionTypes/TrainerActionTypes';
+import { handleUpdateTrainer, handleGetTrainer } from './TrainerSagas';
+import { UPDATE_TRAINER, GET_TRAINER } from '../actionTypes/TrainerActionTypes';
 
 export default function* rootSaga() {
   yield all([
@@ -74,6 +74,7 @@ export default function* rootSaga() {
     takeLatest(GET_CLIENT, handleGetClient),
     takeLatest(ADD_CLIENT, handleAddClient),
     takeLatest(UPDATE_TRAINER, handleUpdateTrainer),
-    takeLatest(DELETE_CLIENT, handleDeleteClient)
+    takeLatest(DELETE_CLIENT, handleDeleteClient),
+    takeLatest(GET_TRAINER, handleGetTrainer)
   ]);
 }

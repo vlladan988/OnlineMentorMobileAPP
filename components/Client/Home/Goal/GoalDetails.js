@@ -206,27 +206,14 @@ const styles = StyleSheet.create({
     width: 100
   },
   container: {
-    paddingHorizontal: 30
-  },
-  descriptionText: {
-    alignSelf: 'center',
-    paddingBottom: 10
-  },
-  detailWrapper: {
-    borderBottomColor: Colors.cloudColor,
-    borderBottomWidth: 1,
-    marginTop: 10,
-    paddingVertical: 10
-  },
-  inputField: {
-    paddingLeft: 15,
-    textAlign: 'center'
-  },
-  inputFieldContainer: {
+    backgroundColor: Colors.light,
+    borderRadius: 10,
     elevation: 18,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 10,
+    marginHorizontal: 15,
+    marginTop: 20,
+    paddingBottom: 30,
+    paddingHorizontal: 25,
+    paddingTop: 10,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -234,6 +221,32 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.48,
     shadowRadius: 11.95
+  },
+  descriptionText: {
+    alignSelf: 'center',
+    paddingBottom: 10
+  },
+  detailWrapper: {
+    borderBottomColor: Colors.cloudColor,
+    borderBottomWidth: 1
+    // marginVertical: 10
+  },
+  inputField: {
+    paddingLeft: 15,
+    textAlign: 'center'
+  },
+  inputFieldContainer: {
+    // elevation: 18,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10
+    // shadowColor: '#000',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 9
+    // },
+    // shadowOpacity: 0.48,
+    // shadowRadius: 11.95
   },
   inputFieldDescWrapper: {
     borderBottomColor: Colors.lightGray,

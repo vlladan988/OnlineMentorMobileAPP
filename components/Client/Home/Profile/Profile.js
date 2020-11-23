@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import * as Icon from '@expo/vector-icons';
@@ -8,10 +8,17 @@ import ProfileDetails from './ProfileDetails';
 import IconName from '../../../../constants/IconName';
 import Colors from '../../../../constants/Colors';
 import EditClientProfileModal from '../../../shared/modal/EditClientProfileModal';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { userSelector } from '../../../../store/selectors/UserSelector';
+import { getTrainer } from '../../../../store/actions/TrainerActions';
 
 const Profile = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTrainer());
+  }, []);
+
   const [isModalVisible, setIsModalVisible] = useState(false);
   const user = useSelector(userSelector());
   return (

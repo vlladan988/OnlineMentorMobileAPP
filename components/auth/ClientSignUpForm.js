@@ -10,6 +10,7 @@ import $t from 'i18n';
 import ErrorText from '../shared/Text/ErrorText';
 import Colors from '../../constants/Colors';
 import IconName from '../../constants/IconName';
+import { forgotPasswordValidationRules } from '../../validation/auth';
 
 export const ClientSignUpForm = ({ onSubmit, signUpErrors }) => (
   <Formik
@@ -20,6 +21,7 @@ export const ClientSignUpForm = ({ onSubmit, signUpErrors }) => (
       confirm_password: ''
     }}
     onSubmit={onSubmit}
+    validationSchema={forgotPasswordValidationRules}
   >
     {({ handleSubmit }) => (
       <View style={styles.container}>

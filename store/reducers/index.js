@@ -6,6 +6,7 @@ import errorReducer from './ErrorReducer';
 import clientReducer from './ClientReducer';
 import goalReducer from './GoalReducer';
 import galleryReducer from './GalleryReducer';
+import trainerReducer from './TrainerReducer';
 
 export default combineReducers({
   userReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   errorReducer,
   clientReducer,
   goalReducer,
-  galleryReducer
+  galleryReducer,
+  trainerReducer
 });

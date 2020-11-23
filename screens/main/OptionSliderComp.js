@@ -15,7 +15,7 @@ import IconName from '../../constants/IconName';
 import Colors from '../../constants/Colors';
 import { logout } from '../../store/actions/UserActions';
 
-const OptionSliderComp = ({ navigation }) => {
+const OptionSliderComp = () => {
   const dispatch = useDispatch();
 
   const _signOutAsync = async () => {
@@ -28,36 +28,6 @@ const OptionSliderComp = ({ navigation }) => {
         <Text style={styles.trainerText}>Options</Text>
       </View>
       <ScrollView>
-        <View style={styles.optionWrapper}>
-          <View style={styles.optionDetailsWrapper}>
-            <Text>Add Client</Text>
-            <TouchableOpacity
-              style={styles.addUserbutton}
-              onPress={() => navigation.navigate('ClientCreate')}
-            >
-              <Icon.FontAwesome5
-                name={IconName.userAdd}
-                color={Colors.white}
-                size={25}
-                style={styles.optionIcons}
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.optionDetailsWrapper}>
-          <Text>Edit profile</Text>
-          <TouchableOpacity
-            style={styles.editClientButton}
-            onPress={() => navigation.navigate('EditProfile')}
-          >
-            <Icon.FontAwesome5
-              name={IconName.userEdit}
-              color={Colors.white}
-              size={25}
-              style={styles.optionIcons}
-            />
-          </TouchableOpacity>
-        </View>
         <View style={styles.optionDetailsWrapper}>
           <Text>Log Out</Text>
           <TouchableOpacity style={styles.logoutUser} onPress={_signOutAsync}>
