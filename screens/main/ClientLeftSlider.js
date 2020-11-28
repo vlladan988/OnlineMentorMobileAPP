@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import DetailSliderComp from './DetailSliderComp';
-import OptionSliderComp from './OptionSliderComp';
+import OptionClientSliderComp from './OptionClientSliderComp';
 import HeaderSliderComp from './HeaderSliderComp';
 import { trainerSelector } from '../../store/selectors/TrainerSelector';
 
@@ -14,7 +14,7 @@ const ClientLeftSlider = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <HeaderSliderComp trainer={trainer} />
       <DetailSliderComp trainer={trainer} />
-      <OptionSliderComp navigation={navigation} />
+      <OptionClientSliderComp navigation={navigation} />
     </SafeAreaView>
   );
 };

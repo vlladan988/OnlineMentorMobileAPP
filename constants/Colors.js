@@ -1,16 +1,20 @@
 const tintColor = '#2f95dc';
 const mainColor = '#3ec7cb';
 const mainYellow = '#fdde37';
-const testMain = '#1c1c1c';
-
-// const listColor = '#57739c';
 const listColor = '#6c8ab8';
 
 export default {
+  lightBackgroundAppColor: '#3f5069',
   backgroundAppColor: '#384962',
+  darkBackgroundAppColor: '#202e46',
   lightGray: '#7A879B',
   lightText: '#ededed',
+  lightCloudColor: '#46dee3',
   cloudColor: mainColor,
+  darkCloudColor: '#37b5b8',
+  lightOker: '#ebb246',
+  oker: '#edad34',
+  darkOker: '#eba623',
   listColor,
   mainYellow,
   black: '#000000',

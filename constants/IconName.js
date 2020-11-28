@@ -24,5 +24,7 @@ export default {
   body: 'ios-body',
   age: 'tree',
   success: 'checkcircle',
-  city: 'location-city'
+  city: 'location-city',
+  search: 'search1',
+  plus: 'pluscircle'
 };

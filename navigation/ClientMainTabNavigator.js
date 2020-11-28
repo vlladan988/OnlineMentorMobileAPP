@@ -10,10 +10,8 @@ import TabBarIcon from '../components/TabBarIcon';
 import SettingsScreen from '../screens/main/TrainerScreen/Settings/SettingsScreen';
 import ClientLeftSlider from '../screens/main/ClientLeftSlider';
 import ChangePassword from '../screens/main/profile/ChangePassword';
-// // import EditProfile from '../screens/main/profile/EditProfile';
 import HandleTabBarLabelStyle from '../helpers/HandleTabBarLabelStyle';
 import Colors from '../constants/Colors';
-import NutritionScreen from '../screens/main/TrainerScreen/Nutrition/NutritionScreen';
 import IconName from '../constants/IconName';
 import WorkoutScreen from '../screens/main/TrainerScreen/Workout/WorkoutScreen';
 import ChatScreen from '../screens/main/TrainerScreen/ChatScreen/ChatScreen';
@@ -21,6 +19,7 @@ import HeaderBarStyle from '../constants/HeaderBarStyle';
 import HomeScreenClient from '../screens/main/ClientScreen/Home/HomeScreenClient';
 import { addHeaderRightNavigator } from '../helpers';
 import Layout from '../constants/Layout';
+import NutritionScreenClient from '../screens/main/ClientScreen/Nutrition/NutritionScreenClient';
 
 const HomeStack = createStackNavigator({
   Home: {
@@ -56,7 +55,7 @@ HomeStack.navigationOptions = {
 
 const NutritionStack = createStackNavigator({
   Nutrition: {
-    screen: NutritionScreen,
+    screen: NutritionScreenClient,
     navigationOptions: () => {
       return {
         title: 'Nutrition',

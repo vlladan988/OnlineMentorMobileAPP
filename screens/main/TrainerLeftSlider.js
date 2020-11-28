@@ -5,17 +5,16 @@ import PropTypes from 'prop-types';
 
 import { userSelector } from '../../store/selectors/UserSelector';
 import DetailSliderComp from './DetailSliderComp';
-import OptionSliderComp from './OptionSliderComp';
 import HeaderSliderComp from './HeaderSliderComp';
+import OptionTrainerSliderComp from './OptionTrainerSliderComp';
 
 const TrainerLeftSlider = ({ navigation }) => {
   const user = useSelector(userSelector());
-
   return (
     <SafeAreaView style={styles.container}>
       <HeaderSliderComp trainer={user} />
       <DetailSliderComp trainer={user} />
-      <OptionSliderComp navigation={navigation} />
+      <OptionTrainerSliderComp navigation={navigation} />
     </SafeAreaView>
   );
 };

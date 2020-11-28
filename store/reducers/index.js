@@ -7,6 +7,8 @@ import clientReducer from './ClientReducer';
 import goalReducer from './GoalReducer';
 import galleryReducer from './GalleryReducer';
 import trainerReducer from './TrainerReducer';
+import groceriesReducer from './GroceriesReducer';
+import recipeReducer from './RecipeReducer';
 
 export default combineReducers({
   userReducer,
@@ -15,5 +17,7 @@ export default combineReducers({
   clientReducer,
   goalReducer,
   galleryReducer,
-  trainerReducer
+  trainerReducer,
+  groceriesReducer,
+  recipeReducer
 });

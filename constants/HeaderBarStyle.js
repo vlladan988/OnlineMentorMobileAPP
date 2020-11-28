@@ -1,7 +1,7 @@
 import Colors from './Colors';
 
 export default {
-  backgroundColor: Colors.backgroundAppColor,
+  backgroundColor: Colors.lightBackgroundAppColor,
   borderBottomColor: Colors.backgroundAppColor,
   borderBottomWidth: 1,
   sshadowColor: '#000',

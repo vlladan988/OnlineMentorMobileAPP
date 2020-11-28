@@ -1,0 +1,2 @@
+export const GET_GROCERIES = 'GET_GROCERIES';
+export const SET_GROCERIES = 'SET_GROCERIES';

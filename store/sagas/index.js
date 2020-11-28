@@ -51,6 +51,10 @@ import {
 } from '../actionTypes/GalleryActionTypes';
 import { handleUpdateTrainer, handleGetTrainer } from './TrainerSagas';
 import { UPDATE_TRAINER, GET_TRAINER } from '../actionTypes/TrainerActionTypes';
+import { handleGetGroceries } from './GroceriesSagas';
+import { GET_GROCERIES } from '../actionTypes/GroceriesActionTypes';
+import { handleGetRecipeTypes } from './RecipeSagas';
+import { GET_RECIPE_TYPES } from '../actionTypes/RecipeActionTypes';
 
 export default function* rootSaga() {
   yield all([
@@ -75,6 +79,8 @@ export default function* rootSaga() {
     takeLatest(ADD_CLIENT, handleAddClient),
     takeLatest(UPDATE_TRAINER, handleUpdateTrainer),
     takeLatest(DELETE_CLIENT, handleDeleteClient),
-    takeLatest(GET_TRAINER, handleGetTrainer)
+    takeLatest(GET_TRAINER, handleGetTrainer),
+    takeLatest(GET_GROCERIES, handleGetGroceries),
+    takeLatest(GET_RECIPE_TYPES, handleGetRecipeTypes)
   ]);
 }

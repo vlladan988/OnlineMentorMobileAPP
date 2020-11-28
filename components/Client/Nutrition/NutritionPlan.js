@@ -1,0 +1,72 @@
+// import React from 'react';
+// import { View, Text, ImageBackground, StyleSheet } from 'react-native';
+
+// import background from '../../../assets/images/LightBackground.png';
+
+// const NutritionPlan = ({ title }) => {
+//   return (
+//     <ImageBackground source={background} style={styles.image}>
+//       <View style={styles.container}>
+//         <Text>{title}</Text>
+//       </View>
+//     </ImageBackground>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   container: {
+//     alignItems: 'center',
+//     flex: 1,
+//     justifyContent: 'center'
+//   },
+//   image: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     resizeMode: 'contain'
+//   }
+// });
+
+// export default NutritionPlan;
+import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import CalendarPicker from 'react-native-calendar-picker';
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedStartDate: null
+    };
+    this.onDateChange = this.onDateChange.bind(this);
+  }
+
+  onDateChange(date) {
+    this.setState({
+      selectedStartDate: date
+    });
+  }
+  render() {
+    const { selectedStartDate } = this.state;
+    const startDate = selectedStartDate ? selectedStartDate.toString() : '';
+    return (
+      <View style={styles.container}>
+        <CalendarPicker onDateChange={this.onDateChange} />
+
+        <View>
+          <Text>
+            SELECTED DATEEEEEEE:
+            {startDate}
+          </Text>
+        </View>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#FFFFFF',
+    flex: 1,
+    marginTop: 100
+  }
+});

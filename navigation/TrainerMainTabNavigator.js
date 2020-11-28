@@ -15,7 +15,7 @@ import ClientCreate from '../screens/auth/ClientCreate';
 import EditProfileScreen from '../screens/main/TrainerScreen/Profile/EditProfileScreen';
 import HandleTabBarLabelStyle from '../helpers/HandleTabBarLabelStyle';
 import Colors from '../constants/Colors';
-import NutritionScreen from '../screens/main/TrainerScreen/Nutrition/NutritionScreen';
+import NutritionScreenTrainer from '../screens/main/TrainerScreen/Nutrition/NutritionScreenTrainer';
 import IconName from '../constants/IconName';
 import WorkoutScreen from '../screens/main/TrainerScreen/Workout/WorkoutScreen';
 import ChatScreen from '../screens/main/TrainerScreen/ChatScreen/ChatScreen';
@@ -72,7 +72,7 @@ HomeStack.navigationOptions = {
 
 const NutritionStack = createStackNavigator({
   Nutrition: {
-    screen: NutritionScreen,
+    screen: NutritionScreenTrainer,
     navigationOptions: () => {
       return {
         title: 'Nutrition',
@@ -184,7 +184,7 @@ const BottomTabNavigator = createBottomTabNavigator(
   {
     tabBarOptions: {
       style: {
-        backgroundColor: Colors.backgroundAppColor,
+        backgroundColor: Colors.darkBackgroundAppColor,
         borderTopColor: Colors.backgroundAppColor,
         borderTopWidth: 1,
         shadowColor: Colors.black,
