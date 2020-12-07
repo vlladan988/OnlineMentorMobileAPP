@@ -4,14 +4,14 @@ import $t from 'i18n';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import Colors from '../../../../../constants/Colors';
-import ShadowStyle from '../../../../../constants/ShadowStyle';
+import ShadowStyleHigh from '../../../../../constants/ShadowStyleHigh';
 
-const GroceriesRecipeCreateModal = () => {
+const RecipeCreateModal = () => {
   return (
     <View style={styles.inputGroceriesWrapper}>
       <Text style={styles.inputText}>{$t('trainer.groceries')}</Text>
       <View style={styles.buttonsWrapper}>
-        <View style={[ShadowStyle, styles.groceriesButtonWrapper]}>
+        <View style={[ShadowStyleHigh, styles.groceriesButtonWrapper]}>
           <LinearGradient
             colors={[Colors.darkOker, Colors.oker, Colors.lightOker]}
             start={{ x: 0, y: 1 }}
@@ -26,7 +26,7 @@ const GroceriesRecipeCreateModal = () => {
             </TouchableOpacity>
           </LinearGradient>
         </View>
-        <View style={[ShadowStyle, styles.groceriesButtonWrapper]}>
+        <View style={[ShadowStyleHigh, styles.groceriesButtonWrapper]}>
           <LinearGradient
             colors={[
               Colors.darkBackgroundAppColor,
@@ -47,7 +47,7 @@ const GroceriesRecipeCreateModal = () => {
   );
 };
 
-export default GroceriesRecipeCreateModal;
+export default RecipeCreateModal;
 
 export const styles = StyleSheet.create({
   buttonsWrapper: {

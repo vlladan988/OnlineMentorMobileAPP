@@ -2,19 +2,19 @@ import React from 'react';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 
 import Colors from '../../../../constants/Colors';
-import NutritionPlanTrainer from '../../../../components/Trainer/Nutritions/NutritionPlanTrainer';
+import Groceries from '../../../../components/Trainer/Nutritions/Groceries/Groceries';
 import Recipes from '../../../../components/Trainer/Nutritions/Recipe/Recipes';
 
-const TrainerNutritionPlanComp = () => <NutritionPlanTrainer />;
+const GroceriesComp = () => <Groceries />;
 
 const RecipeComp = () => <Recipes />;
 
 export default createMaterialTopTabNavigator(
   {
-    TrainerNutritionPlanComp: {
-      screen: TrainerNutritionPlanComp,
+    GroceriesComp: {
+      screen: GroceriesComp,
       navigationOptions: {
-        tabBarLabel: 'Nutrition Plan'
+        tabBarLabel: 'Groceries'
       }
     },
     RecipeComp: {

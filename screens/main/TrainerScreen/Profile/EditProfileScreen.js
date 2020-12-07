@@ -9,7 +9,7 @@ import { userSelector } from '../../../../store/selectors/UserSelector';
 import { updateTrainer } from '../../../../store/actions/TrainerActions';
 import { UpdateTrainerForm } from '../../../../components/Trainer/TrainerProfile/UpdateTrainerForm';
 import HeaderProfileImage from '../../../../components/Trainer/TrainerProfile/HeaderProfileImage';
-import AllPhotoRequiredModal from '../../../../components/shared/modal/StandardNotificationModal';
+import StandardNotificationModal from '../../../../components/shared/modal/StandardNotificationModal';
 import { showStandardPopUp } from '../../../../store/selectors/ErrorSelector';
 
 const EditProfileScreen = () => {
@@ -31,7 +31,7 @@ const EditProfileScreen = () => {
       style={styles.gradientBackground}
     >
       <View style={styles.container}>
-        <AllPhotoRequiredModal visible={isStandardModalVisible} />
+        <StandardNotificationModal visible={isStandardModalVisible} />
         <HeaderProfileImage
           trainer={trainer}
           setProfileImageUrl={image => setPhotoUrl(image)}

@@ -51,8 +51,18 @@ import {
 } from '../actionTypes/GalleryActionTypes';
 import { handleUpdateTrainer, handleGetTrainer } from './TrainerSagas';
 import { UPDATE_TRAINER, GET_TRAINER } from '../actionTypes/TrainerActionTypes';
-import { handleGetGroceries } from './GroceriesSagas';
-import { GET_GROCERIES } from '../actionTypes/GroceriesActionTypes';
+import {
+  handleFetchGroceries,
+  handleAddGrocery,
+  handleUpdateGrocery,
+  handleDeleteGrocery
+} from './GroceriesSagas';
+import {
+  FETCH_GROCERIES,
+  ADD_GROCERIES,
+  UPDATE_GROCERIES,
+  DELETE_GROCERIES
+} from '../actionTypes/GroceriesActionTypes';
 import { handleGetRecipeTypes } from './RecipeSagas';
 import { GET_RECIPE_TYPES } from '../actionTypes/RecipeActionTypes';
 
@@ -80,7 +90,10 @@ export default function* rootSaga() {
     takeLatest(UPDATE_TRAINER, handleUpdateTrainer),
     takeLatest(DELETE_CLIENT, handleDeleteClient),
     takeLatest(GET_TRAINER, handleGetTrainer),
-    takeLatest(GET_GROCERIES, handleGetGroceries),
-    takeLatest(GET_RECIPE_TYPES, handleGetRecipeTypes)
+    takeLatest(GET_RECIPE_TYPES, handleGetRecipeTypes),
+    takeLatest(FETCH_GROCERIES, handleFetchGroceries),
+    takeLatest(ADD_GROCERIES, handleAddGrocery),
+    takeLatest(UPDATE_GROCERIES, handleUpdateGrocery),
+    takeLatest(DELETE_GROCERIES, handleDeleteGrocery)
   ]);
 }

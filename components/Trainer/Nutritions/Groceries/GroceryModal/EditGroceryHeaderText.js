@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import * as Icon from '@expo/vector-icons';
-import $t from 'i18n';
 import PropTypes from 'prop-types';
+import $t from 'i18n';
 
 import Colors from '../../../../../constants/Colors';
 import IconName from '../../../../../constants/IconName';
 
-const HeaderCreateRecipeModal = ({ closeModal }) => {
+const EditGroceryHeaderText = ({ closeModal }) => {
   return (
     <View style={styles.headerTrack}>
       <Icon.Fontisto
@@ -18,19 +18,19 @@ const HeaderCreateRecipeModal = ({ closeModal }) => {
         style={styles.closeIcon}
       />
       <View>
-        <Text style={styles.headerText}>{$t('trainer.createARecipe')}</Text>
+        <Text style={styles.headerText}>{$t('trainer.editGrocery')}</Text>
       </View>
     </View>
   );
 };
 
-export default HeaderCreateRecipeModal;
+export default EditGroceryHeaderText;
 
-HeaderCreateRecipeModal.propTypes = {
+EditGroceryHeaderText.propTypes = {
   closeModal: PropTypes.func
 };
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   closeIcon: {
     position: 'absolute',
     right: 15
@@ -44,6 +44,7 @@ export const styles = StyleSheet.create({
     borderBottomColor: Colors.light,
     borderBottomWidth: 1,
     flexDirection: 'row',
+    height: 120,
     paddingHorizontal: 15,
     width: '100%'
   }

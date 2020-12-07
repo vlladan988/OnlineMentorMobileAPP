@@ -8,7 +8,7 @@ import $t from 'i18n';
 
 import Colors from '../../../../constants/Colors';
 import IconName from '../../../../constants/IconName';
-import AllPhotoRequiredModal from '../../../shared/modal/StandardNotificationModal';
+import StandardNotificationModal from '../../../shared/modal/StandardNotificationModal';
 import { showStandardPopUp } from '../../../../store/selectors/ErrorSelector';
 import {
   getGallery,
@@ -61,7 +61,7 @@ const AddImage = () => {
 
   return (
     <>
-      <AllPhotoRequiredModal visible={isStandardModalVisible} />
+      <StandardNotificationModal visible={isStandardModalVisible} />
       <>
         <View style={styles.pickerWrapper}>
           <TouchableOpacity

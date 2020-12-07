@@ -54,12 +54,7 @@ const GallerySlider = () => {
           style={styles.iconWrapper}
           onPress={() => saveGalleryId(photo.id)}
         >
-          <Icon.Entypo
-            name={IconName.dots}
-            color={Colors.black}
-            size={24}
-            style={styles.icon}
-          />
+          <Icon.Entypo name={IconName.dots} color={Colors.black} size={24} />
         </TouchableOpacity>
       </View>
       <SliderBox

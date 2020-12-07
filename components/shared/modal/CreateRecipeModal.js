@@ -17,7 +17,7 @@ import HeaderCreateRecipeModal from '../../Trainer/Nutritions/Recipe/RecipeModal
 import RecipeImage from '../../Trainer/Nutritions/Recipe/RecipeModal/RecipeImage';
 import MealTypeRecipeModal from '../../Trainer/Nutritions/Recipe/RecipeModal/MealTypeRecipeModal';
 import SubmitButtonCreateRecipeModal from '../../Trainer/Nutritions/Recipe/RecipeModal/SubmitButtonCreateRecipeModal';
-import GroceriesRecipeCreateModal from '../../Trainer/Nutritions/Recipe/RecipeModal/GroceriesRecipeCreateModal';
+import RecipeCreateModal from '../../Trainer/Nutritions/Recipe/RecipeModal/RecipeCreateModal';
 
 const CreateRecipeModal = ({ isRecipeVisible, closeModal }) => {
   return (
@@ -31,8 +31,8 @@ const CreateRecipeModal = ({ isRecipeVisible, closeModal }) => {
         style={styles.linearGradientWrapper}
       >
         <SafeAreaView style={styles.modalWrapper}>
+          <HeaderCreateRecipeModal closeModal={closeModal} />
           <ScrollView style={styles.scrollWrapper}>
-            <HeaderCreateRecipeModal closeModal={closeModal} />
             <View style={styles.inputNameWrapper}>
               <Text style={styles.inputText}>{$t('trainer.recipeName')}</Text>
               <TextInput
@@ -57,7 +57,7 @@ const CreateRecipeModal = ({ isRecipeVisible, closeModal }) => {
                 value={1}
               />
             </View>
-            <GroceriesRecipeCreateModal />
+            <RecipeCreateModal />
             <SubmitButtonCreateRecipeModal closeModal={closeModal} />
           </ScrollView>
         </SafeAreaView>

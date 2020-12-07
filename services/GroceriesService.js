@@ -1,15 +1,17 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  GROCERIES: '/goals/'
+  GROCERY: '/grocery/'
 };
 
-class GroceriesService extends ApiService {
-  getGroceries = () => this.apiClient.get(ENDPOINTS.GROCERIES);
-  updateGroceries = params =>
-    this.apiClient.put(ENDPOINTS.GROCERIES + params.clientId, params);
+class GroceryService extends ApiService {
+  fetchGroceries = () => this.apiClient.get(ENDPOINTS.GROCERY);
+  addGrocery = params => this.apiClient.post(ENDPOINTS.GROCERY, params);
+  updateGrocery = params =>
+    this.apiClient.put(ENDPOINTS.GROCERY + params.id, params);
+  deleteGrocery = params => this.apiClient.delete(ENDPOINTS.GROCERY + params);
 }
 
-const groceriesService = new GroceriesService();
+const groceryService = new GroceryService();
 
-export default groceriesService;
+export default groceryService;

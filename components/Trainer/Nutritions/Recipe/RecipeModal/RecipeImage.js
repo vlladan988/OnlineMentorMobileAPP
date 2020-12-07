@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import $t from 'i18n';
 
 import ImageTypeRadioButtons from '../ImageTypeRadioButtons';
-import ShadowStyle from '../../../../../constants/ShadowStyle';
+import ShadowStyleHigh from '../../../../../constants/ShadowStyleHigh';
 import breakfast from '../../../../../assets/images/meal.jpg';
 import lunch from '../../../../../assets/images/lunch.png';
 import dinner from '../../../../../assets/images/dinner.jpg';
@@ -17,7 +17,7 @@ const RecipeImage = () => {
     <View style={styles.imageContainer}>
       <Text style={styles.mealImageText}>Meal Image</Text>
       <ImageTypeRadioButtons changeImageType={changeImageType} />
-      <View style={[ShadowStyle, styles.imageWrapper]}>
+      <View style={[ShadowStyleHigh, styles.imageWrapper]}>
         <Image
           source={
             imageType === 0 ? breakfast : imageType === 1 ? lunch : dinner

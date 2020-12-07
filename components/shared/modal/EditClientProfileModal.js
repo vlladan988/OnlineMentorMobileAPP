@@ -104,7 +104,7 @@ const EditClientProfileModal = ({ isVisible, closeModal, user }) => {
             </View>
             <View style={styles.descWrapper}>
               <View style={styles.descTextWrapper}>
-                <Text style={styles.descText}>{$t('client.desc')}</Text>
+                <Text style={styles.descText}>{$t('common.desc')}</Text>
               </View>
               <TextInput
                 numberOfLines={5}

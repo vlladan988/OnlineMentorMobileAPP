@@ -18,7 +18,14 @@
     "no": "No",
     "options": "Options",
     "import": "Import",
-    "add": "Add"
+    "add": "Add",
+    "name": "Name",
+    "measUnit": "Measurement Unit",
+    "groceryVal": "Grocery Values",
+    "proteins": "Proteins",
+    "carbonUh": "Carbons",
+    "fats": "Fats",
+    "calories": "Calories"
   },
   "auth": {
     "signUp": "Sign up",
@@ -144,7 +151,10 @@
     "mealType": "Meal Type",
     "recipeType": "Recipe Description*",
     "groceries": "Groceries",
-    "createRecipe": "Create Recipe"
+    "createRecipe": "Create Recipe",
+    "createGrocery": "Create Grocery",
+    "editGrocery": "Edit Grocery",
+    "groceryList": "Grocery List"
   },
   "guestTrainer": {
     "guest": "Guest"

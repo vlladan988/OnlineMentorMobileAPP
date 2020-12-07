@@ -53,7 +53,7 @@ const SelectedClientGoalDetails = () => {
         </View>
       </View>
       <View style={styles.descWrapper}>
-        <Text style={styles.descriptionText}>{$t('client.desc')}</Text>
+        <Text style={styles.descriptionText}>{$t('common.desc')}</Text>
         <Text style={styles.description}>{goal.description}</Text>
       </View>
     </View>

@@ -2,11 +2,11 @@ import React from 'react';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 
 import Colors from '../../../../constants/Colors';
-import NutritionPlanTrainer from '../../../../components/Trainer/Nutritions/NutritionPlanTrainer';
+import Groceries from '../../../../components/Trainer/Nutritions/Groceries/Groceries';
 
-const WorkoutPlan = () => <NutritionPlanTrainer title={'Workout Plan'} />;
+const WorkoutPlan = () => <Groceries title={'Workout Plan'} />;
 
-const Exercises = () => <NutritionPlanTrainer title={'Exercises'} />;
+const Exercises = () => <Groceries title={'Exercises'} />;
 
 export default createMaterialTopTabNavigator(
   {

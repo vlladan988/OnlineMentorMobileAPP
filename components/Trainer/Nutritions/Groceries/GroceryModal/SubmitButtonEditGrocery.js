@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import ShadowStyleHigh from '../../../../../constants/ShadowStyleHigh';
 import Colors from '../../../../../constants/Colors';
 
-const SubmitButtonCreateRecipeModal = ({ closeModal }) => {
+const SubmitButtonEditGrocery = ({ submitForm }) => {
   return (
     <View style={ShadowStyleHigh}>
       <LinearGradient
@@ -20,20 +20,18 @@ const SubmitButtonCreateRecipeModal = ({ closeModal }) => {
         end={{ x: 1, y: 1 }}
         style={styles.buttonSubmitGradientWrapper}
       >
-        <TouchableOpacity style={styles.submitButton} onPress={closeModal}>
-          <Text style={styles.submitButtonText}>
-            {$t('trainer.createRecipe')}
-          </Text>
+        <TouchableOpacity style={styles.submitButton} onPress={submitForm}>
+          <Text style={styles.submitButtonText}>Edit Grocery</Text>
         </TouchableOpacity>
       </LinearGradient>
     </View>
   );
 };
 
-export default SubmitButtonCreateRecipeModal;
+export default SubmitButtonEditGrocery;
 
-SubmitButtonCreateRecipeModal.propTypes = {
-  closeModal: PropTypes.func
+SubmitButtonEditGrocery.propTypes = {
+  submitForm: PropTypes.func
 };
 
 export const styles = StyleSheet.create({
@@ -41,7 +39,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 30,
     marginBottom: 20,
-    marginTop: 60,
+    marginTop: 20,
     width: '50%'
   },
   submitButton: {

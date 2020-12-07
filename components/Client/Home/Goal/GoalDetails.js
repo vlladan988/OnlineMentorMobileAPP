@@ -156,7 +156,7 @@ const GoalDetails = () => {
         </View>
       </View>
       <View style={styles.inputFieldDescWrapper}>
-        <Text style={styles.descriptionText}>{$t('client.desc')}</Text>
+        <Text style={styles.descriptionText}>{$t('common.desc')}</Text>
         <TextInput
           onChangeText={text => setTextField(text, 'description')}
           numberOfLines={5}

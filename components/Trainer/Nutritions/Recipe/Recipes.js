@@ -7,13 +7,16 @@ import {
   TextInput
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as Icon from '@expo/vector-icons';
 
 import Colors from '../../../../constants/Colors';
-import * as Icon from '@expo/vector-icons';
 import IconName from '../../../../constants/IconName';
 import CreateRecipeModal from '../../../shared/modal/CreateRecipeModal';
+import ShadowStyleHigh from '../../../../constants/ShadowStyleHigh';
+
 const Recipes = () => {
   const [isRecipeVisible, setIsRecipeVisible] = useState(false);
+  const [searchText, setSearchText] = useState('');
 
   const handleRecipeModalVisible = () => setIsRecipeVisible(!isRecipeVisible);
   return (
@@ -40,12 +43,12 @@ const Recipes = () => {
           style={styles.inputSearchField}
           placeholder={'Search receipt'}
           placeholderTextColor={Colors.lightGray}
-          // onChangeText={text => console.log(text)}
-          value={'2'}
+          onChangeText={text => setSearchText(text)}
+          value={searchText}
         />
       </View>
       <View style={styles.buttonsWrapper}>
-        <View style={styles.buttonWrapper}>
+        <View style={[styles.buttonWrapper, ShadowStyleHigh]}>
           <LinearGradient
             colors={[
               Colors.darkCloudColor,
@@ -64,7 +67,7 @@ const Recipes = () => {
             </TouchableOpacity>
           </LinearGradient>
         </View>
-        <View style={styles.buttonWrapper}>
+        <View style={[styles.buttonWrapper, ShadowStyleHigh]}>
           <LinearGradient
             colors={[
               Colors.darkBackgroundAppColor,
@@ -89,15 +92,15 @@ export default Recipes;
 
 export const styles = StyleSheet.create({
   buttonWrapper: {
-    backgroundColor: 'transparent',
-    elevation: 24,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 12
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 16.0,
+    // backgroundColor: 'transparent',
+    // elevation: 24,
+    // shadowColor: '#000',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 12
+    // },
+    // shadowOpacity: 0.58,
+    // shadowRadius: 16.0,
     width: '48%'
   },
   buttonsWrapper: {
@@ -131,7 +134,7 @@ export const styles = StyleSheet.create({
   },
   searchWrapper: {
     alignItems: 'center',
-    borderBottomColor: Colors.lightGray,
+    borderBottomColor: Colors.borderLine,
     borderBottomWidth: 1,
     flexDirection: 'row',
     marginTop: 20
