@@ -3,7 +3,6 @@ import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import { Formik, Field } from 'formik';
 import PropTypes from 'prop-types';
 import * as Icon from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import { TextInputField } from '../shared/FormFields';
 import $t from 'i18n';
@@ -11,6 +10,7 @@ import ErrorText from '../shared/Text/ErrorText';
 import Colors from '../../constants/Colors';
 import IconName from '../../constants/IconName';
 import { forgotPasswordValidationRules } from '../../validation/auth';
+import SharedLinearGradientBackgroundHorizontal from '../shared/SharedLinearGradientBackgroundHorizontal';
 
 export const ClientSignUpForm = ({ onSubmit, signUpErrors }) => (
   <Formik
@@ -91,6 +91,7 @@ export const ClientSignUpForm = ({ onSubmit, signUpErrors }) => (
           <View style={styles.input}>
             <Field
               name="confirm_password"
+              blurOnSubmit={false}
               component={TextInputField}
               secureTextEntry
               placeholder={$t('auth.confirmClientPassword')}
@@ -99,14 +100,18 @@ export const ClientSignUpForm = ({ onSubmit, signUpErrors }) => (
             />
           </View>
         </View>
-        <LinearGradient
-          colors={['#3bbdb1', '#22b9c0', '#03b5d1']}
-          style={styles.registerButton}
+        <SharedLinearGradientBackgroundHorizontal
+          childrenColors={[
+            Colors.darkCloudColor,
+            Colors.cloudColor,
+            Colors.lightCloudColor
+          ]}
+          childrenStyle={styles.registerButton}
         >
           <TouchableOpacity onPress={handleSubmit} style={styles.submitButton}>
             <Text style={styles.registerButtonText}>{$t('common.submit')}</Text>
           </TouchableOpacity>
-        </LinearGradient>
+        </SharedLinearGradientBackgroundHorizontal>
       </View>
     )}
   </Formik>
@@ -130,6 +135,7 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   inputField: {
+    backgroundColor: 'transparent',
     color: Colors.white,
     height: 50,
     textAlign: 'center'

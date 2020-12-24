@@ -4,7 +4,12 @@ import PropTypes from 'prop-types';
 
 const ModalWrapper = ({ isVisible, closeModal, children }) => {
   return (
-    <Modal visible={isVisible} animationType="slide" onRequestClose={closeModal} transparent>
+    <Modal
+      visible={isVisible}
+      animationType="slide"
+      onRequestClose={closeModal}
+      transparent
+    >
       <View style={styles.container}>
         <View style={styles.modalWrap}>{children}</View>
       </View>
@@ -33,8 +38,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   modalWrap: {
+    alignItems: 'center',
     backgroundColor: 'white',
-    height: '50%',
-    width: '50%'
+    justifyContent: 'space-between',
+    minHeight: '20%',
+    width: '80%'
   }
 });

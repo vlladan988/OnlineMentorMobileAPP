@@ -11,7 +11,9 @@ export function* handleGetGoal({ payload }) {
     const { data: goal } = yield call(goalService.getGoal, payload);
     yield put(setGoal(goal));
   } catch (error) {
-    yield put(setGlobalError(true));
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
   } finally {
     yield put(setLoader(false));
   }
@@ -23,7 +25,9 @@ export function* handleUpdateGoal({ payload }) {
     const { data: goal } = yield call(goalService.updateGoal, payload);
     yield put(setGoal(goal));
   } catch (error) {
-    yield put(setGlobalError(true));
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
   } finally {
     yield put(setLoader(false));
   }

@@ -9,7 +9,7 @@ import $t from 'i18n';
 import Colors from '../../../../constants/Colors';
 import IconName from '../../../../constants/IconName';
 import StandardNotificationModal from '../../../shared/modal/StandardNotificationModal';
-import { showStandardPopUp } from '../../../../store/selectors/ErrorSelector';
+import { showStandardPopUpSelector } from '../../../../store/selectors/ErrorSelector';
 import {
   getGallery,
   saveGallery
@@ -23,7 +23,7 @@ const AddImage = () => {
   const [backImage, setBackImage] = useState(null);
   const [sideImage, setSideImage] = useState(null);
 
-  const isStandardModalVisible = useSelector(showStandardPopUp());
+  const isStandardModalVisible = useSelector(showStandardPopUpSelector());
   const user = useSelector(userSelector());
 
   useEffect(() => {

@@ -1,9 +1,57 @@
 /* eslint-disable indent */
 import { call, put } from 'redux-saga/effects';
 import { setLoader } from '../actions/LoaderAction';
-import { setGlobalError } from '../actions/ErrorActions';
+import { setGlobalError, setShowStandardPopUp } from '../actions/ErrorActions';
 import recipeService from '../../services/RecipeService';
-import { setRecipeTypes } from '../actions/RecipeActions';
+import { setRecipeTypes, setRecipies } from '../actions/RecipeActions';
+
+export function* handleFetchRecipies() {
+  try {
+    yield put(setLoader(true));
+    const { data: recipies } = yield call(recipeService.fetchRecipe);
+    yield put(setRecipies(recipies.reverse()));
+  } catch (error) {
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
+  } finally {
+    yield put(setLoader(false));
+  }
+}
+
+export function* handleAddRecipe({ payload }) {
+  try {
+    yield put(setLoader(true));
+    const { data: recipies } = yield call(recipeService.addRecipe, payload);
+    yield put(setRecipies(recipies.reverse()));
+    yield put(
+      setShowStandardPopUp({ message: 'Recipe Created !', warningIcon: false })
+    );
+  } catch (error) {
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
+  } finally {
+    yield put(setLoader(false));
+  }
+}
+
+export function* handleUpdateRecipe({ payload }) {
+  try {
+    yield put(setLoader(true));
+    const { data: recipies } = yield call(recipeService.updateRecipe, payload);
+    yield put(setRecipies(recipies.reverse()));
+    yield put(
+      setShowStandardPopUp({ message: 'Recipe Updated !', warningIcon: false })
+    );
+  } catch (error) {
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
+  } finally {
+    yield put(setLoader(false));
+  }
+}
 
 export function* handleGetRecipeTypes() {
   try {
@@ -15,20 +63,27 @@ export function* handleGetRecipeTypes() {
     });
     yield put(setRecipeTypes(radioFormArray));
   } catch (error) {
-    yield put(setGlobalError(true));
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
   } finally {
     yield put(setLoader(false));
   }
 }
 
-// export function* handleUpdateGoal({ payload }) {
-//   try {
-//     yield put(setLoader(true));
-//     const { data: goal } = yield call(goalService.updateGoal, payload);
-//     yield put(setGoal(goal));
-//   } catch (error) {
-//     yield put(setGlobalError(true));
-//   } finally {
-//     yield put(setLoader(false));
-//   }
-// }
+export function* handleDeleteRecipe({ payload }) {
+  try {
+    yield put(setLoader(true));
+    const { data: recipies } = yield call(recipeService.deleteRecipe, payload);
+    yield put(setRecipies(recipies.reverse()));
+    yield put(
+      setShowStandardPopUp({ message: 'Recipe Deleted !', warningIcon: false })
+    );
+  } catch (error) {
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
+  } finally {
+    yield put(setLoader(false));
+  }
+}

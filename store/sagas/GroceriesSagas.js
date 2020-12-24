@@ -1,9 +1,12 @@
 /* eslint-disable indent */
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { setLoader } from '../actions/LoaderAction';
 import { setGlobalError, setShowStandardPopUp } from '../actions/ErrorActions';
 import { setGroceries } from '../actions/GroceriesActions';
 import groceryService from '../../services/GroceriesService';
+import { groceryListSelector } from '../selectors/GrocerySelector';
+import { IsGroceryNameUniqueValidation } from '../../helpers/IsGroceryNameUniqueValidation';
+import { fetchRecipes } from '../../store/actions/RecipeActions';
 
 export function* handleFetchGroceries() {
   try {
@@ -11,7 +14,9 @@ export function* handleFetchGroceries() {
     const { data: groceries } = yield call(groceryService.fetchGroceries);
     yield put(setGroceries(groceries));
   } catch (error) {
-    yield put(setGlobalError(true));
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
   } finally {
     yield put(setLoader(false));
   }
@@ -20,16 +25,39 @@ export function* handleFetchGroceries() {
 export function* handleAddGrocery({ payload }) {
   try {
     yield put(setLoader(true));
-    if (payload.name === '' || payload.description === '') {
-      yield put(setShowStandardPopUp('You should enter name and description.'));
+    const groceryList = yield select(groceryListSelector());
+    const isNameUnique = IsGroceryNameUniqueValidation(groceryList, payload);
+    const isEmptyName = payload.name === '';
+    if (isEmptyName) {
+      yield put(
+        setShowStandardPopUp({
+          message: 'You should enter name of grocery.',
+          warningIcon: true
+        })
+      );
+      return;
+    } else if (isNameUnique) {
+      yield put(
+        setShowStandardPopUp({
+          message: 'Grocery name already in use.',
+          warningIcon: true
+        })
+      );
       return;
     } else {
       var { data: groceries } = yield call(groceryService.addGrocery, payload);
       yield put(setGroceries(groceries));
     }
-    yield put(setShowStandardPopUp('Grocery saved successfully.'));
+    yield put(
+      setShowStandardPopUp({
+        message: 'Grocery created.',
+        warningIcon: false
+      })
+    );
   } catch (error) {
-    yield put(setGlobalError(true));
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
   } finally {
     yield put(setLoader(false));
   }
@@ -43,9 +71,15 @@ export function* handleUpdateGrocery({ payload }) {
       payload
     );
     yield put(setGroceries(groceries));
-    yield put(setShowStandardPopUp('Grocery Updated !'));
+
+    yield put(
+      setShowStandardPopUp({ message: 'Grocery Updated !', warningIcon: false })
+    );
+    yield put(fetchRecipes());
   } catch (error) {
-    yield put(setGlobalError(true));
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
   } finally {
     yield put(setLoader(false));
   }
@@ -59,9 +93,14 @@ export function* handleDeleteGrocery({ payload }) {
       payload
     );
     yield put(setGroceries(groceries));
-    yield put(setShowStandardPopUp('Grocery Deleted !'));
+    yield put(fetchRecipes());
+    yield put(
+      setShowStandardPopUp({ message: 'Grocery Deleted !', warningIcon: false })
+    );
   } catch (error) {
-    yield put(setGlobalError(true));
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
   } finally {
     yield put(setLoader(false));
   }

@@ -1,9 +1,9 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
 const ModalHeader = ({ children }) => {
-  return <View>{children}</View>;
+  return <View style={styles.container}>{children}</View>;
 };
 
 export default ModalHeader;
@@ -16,3 +16,9 @@ ModalHeader.propTypes = {
     PropTypes.array
   ])
 };
+
+export const styles = StyleSheet.create({
+  container: {
+    padding: 20
+  }
+});

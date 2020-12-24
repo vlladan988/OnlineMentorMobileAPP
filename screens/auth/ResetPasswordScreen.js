@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { passwordReset } from '../../store/actions/UserActions';
 import { ResetPasswordForm } from '../../components/auth/ResetPasswordForm';
 import { resetPasswordErrorSelector } from '../../store/selectors/ErrorSelector';
 import SharedTrainerClientChooseButton from '../../components/shared/SharedTrainerClientChooseButton';
+import SharedLinearGradientBackgroundHorizontal from '../../components/shared/SharedLinearGradientBackgroundHorizontal';
+import Colors from '../../constants/Colors';
 
 const ResetPasswordScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -26,9 +27,13 @@ const ResetPasswordScreen = ({ navigation }) => {
   };
 
   return (
-    <LinearGradient
-      colors={['#3f5069', '#33445d', '#202e46']}
-      style={styles.gradientBackground}
+    <SharedLinearGradientBackgroundHorizontal
+      childrenColors={[
+        Colors.darkBackgroundAppColor,
+        Colors.backgroundAppColor,
+        Colors.lightBackgroundAppColor
+      ]}
+      childrenStyle={styles.gradientBackground}
     >
       <SafeAreaView>
         <KeyboardAwareScrollView enableOnAndroid>
@@ -41,7 +46,7 @@ const ResetPasswordScreen = ({ navigation }) => {
           />
         </KeyboardAwareScrollView>
       </SafeAreaView>
-    </LinearGradient>
+    </SharedLinearGradientBackgroundHorizontal>
   );
 };
 

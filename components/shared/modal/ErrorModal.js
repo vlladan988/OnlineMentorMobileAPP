@@ -4,8 +4,11 @@ import { TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import $t from 'i18n';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from './baseModal';
+import { useSelector } from 'react-redux';
+import { globalErrorMessageSelector } from '../../../store/selectors/ErrorSelector';
 
 const ErrorModal = ({ isVisible, closeModal }) => {
+  const errorMessage = useSelector(globalErrorMessageSelector());
   const _restartApp = () => {
     closeModal();
     Updates.reload();
@@ -14,11 +17,9 @@ const ErrorModal = ({ isVisible, closeModal }) => {
   return (
     <Modal isVisible={isVisible} closeModal={closeModal}>
       <ModalHeader>
-        <Text>{$t('error.somethingWrong')}</Text>
+        <Text>{errorMessage}</Text>
       </ModalHeader>
-      <ModalBody>
-        <Text>{$t('error.doYouWantToRestart')}</Text>
-      </ModalBody>
+      <ModalBody />
       <ModalFooter>
         <TouchableOpacity onPress={closeModal}>
           <Text>{$t('error.cancel')}</Text>

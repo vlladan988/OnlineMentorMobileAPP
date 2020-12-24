@@ -3,16 +3,20 @@ import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import $t from 'i18n';
 import PropTypes from 'prop-types';
 import * as Icon from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import Colors from '../../../constants/Colors';
 import IconName from '../../../constants/IconName';
+import SharedLinearGradientBackgroundHorizontal from '../../shared/SharedLinearGradientBackgroundHorizontal';
 
 const LoginBottom = ({ goToRegister }) => {
   return (
-    <LinearGradient
-      colors={['#3bbdb1', '#22b9c0', '#03b5d1']}
-      style={styles.bottomWrapper}
+    <SharedLinearGradientBackgroundHorizontal
+      childrenColors={[
+        Colors.darkCloudColor,
+        Colors.cloudColor,
+        Colors.lightCloudColor
+      ]}
+      childrenStyle={styles.bottomWrapper}
     >
       <TouchableOpacity onPress={goToRegister} style={styles.registerButton}>
         <Text style={styles.registerText}>{$t('auth.register')}</Text>
@@ -24,7 +28,7 @@ const LoginBottom = ({ goToRegister }) => {
           color={Colors.light}
         />
       </View>
-    </LinearGradient>
+    </SharedLinearGradientBackgroundHorizontal>
   );
 };
 

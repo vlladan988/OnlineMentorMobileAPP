@@ -1,6 +1,7 @@
 {
   "helloWorld": "De si Prostakuso",
   "common": {
+    "count": "Count",
     "ok": "OK",
     "success": "success",
     "send": "Send",
@@ -145,16 +146,20 @@
   "trainer": {
     "trainer": "Trainer",
     "createARecipe": "Create a recipe",
-    "recipeName": "Name*",
-    "recipeMealNameText": "Chicken and rice in soja sos",
+    "recipeName": "Recipe Name*",
+    "recipeNameText": "Chicken and rice in soja sos",
     "uploadRecipeImage": "Or click on the image to upload it.",
-    "mealType": "Meal Type",
-    "recipeType": "Recipe Description*",
+    "recipeImage": "Recipe image",
+    "recipeType": "Recipe Type",
+    "recipeDesc": "Recipe Description",
     "groceries": "Groceries",
     "createRecipe": "Create Recipe",
+    "editRecipe": "Edit Recipe",
     "createGrocery": "Create Grocery",
     "editGrocery": "Edit Grocery",
-    "groceryList": "Grocery List"
+    "groceryList": "Grocery List",
+    "deleteRecipe": "Delete Recipe",
+    "editProfile": "Edit profile"
   },
   "guestTrainer": {
     "guest": "Guest"

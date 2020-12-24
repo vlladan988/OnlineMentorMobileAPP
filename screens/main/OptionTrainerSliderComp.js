@@ -43,7 +43,7 @@ const OptionTrainerSliderComp = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.optionDetailsWrapper}>
-          <Text>{$t('client.editClient')}</Text>
+          <Text>{$t('trainer.editProfile')}</Text>
           <TouchableOpacity
             style={styles.editClientButton}
             onPress={() => navigation.navigate('EditProfile')}

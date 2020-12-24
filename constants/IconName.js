@@ -13,6 +13,7 @@ export default {
   user: 'user',
   close: 'close',
   closeOct: 'close-octagon',
+  closeCircle: 'closecircle',
   delete: 'delete-forever',
   phone: 'phone',
   edit: 'playlist-add',
@@ -30,5 +31,8 @@ export default {
   success: 'checkcircle',
   city: 'location-city',
   search: 'search1',
-  plus: 'pluscircle'
+  plus: 'pluscircle',
+  minus: 'minuscircle',
+  happyIcon: 'emoticon-happy-outline',
+  sadIcon: 'emoticon-neutral-outline'
 };

@@ -3,41 +3,37 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import * as Icon from '@expo/vector-icons';
 import { SliderBox } from 'react-native-image-slider-box';
-import $t from 'i18n';
 
 import Colors from '../../../../constants/Colors';
 import { gallerySelector } from '../../../../store/selectors/GallerySelector';
 import avatar from '../../../../assets/images/richFroning.jpg';
 import IconName from '../../../../constants/IconName';
 import { deleteGallery } from '../../../../store/actions/GalleryActions';
-import DeleteGalleryModal from '../../../shared/modal/DeleteGalleryModal';
 import { dateFormat } from '../../../../helpers/DateFormat';
+import SharedDeleteModal from '../../../shared/SharedDeleteModal';
+import { showDeletePopUpSelector } from '../../../../store/selectors/ErrorSelector';
+import { setShowDeletePopUp } from '../../../../store/actions/ErrorActions';
 
 const GallerySlider = () => {
   const dispatch = useDispatch();
 
-  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [galleryId, setGalleryId] = useState(null);
+
   const gallery = useSelector(gallerySelector());
+  const isDeleteModalVisible = useSelector(showDeletePopUpSelector());
 
   const saveGalleryId = id => {
+    dispatch(setShowDeletePopUp('Delete Gallery ?'));
     setGalleryId(id);
-    showModal();
   };
 
-  const showModal = () => setDeleteModalVisible(!deleteModalVisible);
-
-  const handleDeleteGallery = () => {
-    dispatch(deleteGallery(galleryId));
-    showModal();
-  };
+  const handleDeleteGallery = () => dispatch(deleteGallery(galleryId));
 
   return gallery.map((photo, index) => (
     <View key={index} style={styles.container}>
-      <DeleteGalleryModal
-        isVisible={deleteModalVisible}
-        closeModal={showModal}
-        handleDeleteGallery={handleDeleteGallery}
+      <SharedDeleteModal
+        isVisible={isDeleteModalVisible}
+        handleDelete={handleDeleteGallery}
       />
       <View style={styles.header}>
         <View style={styles.profileWrapper}>
@@ -46,7 +42,7 @@ const GallerySlider = () => {
             <Text style={styles.name}>{photo.name}</Text>
             <Text style={styles.itemDate}>
               {dateFormat(photo.date)} - {photo.weight}
-              {photo.id} {$t('common.kg')}
+              kg
             </Text>
           </View>
         </View>

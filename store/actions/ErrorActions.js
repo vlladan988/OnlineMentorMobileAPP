@@ -6,7 +6,8 @@ import {
   RESET_PASSWORD_ERROR_SET,
   FORGOT_PASSWORD_ERROR_SET,
   SOCIAL_LOGIN_ERROR_SET,
-  SHOW_STANDARD_POP_UP
+  SHOW_STANDARD_POP_UP,
+  SHOW_DELETE_POP_UP
 } from '../actionTypes/ErrorActionTypes';
 
 export const setGlobalError = payload => ({
@@ -46,5 +47,10 @@ export const setSocialLoginError = payload => ({
 
 export const setShowStandardPopUp = payload => ({
   type: SHOW_STANDARD_POP_UP,
+  payload
+});
+
+export const setShowDeletePopUp = payload => ({
+  type: SHOW_DELETE_POP_UP,
   payload
 });

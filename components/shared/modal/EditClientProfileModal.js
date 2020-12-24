@@ -12,12 +12,12 @@ import * as Icon from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import $t from 'i18n';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import Colors from '../../../constants/Colors';
 import IconName from '../../../constants/IconName';
 import { updateClient } from '../../../store/actions/ClientActions';
 import { isCredEmpty } from '../../../helpers/IsCredEmpty';
+import SharedLinearGradientBackgroundHorizontal from '../SharedLinearGradientBackgroundHorizontal';
 
 const EditClientProfileModal = ({ isVisible, closeModal, user }) => {
   const dispatch = useDispatch();
@@ -53,9 +53,13 @@ const EditClientProfileModal = ({ isVisible, closeModal, user }) => {
   return (
     <Modal animationType="slide" transparent={true} visible={isVisible}>
       <View style={styles.container}>
-        <LinearGradient
-          colors={['#3f5069', '#33445d', '#202e46']}
-          style={styles.gradientWrapper}
+        <SharedLinearGradientBackgroundHorizontal
+          childrenColors={[
+            Colors.lightBackgroundAppColor,
+            Colors.backgroundAppColor,
+            Colors.darkBackgroundAppColor
+          ]}
+          childrenStyle={styles.gradientWrapper}
         >
           <KeyboardAwareScrollView enableOnAndroid>
             <View style={styles.itemWrapper}>
@@ -158,7 +162,7 @@ const EditClientProfileModal = ({ isVisible, closeModal, user }) => {
             size={30}
             onPress={closeModal}
           />
-        </LinearGradient>
+        </SharedLinearGradientBackgroundHorizontal>
       </View>
     </Modal>
   );

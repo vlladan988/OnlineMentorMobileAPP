@@ -7,11 +7,13 @@ import {
   RESET_PASSWORD_ERROR_SET,
   PASSWORD_CHANGE_ERROR,
   SOCIAL_LOGIN_ERROR_SET,
-  SHOW_STANDARD_POP_UP
+  SHOW_STANDARD_POP_UP,
+  SHOW_DELETE_POP_UP
 } from '../actionTypes/ErrorActionTypes';
 
 const initialState = {
   globalError: false,
+  errorMessage: '',
   signInError: false,
   forgotPasswordError: false,
   resetPasswordError: false,
@@ -19,7 +21,10 @@ const initialState = {
   changePasswordError: false,
   socialLoginError: '',
   standardPopUp: false,
-  standardPopUpMessage: ''
+  standardPopUpMessage: '',
+  isWarning: false,
+  deletePopUp: false,
+  deletePopUpMessage: ''
 };
 
 export default (state = initialState, action) =>
@@ -27,7 +32,8 @@ export default (state = initialState, action) =>
     /*eslint-disable indent */
     switch (action.type) {
       case GLOBAL_ERROR_SET:
-        draft.globalError = action.payload;
+        draft.globalError = action.payload.bool;
+        draft.errorMessage = action.payload.message;
         break;
       case SIGNIN_ERROR_SET:
         draft.signInError = action.payload;
@@ -49,7 +55,12 @@ export default (state = initialState, action) =>
         break;
       case SHOW_STANDARD_POP_UP:
         draft.standardPopUp = !draft.standardPopUp;
-        draft.standardPopUpMessage = action.payload;
+        draft.standardPopUpMessage = action.payload.message;
+        draft.isWarning = action.payload.warningIcon;
+        break;
+      case SHOW_DELETE_POP_UP:
+        draft.deletePopUp = !draft.deletePopUp;
+        draft.deletePopUpMessage = action.payload;
         break;
     }
   });

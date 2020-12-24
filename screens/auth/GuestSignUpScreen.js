@@ -2,7 +2,6 @@ import React, { useEffect, useCallback } from 'react';
 import { StyleSheet, SafeAreaView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch, useSelector } from 'react-redux';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import { signUp } from '../../store/actions/UserActions';
 import { setSignUpErrors } from '../../store/actions/ErrorActions';
@@ -11,6 +10,8 @@ import { signUpErrorsSelector } from '../../store/selectors/ErrorSelector';
 import LoginHeader from '../../components/auth/Login/LoginHeader';
 import GuestMessage from '../../components/auth/GuestRegister/GuestMessage';
 import SharedGoBackButtonAuth from '../../components/shared/SharedGoBackButtonAuth';
+import SharedLinearGradientBackgroundVertical from '../../components/shared/SharedLinearGradientBackgroundVertical';
+import Colors from '../../constants/Colors';
 
 const GuestSignUpScreen = () => {
   const dispatch = useDispatch();
@@ -27,9 +28,13 @@ const GuestSignUpScreen = () => {
   }, []);
 
   return (
-    <LinearGradient
-      colors={['#3f5069', '#33445d', '#202e46']}
-      style={styles.gradientBackground}
+    <SharedLinearGradientBackgroundVertical
+      childrenColors={[
+        Colors.lightBackgroundAppColor,
+        Colors.backgroundAppColor,
+        Colors.darkBackgroundAppColor
+      ]}
+      childrenStyle={styles.gradientBackground}
     >
       <SafeAreaView>
         <KeyboardAwareScrollView enableOnAndroid>
@@ -39,7 +44,7 @@ const GuestSignUpScreen = () => {
         <SharedGoBackButtonAuth />
       </SafeAreaView>
       <GuestMessage />
-    </LinearGradient>
+    </SharedLinearGradientBackgroundVertical>
   );
 };
 

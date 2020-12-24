@@ -1,8 +1,14 @@
 import produce from 'immer';
-import { SET_RECIPE_TYPES } from '../actionTypes/RecipeActionTypes';
+import {
+  SET_RECIPE_TYPES,
+  SET_RECIPIES,
+  SET_RECIPE_MODAL
+} from '../actionTypes/RecipeActionTypes';
 
 const initialState = {
-  recipeTypes: []
+  recipeTypes: [],
+  recipeList: [],
+  isMealTypeModal: false
 };
 
 export default (state = initialState, action) =>
@@ -12,5 +18,10 @@ export default (state = initialState, action) =>
       case SET_RECIPE_TYPES:
         draft.recipeTypes = action.payload;
         break;
+      case SET_RECIPIES:
+        draft.recipeList = action.payload;
+        break;
+      case SET_RECIPE_MODAL:
+        draft.isMealTypeModal = !draft.isMealTypeModal;
     }
   });

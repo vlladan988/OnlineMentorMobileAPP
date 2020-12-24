@@ -29,7 +29,9 @@ export function* userLogin({ payload }) {
     if (error.response.status === 401) {
       yield put(setSignInError(true));
     } else {
-      yield put(setGlobalError(true));
+      yield put(
+        setGlobalError({ bool: true, message: error.response.data.message })
+      );
     }
   } finally {
     yield put(setLoader(false));
@@ -46,7 +48,9 @@ export function* userFacebookLogin() {
       if (error.response.status === 422) {
         yield put(setSocialLoginError(error.response.data.error));
       } else {
-        yield put(setGlobalError(true));
+        yield put(
+          setGlobalError({ bool: true, message: error.response.data.message })
+        );
       }
     }
   } finally {
@@ -64,7 +68,9 @@ export function* userGoogleLogin() {
       if (error.response.status === 422) {
         yield put(setSocialLoginError(error.response.data.error));
       } else {
-        yield put(setGlobalError(true));
+        yield put(
+          setGlobalError({ bool: true, message: error.response.data.message })
+        );
       }
     }
   } finally {
@@ -91,7 +97,9 @@ export function* userSignUp({ payload }) {
     } else if (error.response.status === 401) {
       yield put(setSignInError(true));
     } else {
-      yield put(setGlobalError(true));
+      yield put(
+        setGlobalError({ bool: true, message: error.response.data.message })
+      );
     }
   } finally {
     yield put(setLoader(false));
@@ -121,7 +129,9 @@ export function* forgotPassword({ payload }) {
     if (error.response.status === 401) {
       yield put(setForgotPasswordError(true));
     } else {
-      yield put(setGlobalError(true));
+      yield put(
+        setGlobalError({ bool: true, message: error.response.data.message })
+      );
     }
   } finally {
     yield put(setLoader(false));
@@ -137,7 +147,9 @@ export function* resetPassword({ payload }) {
     if (error.response.status === 422) {
       yield put(setResetPasswordError(true));
     } else {
-      yield put(setGlobalError(true));
+      yield put(
+        setGlobalError({ bool: true, message: error.response.data.message })
+      );
     }
   } finally {
     yield put(setLoader(false));
@@ -150,7 +162,9 @@ export function* userGet() {
     const { data } = yield call(profileService.getProfile);
     yield put(setUser(data));
   } catch (error) {
-    yield put(setGlobalError(true));
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
   } finally {
     yield put(setLoader(false));
   }
@@ -166,7 +180,9 @@ export function* passwordChange({ payload }) {
     if (error.response.status === 422) {
       yield put(changePasswordError(true));
     } else {
-      yield put(setGlobalError(true));
+      yield put(
+        setGlobalError({ bool: true, message: error.response.data.message })
+      );
     }
   } finally {
     yield put(setLoader(false));
@@ -180,7 +196,9 @@ export function* updateUser({ payload }) {
     yield put(setUpdatedUser(data));
     NavigationService.goBack();
   } catch (error) {
-    yield put(setGlobalError(true));
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
   } finally {
     yield put(setLoader(false));
   }

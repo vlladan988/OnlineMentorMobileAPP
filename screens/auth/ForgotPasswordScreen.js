@@ -11,6 +11,8 @@ import { forgotPasswordErrorSelector } from '../../store/selectors/ErrorSelector
 import SharedTrainerClientChooseButton from '../../components/shared/SharedTrainerClientChooseButton';
 import LoginHeader from '../../components/auth/Login/LoginHeader';
 import SharedGoBackButtonAuth from '../../components/shared/SharedGoBackButtonAuth';
+import SharedLinearGradientBackgroundVertical from '../../components/shared/SharedLinearGradientBackgroundVertical';
+import Colors from '../../constants/Colors';
 
 const ForgotPasswordScreen = () => {
   const dispatch = useDispatch();
@@ -29,9 +31,13 @@ const ForgotPasswordScreen = () => {
   }, []);
 
   return (
-    <LinearGradient
-      colors={['#3f5069', '#33445d', '#202e46']}
-      style={styles.gradientBackground}
+    <SharedLinearGradientBackgroundVertical
+      childrenColors={[
+        Colors.lightBackgroundAppColor,
+        Colors.backgroundAppColor,
+        Colors.darkBackgroundAppColor
+      ]}
+      childrenStyle={styles.gradientBackground}
     >
       <SafeAreaView>
         <KeyboardAwareScrollView enableOnAndroid>
@@ -47,7 +53,7 @@ const ForgotPasswordScreen = () => {
         </KeyboardAwareScrollView>
         <SharedGoBackButtonAuth />
       </SafeAreaView>
-    </LinearGradient>
+    </SharedLinearGradientBackgroundVertical>
   );
 };
 

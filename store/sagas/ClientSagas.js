@@ -28,7 +28,9 @@ export function* handleFetchClients() {
     if (error.response.status === 401) {
       yield put(setSignInError(true));
     } else {
-      yield put(setGlobalError(true));
+      yield put(
+        setGlobalError({ bool: true, message: error.response.data.message })
+      );
     }
   } finally {
     yield put(setLoader(false));
@@ -42,7 +44,9 @@ export function* handleUpdateClient({ payload }) {
     yield put(setUpdatedUser(client));
     AsyncStorage.setItem('user', JSON.stringify(client));
   } catch (error) {
-    yield put(setGlobalError(true));
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
   } finally {
     yield put(setLoader(false));
   }
@@ -55,7 +59,9 @@ export function* handleGetClient({ payload }) {
     yield put(setClient(client));
     NavigationService.navigate('Home');
   } catch (error) {
-    yield put(setGlobalError(true));
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
   } finally {
     yield put(setLoader(false));
   }
@@ -79,7 +85,9 @@ export function* handleAddClient({ payload }) {
     } else if (error.response.status === 401) {
       yield put(setSignInError(true));
     } else {
-      yield put(setGlobalError(true));
+      yield put(
+        setGlobalError({ bool: true, message: error.response.data.message })
+      );
     }
   } finally {
     yield put(setLoader(false));
@@ -92,7 +100,9 @@ export function* handleDeleteClient({ payload }) {
     yield call(clientService.deleteClient, payload);
     yield put(fetchClients());
   } catch (error) {
-    yield put(setGlobalError(true));
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
   } finally {
     yield put(setLoader(false));
   }

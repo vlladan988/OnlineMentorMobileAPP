@@ -27,7 +27,8 @@ export const signUpValidationRules = Yup.object().shape({
 export const forgotPasswordValidationRules = Yup.object().shape({
   email: Yup.string()
     .required($t('validation.emailIsRequired'))
-    .email($t('validation.mustBeValidEmail'))
+    .email($t('validation.mustBeValidEmail')),
+  password: Yup.string().required($t('validation.passwordIsRequired'))
 });
 
 export const resetPasswordValidationRules = Yup.object().shape({

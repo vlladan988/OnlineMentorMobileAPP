@@ -4,6 +4,8 @@ const errorStateSelector = state => state.errorReducer;
 
 export const globalErrorSelector = () =>
   createSelector(errorStateSelector, error => error.globalError);
+export const globalErrorMessageSelector = () =>
+  createSelector(errorStateSelector, error => error.errorMessage);
 export const signInErrorSelector = () =>
   createSelector(errorStateSelector, error => error.signInError);
 export const forgotPasswordErrorSelector = () =>
@@ -16,7 +18,13 @@ export const socialLoginErrorSelector = () =>
   createSelector(errorStateSelector, error => error.socialLoginError);
 export const changePasswordErrorSelector = () =>
   createSelector(errorStateSelector, error => error.changePasswordError);
-export const showStandardPopUp = () =>
+export const showStandardPopUpSelector = () =>
   createSelector(errorStateSelector, popUp => popUp.standardPopUp);
-export const standardPopUpMessage = () =>
+export const standardPopUpMessageSelector = () =>
   createSelector(errorStateSelector, popUp => popUp.standardPopUpMessage);
+export const showDeletePopUpSelector = () =>
+  createSelector(errorStateSelector, popUp => popUp.deletePopUp);
+export const deletePopUpMessageSelector = () =>
+  createSelector(errorStateSelector, popUp => popUp.deletePopUpMessage);
+export const isWarningMessage = () =>
+  createSelector(errorStateSelector, popUp => popUp.isWarning);

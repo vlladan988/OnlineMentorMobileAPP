@@ -3,7 +3,6 @@ import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import { Formik, Field } from 'formik';
 import PropTypes from 'prop-types';
 import * as Icon from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import { TextInputField } from '../shared/FormFields';
 import { signInValidationRules } from '../../validation/auth';
@@ -11,6 +10,7 @@ import $t from 'i18n';
 import ErrorText from '../shared/Text/ErrorText';
 import Colors from '../../constants/Colors';
 import IconName from '../../constants/IconName';
+import SharedLinearGradientBackgroundHorizontal from '../shared/SharedLinearGradientBackgroundHorizontal';
 
 export const SignInForm = ({ onSubmit, signInError, goToForgotPassword }) => (
   <Formik
@@ -59,16 +59,20 @@ export const SignInForm = ({ onSubmit, signInError, goToForgotPassword }) => (
           error={!!signInError}
           message={$t('auth.invalidCredentials')}
         />
-        <LinearGradient
-          colors={['#3bbdb1', '#22b9c0', '#03b5d1']}
-          style={styles.gradientButton}
+        <SharedLinearGradientBackgroundHorizontal
+          childrenColors={[
+            Colors.darkCloudColor,
+            Colors.cloudColor,
+            Colors.lightCloudColor
+          ]}
+          childrenStyle={styles.gradientButton}
         >
           <TouchableOpacity onPress={handleSubmit} style={styles.logInButton}>
             <Text style={styles.loginButtonText}>
               {$t('auth.logIn').toUpperCase()}
             </Text>
           </TouchableOpacity>
-        </LinearGradient>
+        </SharedLinearGradientBackgroundHorizontal>
         <TouchableOpacity style={styles.button} onPress={goToForgotPassword}>
           <Text style={styles.forgotText}>{$t('auth.forgotPass')}</Text>
         </TouchableOpacity>

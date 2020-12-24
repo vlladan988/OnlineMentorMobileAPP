@@ -3,7 +3,6 @@ import { StyleSheet, SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch, useSelector } from 'react-redux';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import { login } from '../../store/actions/UserActions';
 import { SignInForm } from '../../components/auth/SignInForm';
@@ -11,6 +10,8 @@ import { signInErrorSelector } from '../../store/selectors/ErrorSelector';
 import LoginHeader from '../../components/auth/Login/LoginHeader';
 import SharedTrainerClientChooseButton from '../../components/shared/SharedTrainerClientChooseButton';
 import LoginBottom from '../../components/auth/Login/LoginBottom';
+import SharedLinearGradientBackgroundVertical from '../../components/shared/SharedLinearGradientBackgroundVertical';
+import Colors from '../../constants/Colors';
 
 const SignInScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -32,9 +33,13 @@ const SignInScreen = ({ navigation }) => {
   };
 
   return (
-    <LinearGradient
-      colors={['#3f5069', '#33445d', '#202e46']}
-      style={styles.gradientBackground}
+    <SharedLinearGradientBackgroundVertical
+      childrenColors={[
+        Colors.lightBackgroundAppColor,
+        Colors.darkBackgroundAppColor,
+        Colors.darkBackgroundAppColor
+      ]}
+      childrenStyle={styles.gradientBackground}
     >
       <SafeAreaView>
         <KeyboardAwareScrollView enableOnAndroid>
@@ -50,7 +55,7 @@ const SignInScreen = ({ navigation }) => {
         </KeyboardAwareScrollView>
       </SafeAreaView>
       <LoginBottom goToRegister={goToSignInScreen} />
-    </LinearGradient>
+    </SharedLinearGradientBackgroundVertical>
   );
 };
 

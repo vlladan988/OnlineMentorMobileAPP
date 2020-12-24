@@ -4,13 +4,13 @@ import { Formik, Field } from 'formik';
 import PropTypes from 'prop-types';
 import $t from 'i18n';
 import * as Icon from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import { TextInputField } from '../shared/FormFields';
 import { forgotPasswordValidationRules } from '../../validation/auth';
 import ErrorText from '../shared/Text/ErrorText';
 import IconName from '../../constants/IconName';
 import Colors from '../../constants/Colors';
+import SharedLinearGradientBackgroundHorizontal from '../shared/SharedLinearGradientBackgroundHorizontal';
 
 export const ForgotPasswordForm = ({ onSubmit, forgotPasswordError }) => (
   <Formik
@@ -41,9 +41,13 @@ export const ForgotPasswordForm = ({ onSubmit, forgotPasswordError }) => (
           error={!!forgotPasswordError}
           message={$t('auth.emailDoesNotExist')}
         />
-        <LinearGradient
-          colors={['#3bbdb1', '#22b9c0', '#03b5d1']}
-          style={styles.submitButton}
+        <SharedLinearGradientBackgroundHorizontal
+          childrenColors={[
+            Colors.darkCloudColor,
+            Colors.cloudColor,
+            Colors.lightCloudColor
+          ]}
+          childrenStyle={styles.submitButton}
         >
           <TouchableOpacity
             onPress={handleSubmit}
@@ -51,7 +55,7 @@ export const ForgotPasswordForm = ({ onSubmit, forgotPasswordError }) => (
           >
             <Text style={styles.sendEmailText}>{$t('auth.sendEmail')}</Text>
           </TouchableOpacity>
-        </LinearGradient>
+        </SharedLinearGradientBackgroundHorizontal>
       </View>
     )}
   </Formik>
@@ -93,7 +97,8 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   sendEmailText: {
-    color: Colors.white
+    color: Colors.white,
+    fontSize: 18
   },
   submitButton: {
     alignItems: 'center',

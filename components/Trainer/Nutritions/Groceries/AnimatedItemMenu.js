@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
 import * as Icon from '@expo/vector-icons';
+import PropTypes from 'prop-types';
 
 import IconName from '../../../../constants/IconName';
 import Colors from '../../../../constants/Colors';
 
-const AnimatedItemMenu = ({ updateGrocery, deleteGrocery }) => {
+const AnimatedItemMenu = ({ updateGrocery, showDeleteModal }) => {
   const animationValue = new Animated.Value(40);
   const [viewState, setViewState] = useState(true);
 
@@ -47,7 +48,7 @@ const AnimatedItemMenu = ({ updateGrocery, deleteGrocery }) => {
           name={IconName.delete}
           size={40}
           color={Colors.warningColor}
-          onPress={deleteGrocery}
+          onPress={showDeleteModal}
         />
       </Animated.View>
     </View>
@@ -55,6 +56,11 @@ const AnimatedItemMenu = ({ updateGrocery, deleteGrocery }) => {
 };
 
 export default AnimatedItemMenu;
+
+AnimatedItemMenu.propTypes = {
+  updateGrocery: PropTypes.func,
+  showDeleteModal: PropTypes.func
+};
 
 const styles = StyleSheet.create({
   animatedBox: {

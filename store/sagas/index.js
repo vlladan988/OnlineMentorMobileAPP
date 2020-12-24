@@ -63,8 +63,20 @@ import {
   UPDATE_GROCERIES,
   DELETE_GROCERIES
 } from '../actionTypes/GroceriesActionTypes';
-import { handleGetRecipeTypes } from './RecipeSagas';
-import { GET_RECIPE_TYPES } from '../actionTypes/RecipeActionTypes';
+import {
+  handleGetRecipeTypes,
+  handleAddRecipe,
+  handleFetchRecipies,
+  handleDeleteRecipe,
+  handleUpdateRecipe
+} from './RecipeSagas';
+import {
+  GET_RECIPE_TYPES,
+  ADD_RECIPE,
+  FETCH_RECIPE,
+  DELETE_RECIPE,
+  UPDATE_RECIPE
+} from '../actionTypes/RecipeActionTypes';
 
 export default function* rootSaga() {
   yield all([
@@ -91,6 +103,10 @@ export default function* rootSaga() {
     takeLatest(DELETE_CLIENT, handleDeleteClient),
     takeLatest(GET_TRAINER, handleGetTrainer),
     takeLatest(GET_RECIPE_TYPES, handleGetRecipeTypes),
+    takeLatest(ADD_RECIPE, handleAddRecipe),
+    takeLatest(FETCH_RECIPE, handleFetchRecipies),
+    takeLatest(DELETE_RECIPE, handleDeleteRecipe),
+    takeLatest(UPDATE_RECIPE, handleUpdateRecipe),
     takeLatest(FETCH_GROCERIES, handleFetchGroceries),
     takeLatest(ADD_GROCERIES, handleAddGrocery),
     takeLatest(UPDATE_GROCERIES, handleUpdateGrocery),

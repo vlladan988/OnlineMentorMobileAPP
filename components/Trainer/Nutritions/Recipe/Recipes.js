@@ -1,142 +1,130 @@
-import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput
-} from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import * as Icon from '@expo/vector-icons';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Colors from '../../../../constants/Colors';
-import IconName from '../../../../constants/IconName';
-import CreateRecipeModal from '../../../shared/modal/CreateRecipeModal';
-import ShadowStyleHigh from '../../../../constants/ShadowStyleHigh';
+import StandardNotificationModal from '../../../shared/modal/StandardNotificationModal';
+import {
+  fetchRecipes,
+  getRecipeTypes
+} from '../../../../store/actions/RecipeActions';
+import RecipeList from './RecipeList';
+import SharedCreateEditRecipeModal from '../../../shared/modal/SharedCreateEditRecipeModal';
+import { showStandardPopUpSelector } from '../../../../store/selectors/ErrorSelector';
+import RecipeHeader from './RecipeHeader';
+import SharedLinearGradientBackgroundVertical from '../../../shared/SharedLinearGradientBackgroundVertical';
+import { searchFilterListByName } from '../../../../helpers/SearchFilterListByName';
+import {
+  recipeListSelector,
+  isMealTypeModalSelector
+} from '../../../../store/selectors/RecipeSelector';
+import SearchByMealTypeModal from '../../../shared/modal/SearchByMealTypeModal';
+import { searchFilterListByMealType } from '../../../../helpers/SearchFilterListByMealType';
+import CountRecipe from './CountRecipe';
 
 const Recipes = () => {
-  const [isRecipeVisible, setIsRecipeVisible] = useState(false);
+  const dispatch = useDispatch();
+
+  const isStandardModalVisible = useSelector(showStandardPopUpSelector());
+  const recipeList = useSelector(recipeListSelector());
+  const isMealTypeModalVisible = useSelector(isMealTypeModalSelector());
+
+  const [isSharedModalVisible, setIsSharedModalVisible] = useState(false);
+  const [filterBy, setFilterBy] = useState('');
+  const [choosedRecipe, setChoosedRecipe] = useState([]);
+  const [choosedScreen, setChoosedScreen] = useState('create');
   const [searchText, setSearchText] = useState('');
 
-  const handleRecipeModalVisible = () => setIsRecipeVisible(!isRecipeVisible);
+  const [filteredList, setFilteredList] = useState(recipeList);
+
+  useEffect(() => {
+    dispatch(fetchRecipes());
+    dispatch(getRecipeTypes());
+  }, []);
+
+  useEffect(
+    () => {
+      setFilteredList(recipeList);
+      handleSetFilterBy('');
+    },
+    [recipeList]
+  );
+
+  const handleSetFilterBy = type => setFilterBy(type);
+
+  const handleSearchRecipeByLetter = letter => {
+    setSearchText(letter);
+    setFilteredList(searchFilterListByName(recipeList, letter));
+  };
+
+  const handleSearchRecipeByMealType = type => {
+    setFilteredList(searchFilterListByMealType(recipeList, type));
+    handleSetFilterBy(type);
+  };
+
+  const handleClearMealTypeText = () => {
+    setFilteredList(recipeList);
+    handleSetFilterBy('');
+  };
+
+  const closeSharedCreateEditModal = () =>
+    setIsSharedModalVisible(prevState => !prevState);
+
+  const handleCreateRecipeModalVisible = () => {
+    setChoosedScreen('create');
+    closeSharedCreateEditModal();
+  };
+
+  const handleEditRecipeModalVisible = item => {
+    setChoosedScreen('edit');
+    closeSharedCreateEditModal();
+    setChoosedRecipe(item);
+  };
+
   return (
-    <LinearGradient
-      colors={[
+    <SharedLinearGradientBackgroundVertical
+      childrenColors={[
         Colors.lightBackgroundAppColor,
         Colors.backgroundAppColor,
         Colors.darkBackgroundAppColor
       ]}
-      style={styles.linearGradientWrapper}
+      childrenStyle={styles.linearGradientWrapper}
     >
-      <CreateRecipeModal
-        isRecipeVisible={isRecipeVisible}
-        closeModal={handleRecipeModalVisible}
+      <StandardNotificationModal visible={isStandardModalVisible} />
+      <SearchByMealTypeModal
+        isModalVisible={isMealTypeModalVisible}
+        handleSearchRecipeByMealType={handleSearchRecipeByMealType}
       />
-      <View style={styles.searchWrapper}>
-        <Icon.AntDesign
-          name={IconName.search}
-          size={26}
-          style={styles.searchIcon}
-          color={Colors.light}
-        />
-        <TextInput
-          style={styles.inputSearchField}
-          placeholder={'Search receipt'}
-          placeholderTextColor={Colors.lightGray}
-          onChangeText={text => setSearchText(text)}
-          value={searchText}
-        />
-      </View>
-      <View style={styles.buttonsWrapper}>
-        <View style={[styles.buttonWrapper, ShadowStyleHigh]}>
-          <LinearGradient
-            colors={[
-              Colors.darkCloudColor,
-              Colors.cloudColor,
-              Colors.lightCloudColor
-            ]}
-            start={{ x: 0, y: 1 }}
-            end={{ x: 1, y: 1 }}
-            style={styles.gradientWrapper}
-          >
-            <TouchableOpacity
-              style={styles.headerButton}
-              onPress={handleRecipeModalVisible}
-            >
-              <Text style={styles.headerButtonText}>Create Recipe</Text>
-            </TouchableOpacity>
-          </LinearGradient>
-        </View>
-        <View style={[styles.buttonWrapper, ShadowStyleHigh]}>
-          <LinearGradient
-            colors={[
-              Colors.darkBackgroundAppColor,
-              Colors.backgroundAppColor,
-              Colors.lightBackgroundAppColor
-            ]}
-            start={{ x: 0, y: 1 }}
-            end={{ x: 1, y: 1 }}
-            style={styles.gradientWrapper}
-          >
-            <TouchableOpacity style={styles.headerButton}>
-              <Text style={styles.headerButtonText}>Type</Text>
-            </TouchableOpacity>
-          </LinearGradient>
-        </View>
-      </View>
-    </LinearGradient>
+      <SharedCreateEditRecipeModal
+        isVisible={isSharedModalVisible}
+        closeCreateModal={handleCreateRecipeModalVisible}
+        closeEditModal={() => handleEditRecipeModalVisible([])}
+        recipe={choosedRecipe}
+        screen={choosedScreen}
+      />
+      <RecipeHeader
+        searchText={searchText}
+        setSearchText={letter => handleSearchRecipeByLetter(letter)}
+        handleCreateRecipeModalVisible={handleCreateRecipeModalVisible}
+      />
+      <CountRecipe
+        filteredList={filteredList}
+        filterBy={filterBy}
+        clearMealTypeText={handleClearMealTypeText}
+      />
+      <RecipeList
+        handleEditRecipeModalVisible={handleEditRecipeModalVisible}
+        filteredList={filteredList}
+      />
+    </SharedLinearGradientBackgroundVertical>
   );
 };
 
 export default Recipes;
 
 export const styles = StyleSheet.create({
-  buttonWrapper: {
-    // backgroundColor: 'transparent',
-    // elevation: 24,
-    // shadowColor: '#000',
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 12
-    // },
-    // shadowOpacity: 0.58,
-    // shadowRadius: 16.0,
-    width: '48%'
-  },
-  buttonsWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 20
-  },
-  gradientWrapper: {
-    borderRadius: 30
-  },
-  headerButton: {
-    alignItems: 'center',
-    paddingVertical: 20,
-    width: '100%'
-  },
-  headerButtonText: {
-    color: 'white',
-    fontWeight: 'bold'
-  },
-  inputSearchField: {
-    color: Colors.light,
-    flex: 1,
-    height: 40
-  },
   linearGradientWrapper: {
     height: '100%',
     paddingHorizontal: 10
-  },
-  searchIcon: {
-    paddingHorizontal: 10
-  },
-  searchWrapper: {
-    alignItems: 'center',
-    borderBottomColor: Colors.borderLine,
-    borderBottomWidth: 1,
-    flexDirection: 'row',
-    marginTop: 20
   }
 });

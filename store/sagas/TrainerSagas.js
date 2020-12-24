@@ -13,9 +13,16 @@ export function* handleUpdateTrainer({ payload }) {
     const { data: trainer } = yield call(trainerService.updateTrainer, payload);
     yield put(setUpdatedUser(trainer));
     AsyncStorage.setItem('user', JSON.stringify(trainer));
-    yield put(setShowStandardPopUp('Profile saved successfully.'));
+    yield put(
+      setShowStandardPopUp({
+        message: 'Profile saved successfully.',
+        warningIcon: false
+      })
+    );
   } catch (error) {
-    yield put(setGlobalError(true));
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
   } finally {
     yield put(setLoader(false));
   }
@@ -28,7 +35,9 @@ export function* handleGetTrainer() {
     const { data: trainer } = yield call(trainerService.getTrainer, user.id);
     yield put(setTrainer(trainer));
   } catch (error) {
-    yield put(setGlobalError(true));
+    yield put(
+      setGlobalError({ bool: true, message: error.response.data.message })
+    );
   } finally {
     yield put(setLoader(false));
   }

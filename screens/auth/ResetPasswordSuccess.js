@@ -3,16 +3,20 @@ import { SafeAreaView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import $t from 'i18n';
 import PropTypes from 'prop-types';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import Colors from '../../constants/Colors';
 import LoginHeader from '../../components/auth/Login/LoginHeader';
+import SharedLinearGradientBackgroundHorizontal from '../../components/shared/SharedLinearGradientBackgroundHorizontal';
 
 const ResetPasswordSuccess = ({ navigation }) => {
   return (
-    <LinearGradient
-      colors={['#3f5069', '#33445d', '#202e46']}
-      style={styles.gradientBackground}
+    <SharedLinearGradientBackgroundHorizontal
+      childrenColors={[
+        Colors.darkCloudColor,
+        Colors.cloudColor,
+        Colors.lightCloudColor
+      ]}
+      childrenStyle={styles.gradientBackground}
     >
       <SafeAreaView>
         <KeyboardAwareScrollView enableOnAndroid>
@@ -20,9 +24,13 @@ const ResetPasswordSuccess = ({ navigation }) => {
           <Text style={styles.successText}>
             {$t('auth.passwordResetSucces')}
           </Text>
-          <LinearGradient
-            colors={['#3bbdb1', '#22b9c0', '#03b5d1']}
-            style={styles.successButton}
+          <SharedLinearGradientBackgroundHorizontal
+            childrenColors={[
+              Colors.darkCloudColor,
+              Colors.cloudColor,
+              Colors.lightCloudColor
+            ]}
+            childrenStyle={styles.successButton}
           >
             <TouchableOpacity
               onPress={() => navigation.navigate('SignIn')}
@@ -30,10 +38,10 @@ const ResetPasswordSuccess = ({ navigation }) => {
             >
               <Text style={styles.buttonText}>{$t('common.ok')}</Text>
             </TouchableOpacity>
-          </LinearGradient>
+          </SharedLinearGradientBackgroundHorizontal>
         </KeyboardAwareScrollView>
       </SafeAreaView>
-    </LinearGradient>
+    </SharedLinearGradientBackgroundHorizontal>
   );
 };
 

@@ -3,7 +3,6 @@ import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import { Formik, Field } from 'formik';
 import PropTypes from 'prop-types';
 import * as Icon from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import $t from 'i18n';
 import { TextInputField } from '../../shared/FormFields';
@@ -11,6 +10,7 @@ import { updateProfileValidationRules } from '../../../validation/profile';
 import IconName from '../../../constants/IconName';
 import Colors from '../../../constants/Colors';
 import { IsFieldEmpty } from '../../../helpers/IsFieldEmpty';
+import SharedLinearGradientBackgroundHorizontal from '../../shared/SharedLinearGradientBackgroundHorizontal';
 
 export const UpdateTrainerForm = ({ trainer, onSubmit }) => (
   <Formik
@@ -167,9 +167,13 @@ export const UpdateTrainerForm = ({ trainer, onSubmit }) => (
             </View>
           </View>
         </View>
-        <LinearGradient
-          colors={['#3bbdb1', '#22b9c0', '#03b5d1']}
-          style={styles.buttonWrapper}
+        <SharedLinearGradientBackgroundHorizontal
+          childrenColors={[
+            Colors.darkCloudColor,
+            Colors.cloudColor,
+            Colors.lightCloudColor
+          ]}
+          childrenStyle={styles.buttonWrapper}
         >
           <TouchableOpacity
             style={styles.registerButton}
@@ -179,7 +183,7 @@ export const UpdateTrainerForm = ({ trainer, onSubmit }) => (
               {$t('profile.updateUser.update')}
             </Text>
           </TouchableOpacity>
-        </LinearGradient>
+        </SharedLinearGradientBackgroundHorizontal>
       </View>
     )}
   </Formik>
