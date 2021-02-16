@@ -11,9 +11,7 @@ import SharedLinearGradientBackgroundHorizontal from '../../../../../shared/Shar
 const ImportAddGrocery = ({ handleImportGroceryModalVisible }) => {
   return (
     <View style={styles.inputGroceriesWrapper}>
-      <Text style={styles.inputText}>
-        {$t('trainer.groceries').toUpperCase()}
-      </Text>
+      <Text style={styles.inputText}>{$t('trainer.groceries').toUpperCase()}</Text>
       <ImportedGroceryList />
       <View style={[ShadowStyleHigh, styles.groceriesButtonWrapper]}>
         <SharedLinearGradientBackgroundHorizontal
@@ -21,10 +19,10 @@ const ImportAddGrocery = ({ handleImportGroceryModalVisible }) => {
           childrenStyle={styles.gradientGroceriesButtonWrapper}
         >
           <TouchableOpacity
-            style={styles.groceryButton}
+            style={styles.importGroceryButton}
             onPress={handleImportGroceryModalVisible}
           >
-            <Text style={styles.submitButtonText}>{$t('common.import')}</Text>
+            <Text style={styles.importButtonText}>{$t('common.import')}</Text>
           </TouchableOpacity>
         </SharedLinearGradientBackgroundHorizontal>
       </View>
@@ -47,7 +45,12 @@ export const styles = StyleSheet.create({
     marginVertical: 20,
     width: '35%'
   },
-  groceryButton: {
+  importButtonText: {
+    color: 'white',
+    fontFamily: 'montserrat-bold',
+    fontSize: 18
+  },
+  importGroceryButton: {
     alignItems: 'center',
     paddingVertical: 10,
     width: '100%'
@@ -57,19 +60,13 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderTopColor: Colors.light,
     borderTopWidth: 1,
-    marginTop: 40,
     paddingVertical: 50
   },
   inputText: {
     color: Colors.light,
+    fontFamily: 'montserrat-bold',
     fontSize: 26,
-    fontWeight: 'bold',
     paddingBottom: 10,
     textAlign: 'center'
-  },
-  submitButtonText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold'
   }
 });

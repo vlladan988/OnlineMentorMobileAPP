@@ -16,11 +16,7 @@ import Colors from '../../../constants/Colors';
 import HeaderBarStyle from '../../../constants/HeaderBarStyle';
 import background from '../../../assets/images/LightBackground.png';
 import avatar from '../../../assets/images/richFroning.jpg';
-import {
-  fetchClients,
-  getClient,
-  deleteClient
-} from '../../../store/actions/ClientActions';
+import { fetchClients, getClient, deleteClient } from '../../../store/actions/ClientActions';
 import { clientListSelector } from '../../../store/selectors/ClientSelector';
 import { dateFormat } from '../../../helpers/DateFormat';
 
@@ -28,7 +24,7 @@ const WelcomeScreen = () => {
   const dispatch = useDispatch();
   const clients = useSelector(clientListSelector());
 
-  const viewHeight = 474;
+  const viewHeight = 490;
 
   useEffect(() => {
     dispatch(fetchClients());
@@ -38,21 +34,13 @@ const WelcomeScreen = () => {
   const keyExtractor = useCallback(item => item.id.toString(), []);
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity
-      style={styles.container2}
-      onPress={() => chooseClient(item.id)}
-    >
-      <TouchableOpacity
-        style={styles.header}
-        onPress={() => dispatch(deleteClient(item.id))}
-      >
+    <TouchableOpacity style={styles.container} onPress={() => chooseClient(item.id)}>
+      <TouchableOpacity style={styles.header} onPress={() => dispatch(deleteClient(item.id))}>
         <View style={styles.headerLeft}>
           <Image source={avatar} style={styles.profileImage} />
           <View>
             <Text style={styles.name}>{item.full_name}</Text>
-            <Text style={styles.itemDateAndKg}>
-              {dateFormat(item.created_at)}
-            </Text>
+            <Text style={styles.itemDateAndKg}>{dateFormat(item.created_at)}</Text>
           </View>
         </View>
         <View style={styles.headerRight}>
@@ -120,7 +108,7 @@ WelcomeScreen.navigationOptions = ({ navigation }) => {
 export default WelcomeScreen;
 
 const styles = StyleSheet.create({
-  container2: {
+  container: {
     elevation: 24,
     marginBottom: 20,
     shadowColor: '#000',

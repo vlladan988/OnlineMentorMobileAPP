@@ -23,6 +23,7 @@ import HeaderBarStyle from '../constants/HeaderBarStyle';
 import WelcomeScreen from '../screens/main/TrainerScreen/WelcomeScreen';
 import { addHeaderLeftNavigator, addHeaderRightNavigator } from '../helpers';
 import Layout from '../constants/Layout';
+import TemplateMealScreenTrainer from '../screens/main/TrainerScreen/Nutrition/TemplateMealScreenTrainer';
 
 const HomeStack = createStackNavigator({
   Welcome: WelcomeScreen,
@@ -73,12 +74,23 @@ HomeStack.navigationOptions = {
 const NutritionStack = createStackNavigator({
   Nutrition: {
     screen: NutritionScreenTrainer,
+    // navigationOptions: () => {
+    //   return {
+    //     title: 'Nutrition',
+    //     headerStyle: HeaderBarStyle,
+    //     headerTitleStyle: { color: Colors.white, fontWeight: 'bold' }
+    //   };
+    // }
     navigationOptions: () => {
       return {
-        title: 'Nutrition',
-        headerStyle: HeaderBarStyle,
-        headerTitleStyle: { color: Colors.white, fontWeight: 'bold' }
+        header: null
       };
+    }
+  },
+  TemplateMealScreenTrainer: {
+    screen: TemplateMealScreenTrainer,
+    navigationOptions: {
+      headerStyle: HeaderBarStyle
     }
   }
 });
@@ -88,7 +100,7 @@ NutritionStack.navigationOptions = {
     <HandleTabBarLabelStyle focused={focused} name={$t('tabBar.nutrition')} />
   ),
   tabBarIcon: ({ focused }) => (
-    <Icon.FontAwesome5
+    <Icon.MaterialCommunityIcons
       name={IconName.nutritions}
       size={26}
       color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
@@ -114,7 +126,12 @@ WorkoutStack.navigationOptions = {
     <HandleTabBarLabelStyle focused={focused} name={$t('tabBar.workout')} />
   ),
   tabBarIcon: ({ focused }) => (
-    <Icon.FontAwesome5
+    // <Icon.FontAwesome5
+    //   name={IconName.workout}
+    //   size={26}
+    //   color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+    // />
+    <Icon.MaterialCommunityIcons
       name={IconName.workout}
       size={26}
       color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
@@ -166,10 +183,7 @@ SettingsStack.navigationOptions = {
     <HandleTabBarLabelStyle focused={focused} name={$t('tabBar.settings')} />
   ),
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-    />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
   )
 };
 

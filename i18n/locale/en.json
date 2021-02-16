@@ -148,7 +148,7 @@
     "createARecipe": "Create a recipe",
     "recipeName": "Recipe Name*",
     "recipeNameText": "Chicken and rice in soja sos",
-    "uploadRecipeImage": "Or click on the image to upload it.",
+    "uploadRecipeImage": "Click on the image for upload or choose one of the options:",
     "recipeImage": "Recipe image",
     "recipeType": "Recipe Type",
     "recipeDesc": "Recipe Description",

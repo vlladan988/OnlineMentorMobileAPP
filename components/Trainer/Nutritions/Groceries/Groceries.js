@@ -2,13 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 
 import Colors from '../../../../constants/Colors';
-import GroceryHeader from './GroceryHeader';
 import GroceryList from './GroceryList';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  fetchGroceries,
-  deleteGroceries
-} from '../../../../store/actions/GroceriesActions';
+import { fetchGroceries, deleteGroceries } from '../../../../store/actions/GroceriesActions';
 import { setShowDeletePopUp } from '../../../../store/actions/ErrorActions';
 import { groceryListSelector } from '../../../../store/selectors/GrocerySelector';
 import {
@@ -19,13 +15,16 @@ import StandardNotificationModal from '../../../../components/shared/modal/Stand
 import { searchFilterListByName } from '../../../../helpers/SearchFilterListByName';
 import SharedCreateEditGroceryModal from '../../../shared/modal/SharedCreateEditGroceryModal';
 import SharedLinearGradientBackgroundVertical from '../../../shared/SharedLinearGradientBackgroundVertical';
-import SharedDeleteModal from '../../../shared/SharedDeleteModal';
+import SharedDeleteModal from '../../../shared/modal/SharedDeleteModal';
+import { fetchRecipes } from '../../../../store/actions/RecipeActions';
+import SharedGroceryTemplateHeader from '../../../shared/modal/SharedGroceryTemplateHeader';
 
 const Groceries = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchGroceries());
+    dispatch(fetchRecipes());
   }, []);
 
   const groceries = useSelector(groceryListSelector());
@@ -44,7 +43,7 @@ const Groceries = () => {
     [groceries]
   );
 
-  const handleSearchGrocery = letter => {
+  const handleSearchGroceryByLetter = letter => {
     const filteredList = searchFilterListByName(groceries, letter);
     setGroceriesFiltered(filteredList);
   };
@@ -54,11 +53,12 @@ const Groceries = () => {
     setIsModalVisible(prevState => !prevState);
   };
 
-  const handleDeleteGrocery = () =>
-    dispatch(deleteGroceries(choosedGrocery.id));
+  const handleDeleteGrocery = () => dispatch(deleteGroceries(choosedGrocery.id));
 
-  const showDeleteModal = () =>
+  const showDeleteModal = grocery => {
+    setChoosedGrocery(grocery);
     dispatch(setShowDeletePopUp('Delete Grocery ?'));
+  };
 
   return (
     <SharedLinearGradientBackgroundVertical
@@ -70,23 +70,22 @@ const Groceries = () => {
       childrenStyle={styles.linearGradientContainer}
     >
       <StandardNotificationModal visible={isStandardModalVisible} />
-      <SharedDeleteModal
-        isVisible={isDeleteModalVisible}
-        handleDelete={handleDeleteGrocery}
-      />
+      <SharedDeleteModal isVisible={isDeleteModalVisible} handleDelete={handleDeleteGrocery} />
       <SharedCreateEditGroceryModal
         isVisible={isModalVisible}
-        closeModal={handleShowCreateEditGroceryModal}
+        closeModal={() => handleShowCreateEditGroceryModal('')}
         choosedGrocery={choosedGrocery}
         screen={screen}
       />
-      <GroceryHeader
-        showSharedCreateEditModal={handleShowCreateEditGroceryModal}
-        handleSearchGrocery={handleSearchGrocery}
+      <SharedGroceryTemplateHeader
+        placeHolder={'Search groceries'}
+        showModal={() => handleShowCreateEditGroceryModal('create')}
+        handleSearch={handleSearchGroceryByLetter}
+        filteredList={groceriesFiltered}
       />
       <GroceryList
         renderListGroceries={groceriesFiltered}
-        showSharedCreateEditModal={handleShowCreateEditGroceryModal}
+        showSharedCreateEditModal={() => handleShowCreateEditGroceryModal('edit')}
         handleChooseGrocery={grocery => setChoosedGrocery(grocery)}
         showDeleteModal={showDeleteModal}
       />
@@ -98,6 +97,7 @@ export default Groceries;
 
 export const styles = StyleSheet.create({
   linearGradientContainer: {
-    height: '100%'
+    height: '100%',
+    paddingHorizontal: 5
   }
 });

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import $t from 'i18n';
 import * as ImagePicker from 'expo-image-picker';
 import PropTypes from 'prop-types';
+import * as Icon from '@expo/vector-icons';
 
 import ImageTypeRadioButtons from './ImageTypeRadioButtons';
 import breakfast from '../../../../../../assets/images/meal.jpg';
@@ -10,25 +11,23 @@ import lunch from '../../../../../../assets/images/lunch.png';
 import dinner from '../../../../../../assets/images/dinner.jpg';
 import ShadowStyleHigh from '../../../../../../constants/ShadowStyleHigh';
 import Colors from '../../../../../../constants/Colors';
-import { isEditRecipeOrEditGroceryScreen } from '../../../../../../helpers/IsEditRecipeOrEditGroceryScreen';
+import { IsEditScreen } from '../../../../../../helpers/IsEditScreen';
 import { isDefaultRecipeImage } from '../../../../../../helpers/IsDefaultRecipeImage';
-import SharedLinearGradientBackgroundHorizontal from '../../../../../shared/SharedLinearGradientBackgroundHorizontal';
+import IconName from '../../../../../../constants/IconName';
 
-const RecipeImage = ({ handleIsCustomImage, screen, recipe }) => {
+const RecipeImage = ({ handleIsCustomImage, screen, recipe, goBack }) => {
   let image = [breakfast, lunch, dinner];
   const [imageType, setImageType] = useState(image[0]);
   const [isCustomImage, setIsCustomImage] = useState(false);
   const [imageName, setImageName] = useState(0);
 
   useEffect(() => {
-    if (isEditRecipeOrEditGroceryScreen(screen)) {
+    if (IsEditScreen(screen)) {
       if (isDefaultRecipeImage(recipe.recipe_image_url)) {
         changeImageType(parseInt(recipe.recipe_image_url));
       } else {
         setIsCustomImage(true);
         setImageName({ uri: recipe.recipe_image_url });
-
-        // handleIsCustomImage(true, result.base64);
       }
     }
   }, []);
@@ -56,36 +55,22 @@ const RecipeImage = ({ handleIsCustomImage, screen, recipe }) => {
   };
 
   return (
-    <View style={styles.imageContainer}>
-      <View style={ShadowStyleHigh}>
-        <SharedLinearGradientBackgroundHorizontal
-          childrenColors={[
-            Colors.darkBackgroundAppColor,
-            Colors.backgroundAppColor,
-            Colors.lightBackgroundAppColor
-          ]}
-          childrenStyle={styles.gradientWrapper}
-        >
-          <ImageTypeRadioButtons
-            changeImageType={changeImageType}
-            imageId={isCustomImage ? null : imageName}
-          />
-          <TouchableOpacity
-            onPress={pickImage}
-            activeOpacity={0.5}
-            style={[ShadowStyleHigh, styles.imageWrapper]}
-          >
-            <Image
-              source={isCustomImage ? { uri: imageName.uri } : imageType}
-              style={styles.mealImage}
-            />
-            <Text style={styles.chooseImageText}>
-              {$t('trainer.uploadRecipeImage')}
-            </Text>
-          </TouchableOpacity>
-        </SharedLinearGradientBackgroundHorizontal>
-      </View>
-    </View>
+    <>
+      <TouchableOpacity onPress={pickImage} activeOpacity={0.5} style={ShadowStyleHigh}>
+        <Image
+          source={isCustomImage ? { uri: imageName.uri } : imageType}
+          style={styles.mealImage}
+        />
+        <Text style={styles.chooseImageText}>{$t('trainer.uploadRecipeImage')}</Text>
+      </TouchableOpacity>
+      <ImageTypeRadioButtons
+        changeImageType={changeImageType}
+        imageId={isCustomImage ? null : imageName}
+      />
+      <TouchableOpacity onPress={goBack} style={styles.goBackIconWrapper}>
+        <Icon.MaterialCommunityIcons name={IconName.backCircle} size={50} color={Colors.light} />
+      </TouchableOpacity>
+    </>
   );
 };
 
@@ -94,32 +79,29 @@ export default RecipeImage;
 RecipeImage.propTypes = {
   handleIsCustomImage: PropTypes.func,
   screen: PropTypes.string,
-  recipe: PropTypes.object
+  recipe: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  goBack: PropTypes.func
 };
 
 export const styles = StyleSheet.create({
   chooseImageText: {
+    alignSelf: 'center',
     color: Colors.lightOker,
+    fontFamily: 'montserrat-italic',
     fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
+    width: '80%'
   },
-  gradientWrapper: {
-    borderRadius: 10,
-    marginHorizontal: 10,
-    padding: 20
-  },
-  imageContainer: {
-    paddingTop: 40
-  },
-  imageWrapper: {
-    paddingBottom: 30
+  goBackIconWrapper: {
+    left: 10,
+    position: 'absolute',
+    top: 10
   },
   mealImage: {
     alignSelf: 'center',
-    height: 300,
+    height: 250,
     marginBottom: 30,
     resizeMode: 'cover',
-    width: 300
+    width: '100%'
   }
 });

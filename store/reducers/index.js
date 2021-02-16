@@ -9,6 +9,8 @@ import galleryReducer from './GalleryReducer';
 import trainerReducer from './TrainerReducer';
 import groceriesReducer from './GroceriesReducer';
 import recipeReducer from './RecipeReducer';
+import templateReducer from './TemplateReducer';
+import templateMealReducer from './TemplateMealReducer';
 
 export default combineReducers({
   userReducer,
@@ -19,5 +21,7 @@ export default combineReducers({
   galleryReducer,
   trainerReducer,
   groceriesReducer,
-  recipeReducer
+  recipeReducer,
+  templateReducer,
+  templateMealReducer
 });

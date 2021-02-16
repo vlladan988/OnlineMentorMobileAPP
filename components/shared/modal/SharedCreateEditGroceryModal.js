@@ -1,55 +1,38 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Modal,
-  SafeAreaView,
-  ScrollView,
-  View
-} from 'react-native';
+import { StyleSheet, Modal, ScrollView, SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Colors from '../../../constants/Colors';
 import SharedHeaderWithBackButton from './SharedHeaderWithBackButton';
-import { isEditRecipeOrEditGroceryScreen } from '../../../helpers/IsEditRecipeOrEditGroceryScreen';
+import { IsEditScreen } from '../../../helpers/IsEditScreen';
 import SharedCreateEditGroceryForm from './SharedCreateEditGroceryForm';
 import SharedLinearGradientBackgroundVertical from '../SharedLinearGradientBackgroundVertical';
 
-const SharedCreateEditGroceryModal = ({
-  isVisible,
-  closeModal,
-  choosedGrocery,
-  screen
-}) => {
+const SharedCreateEditGroceryModal = ({ isVisible, closeModal, choosedGrocery, screen }) => {
   return (
     <Modal animationType="slide" transparent={true} visible={isVisible}>
-      <View style={styles.container}>
-        <SharedLinearGradientBackgroundVertical
-          childrenColors={[
-            Colors.lightBackgroundAppColor,
-            Colors.backgroundAppColor,
-            Colors.darkBackgroundAppColor
-          ]}
-          childrenStyle={{}}
-        >
-          <SafeAreaView style={styles.modalWrapper}>
-            <ScrollView style={styles.scrollWrapper}>
-              <SharedHeaderWithBackButton
-                goBack={() => closeModal('')}
-                headerText={
-                  isEditRecipeOrEditGroceryScreen(screen)
-                    ? 'Edit Grocery'
-                    : 'Create Grocery'
-                }
-              />
-              <SharedCreateEditGroceryForm
-                closeModal={() => closeModal('')}
-                choosedGrocery={choosedGrocery}
-                screen={screen}
-              />
-            </ScrollView>
-          </SafeAreaView>
-        </SharedLinearGradientBackgroundVertical>
-      </View>
+      <SharedLinearGradientBackgroundVertical
+        childrenColors={[
+          Colors.lightBackgroundAppColor,
+          Colors.backgroundAppColor,
+          Colors.darkBackgroundAppColor
+        ]}
+        childrenStyle={{}}
+      >
+        <SafeAreaView style={styles.modalWrapper}>
+          <ScrollView style={styles.scrollWrapper}>
+            <SharedHeaderWithBackButton
+              goBack={closeModal}
+              headerText={IsEditScreen(screen) ? 'Edit Grocery' : 'Create Grocery'}
+            />
+            <SharedCreateEditGroceryForm
+              closeModal={() => closeModal('')}
+              choosedGrocery={choosedGrocery}
+              screen={screen}
+            />
+          </ScrollView>
+        </SafeAreaView>
+      </SharedLinearGradientBackgroundVertical>
     </Modal>
   );
 };
@@ -64,9 +47,6 @@ SharedCreateEditGroceryModal.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: 10
-  },
   modalWrapper: {
     alignSelf: 'center',
     width: '100%'

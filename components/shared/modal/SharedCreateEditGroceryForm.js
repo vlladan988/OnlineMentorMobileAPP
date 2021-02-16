@@ -5,11 +5,8 @@ import PropTypes from 'prop-types';
 
 import { countCalories } from '../../../helpers/CountCalories';
 import { handleUnitType } from '../../../helpers/HandleUnitType';
-import {
-  updateGroceries,
-  addGroceries
-} from '../../../store/actions/GroceriesActions';
-import { isEditRecipeOrEditGroceryScreen } from '../../../helpers/IsEditRecipeOrEditGroceryScreen';
+import { updateGroceries, addGroceries } from '../../../store/actions/GroceriesActions';
+import { IsEditScreen } from '../../../helpers/IsEditScreen';
 import GroceryAndMeasurements from '../../Trainer/Nutritions/Groceries/GroceryModal/SharedCreateEditModal/GroceryAndMeasurements';
 import GroceryValues from '../../Trainer/Nutritions/Groceries/GroceryModal/SharedCreateEditModal/GroceryValues';
 import SubmitButtonGroceryForm from '../../Trainer/Nutritions/Groceries/GroceryModal/SharedCreateEditModal/SubmitButtonGroceryForm';
@@ -18,11 +15,7 @@ import { setShowStandardPopUp } from '../../../store/actions/ErrorActions';
 import { showStandardPopUpSelector } from '../../../store/selectors/ErrorSelector';
 import StandardNotificationModal from './StandardNotificationModal';
 
-const SharedCreateEditGroceryForm = ({
-  closeModal,
-  choosedGrocery,
-  screen
-}) => {
+const SharedCreateEditGroceryForm = ({ closeModal, choosedGrocery, screen }) => {
   const dispatch = useDispatch();
 
   const isStandardModalVisible = useSelector(showStandardPopUpSelector());
@@ -30,14 +23,14 @@ const SharedCreateEditGroceryForm = ({
   const [name, setName] = useState('');
   const [unit, setUnit] = useState(null);
   const [unitType, setUnitType] = useState(false);
-  const [proteins, setProteins] = useState(null);
-  const [carbons, setCarbons] = useState(null);
-  const [fats, setFats] = useState(null);
+  const [proteins, setProteins] = useState('');
+  const [carbons, setCarbons] = useState('');
+  const [fats, setFats] = useState('');
   const [calories, setCalories] = useState(null);
 
   useEffect(
     () => {
-      if (isEditRecipeOrEditGroceryScreen(screen)) {
+      if (IsEditScreen(screen)) {
         setName(choosedGrocery.name);
         setUnit(choosedGrocery.unit);
         setUnitType(choosedGrocery.unit_type);
@@ -73,9 +66,7 @@ const SharedCreateEditGroceryForm = ({
         })
       );
     } else {
-      isEditRecipeOrEditGroceryScreen(screen)
-        ? handleUpdateGrocery()
-        : handleAddGrocery();
+      IsEditScreen(screen) ? handleUpdateGrocery() : handleAddGrocery();
     }
   };
 
@@ -145,6 +136,6 @@ SharedCreateEditGroceryForm.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 30
+    paddingBottom: 20
   }
 });

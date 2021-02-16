@@ -5,16 +5,15 @@ import PropTypes from 'prop-types';
 
 import ReciepeTypeRadioButtons from './ReciepeTypeRadioButtons';
 import Colors from '../../../../../../constants/Colors';
-import { isEditRecipeOrEditGroceryScreen } from '../../../../../../helpers/IsEditRecipeOrEditGroceryScreen';
-import ShadowStyleHigh from '../../../../../../constants/ShadowStyleHigh';
+import { IsEditScreen } from '../../../../../../helpers/IsEditScreen';
+import ShadowStyleLow from '../../../../../../constants/ShadowStyleLow';
 import SharedLinearGradientBackgroundHorizontal from '../../../../../shared/SharedLinearGradientBackgroundHorizontal';
 
 const MealTypeRecipe = ({ setRecipeType, screen, recipe }) => {
   const [mealType, setMealType] = useState(null);
 
   useEffect(() => {
-    isEditRecipeOrEditGroceryScreen(screen) &&
-      changeMealType(recipe.recipe_type);
+    IsEditScreen(screen) && changeMealType(recipe.recipe_type);
   }, []);
 
   const changeMealType = type => {
@@ -24,7 +23,7 @@ const MealTypeRecipe = ({ setRecipeType, screen, recipe }) => {
 
   return (
     <View style={styles.mealTypeWrapper}>
-      <View style={ShadowStyleHigh}>
+      <View style={ShadowStyleLow}>
         <SharedLinearGradientBackgroundHorizontal
           childrenColors={[
             Colors.darkBackgroundAppColor,
@@ -39,10 +38,7 @@ const MealTypeRecipe = ({ setRecipeType, screen, recipe }) => {
             </Text>
             {mealType && (
               <View style={styles.resetTextWrapper}>
-                <Text
-                  style={styles.resetText}
-                  onPress={() => setMealType(null)}
-                >
+                <Text style={styles.resetText} onPress={() => setMealType(null)}>
                   {$t('common.cancel')}
                 </Text>
               </View>
@@ -66,20 +62,20 @@ export default MealTypeRecipe;
 MealTypeRecipe.propTypes = {
   setRecipeType: PropTypes.func,
   screen: PropTypes.string,
-  recipe: PropTypes.object
+  recipe: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
 };
 
 export const styles = StyleSheet.create({
   gradientWrapper: {
     borderRadius: 10,
-    marginHorizontal: 10,
+    marginHorizontal: 5,
     paddingHorizontal: 10,
-    paddingVertical: 20
+    paddingVertical: 15
   },
   inputText: {
     color: Colors.light,
-    fontSize: 18,
-    fontWeight: 'bold'
+    fontFamily: 'montserrat-bold',
+    fontSize: 18
   },
   mealTypeCancelPadding: {
     paddingVertical: 5
@@ -89,15 +85,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   mealTypeWrapper: {
-    paddingTop: 40
+    paddingVertical: 40
   },
   resetText: {
     color: Colors.white,
+    fontFamily: 'montserrat-regular',
     paddingHorizontal: 10,
     paddingVertical: 5
   },
   resetTextWrapper: {
     backgroundColor: Colors.oker,
-    borderRadius: 10
+    borderRadius: 10,
+    justifyContent: 'center'
   }
 });

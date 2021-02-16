@@ -6,7 +6,7 @@ import { setGroceries } from '../actions/GroceriesActions';
 import groceryService from '../../services/GroceriesService';
 import { groceryListSelector } from '../selectors/GrocerySelector';
 import { IsGroceryNameUniqueValidation } from '../../helpers/IsGroceryNameUniqueValidation';
-import { fetchRecipes } from '../../store/actions/RecipeActions';
+import { fetchRecipes } from '../actions/RecipeActions';
 
 export function* handleFetchGroceries() {
   try {
@@ -14,9 +14,7 @@ export function* handleFetchGroceries() {
     const { data: groceries } = yield call(groceryService.fetchGroceries);
     yield put(setGroceries(groceries));
   } catch (error) {
-    yield put(
-      setGlobalError({ bool: true, message: error.response.data.message })
-    );
+    yield put(setGlobalError({ bool: true, message: error.response.data.message }));
   } finally {
     yield put(setLoader(false));
   }
@@ -55,9 +53,7 @@ export function* handleAddGrocery({ payload }) {
       })
     );
   } catch (error) {
-    yield put(
-      setGlobalError({ bool: true, message: error.response.data.message })
-    );
+    yield put(setGlobalError({ bool: true, message: error.response.data.message }));
   } finally {
     yield put(setLoader(false));
   }
@@ -66,20 +62,13 @@ export function* handleAddGrocery({ payload }) {
 export function* handleUpdateGrocery({ payload }) {
   try {
     yield put(setLoader(true));
-    const { data: groceries } = yield call(
-      groceryService.updateGrocery,
-      payload
-    );
+    const { data: groceries } = yield call(groceryService.updateGrocery, payload);
     yield put(setGroceries(groceries));
 
-    yield put(
-      setShowStandardPopUp({ message: 'Grocery Updated !', warningIcon: false })
-    );
+    yield put(setShowStandardPopUp({ message: 'Grocery Updated !', warningIcon: false }));
     yield put(fetchRecipes());
   } catch (error) {
-    yield put(
-      setGlobalError({ bool: true, message: error.response.data.message })
-    );
+    yield put(setGlobalError({ bool: true, message: error.response.data.message }));
   } finally {
     yield put(setLoader(false));
   }
@@ -88,19 +77,12 @@ export function* handleUpdateGrocery({ payload }) {
 export function* handleDeleteGrocery({ payload }) {
   try {
     yield put(setLoader(true));
-    const { data: groceries } = yield call(
-      groceryService.deleteGrocery,
-      payload
-    );
+    const { data: groceries } = yield call(groceryService.deleteGrocery, payload);
     yield put(setGroceries(groceries));
     yield put(fetchRecipes());
-    yield put(
-      setShowStandardPopUp({ message: 'Grocery Deleted !', warningIcon: false })
-    );
+    yield put(setShowStandardPopUp({ message: 'Grocery Deleted !', warningIcon: false }));
   } catch (error) {
-    yield put(
-      setGlobalError({ bool: true, message: error.response.data.message })
-    );
+    yield put(setGlobalError({ bool: true, message: error.response.data.message }));
   } finally {
     yield put(setLoader(false));
   }

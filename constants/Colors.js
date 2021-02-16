@@ -4,7 +4,12 @@ const mainYellow = '#fdde37';
 const listColor = '#6c8ab8';
 
 export default {
-  lightBackgroundAppColor: '#3f5069',
+  lightBackground: '#3d3d3d',
+  background: '#383838',
+  darkBackground: '#222222',
+
+  // lightBackgroundAppColor: '#3f5069',
+  lightBackgroundAppColor: '#384962',
   backgroundAppColor: '#384962',
   darkBackgroundAppColor: '#202e46',
   lightGray: '#7A879B',

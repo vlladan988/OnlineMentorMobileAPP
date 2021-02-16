@@ -5,19 +5,22 @@ import PropTypes from 'prop-types';
 
 import Colors from '../../../../../../constants/Colors';
 import RadioFormEditGroceryUnit from './RadioFormEditGroceryUnit';
-import ShadowStyleHigh from '../../../../../../constants/ShadowStyleHigh';
+import ShadowStyleLow from '../../../../../../constants/ShadowStyleLow';
 import SharedLinearGradientBackgroundHorizontal from '../../../../../shared/SharedLinearGradientBackgroundHorizontal';
 
-const GroceryAndMeasurements = ({
-  name,
-  setName,
-  unitType,
-  unit,
-  setUnit,
-  choosedGrocery
-}) => {
+const GroceryAndMeasurements = ({ name, setName, unitType, unit, setUnit, choosedGrocery }) => {
   return (
-    <View style={ShadowStyleHigh}>
+    <View style={ShadowStyleLow}>
+      <View style={styles.nameWrapper}>
+        <Text style={styles.inputText}>Grocery {$t('common.name')}*</Text>
+        <TextInput
+          value={name}
+          placeholder={'Chicken Breast'}
+          placeholderTextColor={Colors.lightGray}
+          onChangeText={text => setName(text)}
+          style={styles.input}
+        />
+      </View>
       <SharedLinearGradientBackgroundHorizontal
         childrenColors={[
           Colors.darkBackgroundAppColor,
@@ -26,27 +29,14 @@ const GroceryAndMeasurements = ({
         ]}
         childrenStyle={styles.gradientWrapper}
       >
-        <View>
-          <Text style={styles.inputText}>Grocery {$t('common.name')}*</Text>
-          <TextInput
-            value={name}
-            placeholder={'Chicken Breast'}
-            placeholderTextColor={Colors.lightGray}
-            onChangeText={text => setName(text)}
-            style={styles.input}
-          />
+        <View style={styles.measurementWrapper}>
+          <Text style={styles.inputText}>{$t('common.measUnit')}</Text>
+          {unitType && unit && <Text style={styles.unitTypeText}>{unitType}</Text>}
         </View>
-        <View style={styles.inputWrapper}>
-          <View style={styles.measurementWrapper}>
-            <Text style={styles.inputText}>{$t('common.measUnit')}</Text>
-            {unitType &&
-              unit && <Text style={styles.unitTypeText}>{unitType}</Text>}
-          </View>
-          <RadioFormEditGroceryUnit
-            setSelectedUnit={selectedUnit => setUnit(selectedUnit)}
-            initValue={choosedGrocery.unit}
-          />
-        </View>
+        <RadioFormEditGroceryUnit
+          setSelectedUnit={selectedUnit => setUnit(selectedUnit)}
+          initValue={choosedGrocery.unit}
+        />
       </SharedLinearGradientBackgroundHorizontal>
     </View>
   );
@@ -66,32 +56,34 @@ GroceryAndMeasurements.propTypes = {
 const styles = StyleSheet.create({
   gradientWrapper: {
     borderRadius: 10,
-    marginHorizontal: 10,
+    marginHorizontal: 5,
     padding: 20
   },
   input: {
     borderBottomColor: Colors.lightGray,
     borderBottomWidth: 1,
     color: Colors.light,
+    fontFamily: 'montserrat-regular',
     fontSize: 16,
     height: 60,
     paddingLeft: 20
   },
   inputText: {
     color: Colors.light,
-    fontSize: 18,
-    fontWeight: 'bold'
-  },
-  inputWrapper: {
-    paddingTop: 50
+    fontFamily: 'montserrat-bold',
+    fontSize: 18
   },
   measurementWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
+  nameWrapper: {
+    paddingHorizontal: 5,
+    paddingVertical: 40
+  },
   unitTypeText: {
     color: Colors.warningColor,
-    fontSize: 18,
-    fontWeight: 'bold'
+    fontFamily: 'montserrat-bold',
+    fontSize: 18
   }
 });

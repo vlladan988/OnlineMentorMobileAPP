@@ -39,16 +39,8 @@ import {
 } from './ClientSagas';
 import { GET_GOAL, UPDATE_GOAL } from '../actionTypes/GoalActionTypes';
 import { handleGetGoal, handleUpdateGoal } from './GoalSagas';
-import {
-  handleGetGallery,
-  handleSaveGallery,
-  handleDeleteGallery
-} from './GallerySagas';
-import {
-  GET_GALLERY,
-  SAVE_GALLERY,
-  DELETE_GALLERY
-} from '../actionTypes/GalleryActionTypes';
+import { handleGetGallery, handleSaveGallery, handleDeleteGallery } from './GallerySagas';
+import { GET_GALLERY, SAVE_GALLERY, DELETE_GALLERY } from '../actionTypes/GalleryActionTypes';
 import { handleUpdateTrainer, handleGetTrainer } from './TrainerSagas';
 import { UPDATE_TRAINER, GET_TRAINER } from '../actionTypes/TrainerActionTypes';
 import {
@@ -56,7 +48,7 @@ import {
   handleAddGrocery,
   handleUpdateGrocery,
   handleDeleteGrocery
-} from './GroceriesSagas';
+} from './GrocerySagas';
 import {
   FETCH_GROCERIES,
   ADD_GROCERIES,
@@ -77,6 +69,40 @@ import {
   DELETE_RECIPE,
   UPDATE_RECIPE
 } from '../actionTypes/RecipeActionTypes';
+import {
+  handleFetchTemplates,
+  handleAddTemplate,
+  handleUpdateTemplate,
+  handleDeleteTemplate,
+  handleAssignTemplateToClient
+} from './TemplateSagas';
+import {
+  FETCH_TEMPLATES,
+  ADD_TEMPLATE,
+  UPDATE_TEMPLATE,
+  DELETE_TEMPLATE,
+  ASSIGN_TEMPLATE_TO_CLIENT
+} from '../actionTypes/TemplateActionTypes';
+import {
+  handleGetTemplateMeals,
+  handleAddTemplateMeal,
+  handleGetTemplateMealRecipies,
+  handleAddTemplateMealRecipe,
+  handleDeleteTemplateMealRecipe,
+  handleChangeTemplateMealOrder,
+  handleEditTemplateMeal,
+  handleDeleteTemplateMeal
+} from './TemplateMealSagas';
+import {
+  GET_TEMPLATE_MEALS,
+  ADD_TEMPLATE_MEAL,
+  EDIT_TEMPLATE_MEAL,
+  DELETE_TEMPLATE_MEAL,
+  GET_TEMPLATE_MEAL_RECIPIES,
+  ADD_TEMPLATE_MEAL_RECIPE,
+  DELETE_TEMPLATE_MEAL_RECIPE,
+  CHANGE_TEMPLATE_MEAL_ORDER
+} from '../actionTypes/TemplateMealActionTypes';
 
 export default function* rootSaga() {
   yield all([
@@ -110,6 +136,19 @@ export default function* rootSaga() {
     takeLatest(FETCH_GROCERIES, handleFetchGroceries),
     takeLatest(ADD_GROCERIES, handleAddGrocery),
     takeLatest(UPDATE_GROCERIES, handleUpdateGrocery),
-    takeLatest(DELETE_GROCERIES, handleDeleteGrocery)
+    takeLatest(DELETE_GROCERIES, handleDeleteGrocery),
+    takeLatest(FETCH_TEMPLATES, handleFetchTemplates),
+    takeLatest(ADD_TEMPLATE, handleAddTemplate),
+    takeLatest(UPDATE_TEMPLATE, handleUpdateTemplate),
+    takeLatest(DELETE_TEMPLATE, handleDeleteTemplate),
+    takeLatest(ASSIGN_TEMPLATE_TO_CLIENT, handleAssignTemplateToClient),
+    takeLatest(GET_TEMPLATE_MEALS, handleGetTemplateMeals),
+    takeLatest(ADD_TEMPLATE_MEAL, handleAddTemplateMeal),
+    takeLatest(EDIT_TEMPLATE_MEAL, handleEditTemplateMeal),
+    takeLatest(DELETE_TEMPLATE_MEAL, handleDeleteTemplateMeal),
+    takeLatest(GET_TEMPLATE_MEAL_RECIPIES, handleGetTemplateMealRecipies),
+    takeLatest(ADD_TEMPLATE_MEAL_RECIPE, handleAddTemplateMealRecipe),
+    takeLatest(DELETE_TEMPLATE_MEAL_RECIPE, handleDeleteTemplateMealRecipe),
+    takeLatest(CHANGE_TEMPLATE_MEAL_ORDER, handleChangeTemplateMealOrder)
   ]);
 }

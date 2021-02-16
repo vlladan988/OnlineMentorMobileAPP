@@ -12,15 +12,9 @@ import RadioForm, {
 import Colors from '../../../../../../constants/Colors';
 import { recipeTypeSelector } from '../../../../../../store/selectors/RecipeSelector';
 import IconName from '../../../../../../constants/IconName';
-import { isEditRecipeOrEditGroceryScreen } from '../../../../../../helpers/IsEditRecipeOrEditGroceryScreen';
+import { IsEditScreen } from '../../../../../../helpers/IsEditScreen';
 
-const ReciepeTypeRadioButtons = ({
-  changeMealType,
-  mealType,
-  screen,
-  recipe,
-  setCustomType
-}) => {
+const ReciepeTypeRadioButtons = ({ changeMealType, mealType, screen, recipe, setCustomType }) => {
   const recipeTypes = useSelector(recipeTypeSelector());
   const [selected, setSelected] = useState(null);
   const [customMeal, setCustomMeal] = useState('');
@@ -28,9 +22,7 @@ const ReciepeTypeRadioButtons = ({
   const radio_props = recipeTypes;
 
   useEffect(() => {
-    isEditRecipeOrEditGroceryScreen(screen)
-      ? handleChoose(recipe.recipe_type)
-      : null;
+    IsEditScreen(screen) && handleChoose(recipe.recipe_type);
   }, []);
 
   useEffect(
@@ -60,9 +52,7 @@ const ReciepeTypeRadioButtons = ({
               isSelected={obj.value === selected}
               onPress={value => handleChoose(value)}
               borderWidth={1}
-              buttonInnerColor={
-                obj.value == selected ? Colors.light : 'transparent'
-              }
+              buttonInnerColor={obj.value == selected ? Colors.light : 'transparent'}
               buttonOuterColor={Colors.lightGray}
               buttonSize={15}
               buttonWrapStyle={styles.wrapStyle}
@@ -79,7 +69,7 @@ const ReciepeTypeRadioButtons = ({
         <View style={styles.addMealWrapper}>
           <TextInput
             style={styles.inputAddMeal}
-            placeholder={'Add New Type'}
+            placeholder={'Type new ...'}
             placeholderTextColor={Colors.black}
             onChangeText={text => setCustomMeal(text)}
             value={customMeal}
@@ -139,11 +129,13 @@ export const styles = StyleSheet.create({
   },
   inputAddMeal: {
     color: Colors.black,
+    fontFamily: 'montserrat-regular',
     fontSize: 14,
     paddingRight: 30
   },
   labels: {
     color: Colors.lightGray,
+    fontFamily: 'montserrat-regular',
     fontSize: 16
   },
   typeWrap: {

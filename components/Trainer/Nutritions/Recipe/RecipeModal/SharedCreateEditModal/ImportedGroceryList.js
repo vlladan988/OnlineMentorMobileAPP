@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, TextInput } from 'react-native';
 import * as Icon from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 import PropTypes from 'prop-types';
 import $t from 'i18n';
 
@@ -17,7 +16,6 @@ import {
 import { isIncrementGrocery } from '../../../../../../helpers/IsIncrementGrocery';
 import { updateGroceryByNumber } from '../../../../../../helpers/UpdateGroceryByNumber';
 import { updateGroceryByIncrementDecrement } from '../../../../../../helpers/updateGroceryByIncrementDecrement';
-// import { sumRecipeGrocery } from '../../../../../../helpers/SumRecipeGrocery';
 import { removeItemFromArrayById } from '../../../../../../helpers/RemoveItemFromArrayById';
 import SharedLinearGradientBackgroundHorizontal from '../../../../../shared/SharedLinearGradientBackgroundHorizontal';
 
@@ -32,36 +30,24 @@ const ImportedGroceryList = () => {
   const handleChangeValueByIncrementDecrement = (incDecValue, grocery) => {
     dispatch(
       updateImportedGroceries(
-        updateGroceryByIncrementDecrement(
-          renderData,
-          grocery,
-          isIncrementGrocery(incDecValue)
-        )
+        updateGroceryByIncrementDecrement(renderData, grocery, isIncrementGrocery(incDecValue))
       )
     );
   };
 
   const handleChangeValueByNumber = (number, grocery) =>
-    dispatch(
-      updateImportedGroceries(
-        updateGroceryByNumber(renderData, grocery, number)
-      )
-    );
+    dispatch(updateImportedGroceries(updateGroceryByNumber(renderData, grocery, number)));
 
   const deleteRecipeGroceryFromImportedList = recipeGrocery => {
-    dispatch(
-      updateImportedGroceries(
-        removeItemFromArrayById(renderData, recipeGrocery)
-      )
-    );
+    dispatch(updateImportedGroceries(removeItemFromArrayById(renderData, recipeGrocery)));
   };
 
   const keyExtractor = useCallback(item => item.id.toString(), []);
 
   const getItemLayout = useCallback(
     (data, index) => ({
-      length: 70,
-      offset: 70 * index,
+      length: 229,
+      offset: 229 * index,
       index
     }),
     []

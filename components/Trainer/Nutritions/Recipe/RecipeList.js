@@ -1,16 +1,9 @@
+/* eslint-disable indent */
 import React, { useCallback, useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  FlatList,
-  Image
-} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image } from 'react-native';
 import * as Icon from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import $t from 'i18n';
 
 import IconName from '../../../../constants/IconName';
 import dinner from '../../../../assets/images/dinner.jpg';
@@ -21,33 +14,51 @@ import ShadowStyleLow from '../../../../constants/ShadowStyleLow';
 import { sumRecipeGrocery } from '../../../../helpers/SumRecipeGrocery';
 import { isDefaultRecipeImage } from '../../../../helpers/IsDefaultRecipeImage';
 import { deleteRecipe } from '../../../../store/actions/RecipeActions';
-import SharedDeleteModal from '../../../shared/SharedDeleteModal';
 import SharedLinearGradientBackgroundHorizontal from '../../../shared/SharedLinearGradientBackgroundHorizontal';
 import { showDeletePopUpSelector } from '../../../../store/selectors/ErrorSelector';
 import { setShowDeletePopUp } from '../../../../store/actions/ErrorActions';
 import { recipePercentValue } from '../../../../helpers/RecipePercentValue';
+import SharedDeleteModal from '../../../shared/modal/SharedDeleteModal';
+import ShadowStyleHigh from '../../../../constants/ShadowStyleHigh';
+import SharedAnimatedDropdown from '../../../../components/shared/SharedAnimatedDropdown';
 
-const RecipeList = ({ handleEditRecipeModalVisible, filteredList }) => {
+const RecipeList = ({ handleEditRecipeModalVisible, filteredList, showRecipeModal }) => {
   const dispatch = useDispatch();
 
-  const [choosedItem, setChoosedItem] = useState(null);
+  const optionValue = ['Edit', 'Delete'];
+
+  const [choosedItem, setChoosedItem] = useState([]);
   const isDeleteModalVisible = useSelector(showDeletePopUpSelector());
 
   let image = [breakfast, lunch, dinner];
 
-  const showDeleteModal = item => {
-    dispatch(setShowDeletePopUp('Delete Recipe ?'));
-    setChoosedItem(item);
+  const handleDropdownPicker = (value, item) => {
+    switch (value) {
+      case 'edit':
+        handleEditRecipeModalVisible(item);
+        setChoosedItem([]);
+        break;
+      case 'delete':
+        showDeleteModal();
+        break;
+    }
   };
 
+  const showDeleteModal = () => dispatch(setShowDeletePopUp('Delete Recipe ?'));
+
   const handleDeleteRecipe = () => dispatch(deleteRecipe(choosedItem.id));
+
+  const handleChoosedItem = item => {
+    if (item.id !== choosedItem.id) setChoosedItem(item);
+    else choosedItem.id ? setChoosedItem([]) : setChoosedItem(item);
+  };
 
   const keyExtractor = useCallback(item => item.id.toString(), []);
 
   const getItemLayout = useCallback(
     (data, index) => ({
-      length: 278,
-      offset: 278 * index,
+      length: 215,
+      offset: 215 * index,
       index
     }),
     []
@@ -55,14 +66,11 @@ const RecipeList = ({ handleEditRecipeModalVisible, filteredList }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.container}>
-      <SharedDeleteModal
-        isVisible={isDeleteModalVisible}
-        handleDelete={handleDeleteRecipe}
-      />
+      <SharedDeleteModal isVisible={isDeleteModalVisible} handleDelete={handleDeleteRecipe} />
       <TouchableOpacity
         style={ShadowStyleLow}
         activeOpacity={0.7}
-        onPress={() => handleEditRecipeModalVisible(item)}
+        onPress={() => showRecipeModal(item)}
       >
         <SharedLinearGradientBackgroundHorizontal
           childrenColors={[
@@ -72,78 +80,81 @@ const RecipeList = ({ handleEditRecipeModalVisible, filteredList }) => {
           ]}
           childrenStyle={styles.gradientWrapper}
         >
-          <View style={styles.headerNameWrapper}>
-            <Text style={styles.nameText}>{item.name}</Text>
-          </View>
-          <View style={styles.item}>
-            <Icon.MaterialIcons
-              onPress={() => handleEditRecipeModalVisible(item)}
-              name={IconName.editPencil}
-              size={36}
-              color={Colors.light}
-              style={styles.optionIcon}
-            />
-            <Image
-              source={
-                isDefaultRecipeImage(item.recipe_image_url)
-                  ? image[item.recipe_image_url]
-                  : { uri: item.recipe_image_url }
-              }
-              style={styles.mealImage}
-            />
-            <Icon.MaterialCommunityIcons
-              onPress={() => showDeleteModal(item)}
-              name={IconName.closeOct}
-              color={Colors.light}
-              size={36}
-              style={styles.optionIcon}
-            />
-          </View>
-          <View style={styles.itemValWrapper}>
-            <View style={styles.itemVal}>
-              <Text style={styles.proteinPercentText}>
-                {recipePercentValue(
-                  sumRecipeGrocery(item.recipe_groceries),
-                  sumRecipeGrocery(item.recipe_groceries).proteins
-                )}
-                %
-              </Text>
-              <Text style={styles.val}>{$t('common.proteins')}</Text>
-              <Text style={styles.proteinValText}>
-                {sumRecipeGrocery(item.recipe_groceries).proteins}g
-              </Text>
+          <View style={styles.itemWrapper}>
+            <View style={styles.sectionItem}>
+              <Text style={styles.itemNameText}>{item.name}</Text>
+              <View style={styles.groceryValueWrapper}>
+                <Text style={styles.gramsText}>
+                  {sumRecipeGrocery(item.recipe_groceries).proteins}g{' '}
+                </Text>
+                <Text style={styles.percentText}>
+                  (
+                  {recipePercentValue(
+                    sumRecipeGrocery(item.recipe_groceries),
+                    sumRecipeGrocery(item.recipe_groceries).proteins
+                  )}
+                  %)
+                </Text>
+              </View>
+              <View style={styles.groceryValueWrapper}>
+                <Text style={styles.gramsText}>
+                  {sumRecipeGrocery(item.recipe_groceries).carbons}g{' '}
+                </Text>
+                <Text style={styles.percentText}>
+                  (
+                  {recipePercentValue(
+                    sumRecipeGrocery(item.recipe_groceries),
+                    sumRecipeGrocery(item.recipe_groceries).carbons
+                  )}
+                  %)
+                </Text>
+              </View>
+              <View style={styles.groceryValueWrapper}>
+                <Text style={styles.gramsText}>
+                  {sumRecipeGrocery(item.recipe_groceries).fats}g{' '}
+                </Text>
+                <Text style={styles.percentText}>
+                  (
+                  {recipePercentValue(
+                    sumRecipeGrocery(item.recipe_groceries),
+                    sumRecipeGrocery(item.recipe_groceries).fats
+                  )}
+                  %)
+                </Text>
+              </View>
+              <View style={styles.groceryValueWrapper}>
+                <Text style={styles.calorieText}>
+                  {sumRecipeGrocery(item.recipe_groceries).calories}
+                </Text>
+                <Text style={styles.percentText}> Calories </Text>
+              </View>
             </View>
-            <View style={styles.itemVal}>
-              <Text style={styles.carbonsPercentText}>
-                {recipePercentValue(
-                  sumRecipeGrocery(item.recipe_groceries),
-                  sumRecipeGrocery(item.recipe_groceries).carbons
+            <View style={[ShadowStyleHigh, styles.imgWrapper]}>
+              <Image
+                source={
+                  isDefaultRecipeImage(item.recipe_image_url)
+                    ? image[item.recipe_image_url]
+                    : { uri: item.recipe_image_url }
+                }
+                style={styles.mealImage}
+              />
+              <View style={styles.dotsIconWrapper}>
+                {choosedItem.id === item.id && (
+                  <SharedAnimatedDropdown
+                    menuItem={optionValue}
+                    editItem={() => handleDropdownPicker('edit', item)}
+                    deleteItem={() => handleDropdownPicker('delete', item)}
+                  />
                 )}
-                %
-              </Text>
-              <Text style={styles.val}>{$t('common.carbonUh')}</Text>
-              <Text style={styles.carbonsValText}>
-                {sumRecipeGrocery(item.recipe_groceries).carbons}g
-              </Text>
-            </View>
-            <View style={styles.itemVal}>
-              <Text style={styles.fatPercentText}>
-                {recipePercentValue(
-                  sumRecipeGrocery(item.recipe_groceries),
-                  sumRecipeGrocery(item.recipe_groceries).fats
-                )}
-                %
-              </Text>
-              <Text style={styles.val}>{$t('common.fats')}</Text>
-              <Text style={styles.fatValText}>
-                {sumRecipeGrocery(item.recipe_groceries).fats}g
-              </Text>
-            </View>
-            <View style={styles.itemVal}>
-              <Text style={styles.val}>Total {$t('common.calories')}</Text>
-              <Text style={styles.calorieValText}>
-                {sumRecipeGrocery(item.recipe_groceries).calories}
-              </Text>
+                <TouchableOpacity onPress={() => handleChoosedItem(item)}>
+                  <Icon.MaterialCommunityIcons
+                    name={IconName.dotsIcon}
+                    color={Colors.light}
+                    size={30}
+                    style={styles.optionIcon}
+                  />
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </SharedLinearGradientBackgroundHorizontal>
@@ -166,88 +177,73 @@ export default RecipeList;
 
 RecipeList.propTypes = {
   handleEditRecipeModalVisible: PropTypes.func,
+  showRecipeModal: PropTypes.func,
   filteredList: PropTypes.array
 };
 
 const styles = StyleSheet.create({
-  calorieValText: {
-    color: Colors.warningColor,
-    fontSize: 22
-  },
-  carbonsPercentText: {
-    color: Colors.mainYellow,
+  calorieText: {
+    color: Colors.cloudColor,
+    fontFamily: 'montserrat-bold',
     fontSize: 18
-  },
-  carbonsValText: {
-    color: Colors.mainYellow,
-    fontSize: 22
   },
   container: {
-    margin: 10
+    marginVertical: 5
   },
-  fatPercentText: {
-    color: Colors.oker,
-    fontSize: 18
-  },
-  fatValText: {
-    color: Colors.oker,
-    fontSize: 22
+  dotsIconWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    position: 'absolute',
+    top: 0,
+    width: '100%'
   },
   flatListStyle: {
-    // paddingTop: 50
+    paddingTop: 15
   },
   gradientWrapper: {
     borderRadius: 10,
-    padding: 20
+    padding: 15
   },
-  headerNameWrapper: {
-    alignItems: 'center',
-    borderBottomColor: Colors.light,
-    borderBottomWidth: 1,
-    paddingBottom: 20,
-    width: '100%'
+  gramsText: {
+    color: Colors.oker,
+    fontFamily: 'montserrat-bold',
+    fontSize: 18
   },
-  item: {
+  groceryValueWrapper: {
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingTop: 20
+    paddingVertical: 5
   },
-  itemVal: {
+  imgWrapper: {
     alignItems: 'center',
-    justifyContent: 'flex-end',
-    width: '25%'
+    justifyContent: 'center',
+    width: '50%'
   },
-  itemValWrapper: {
-    flexDirection: 'row',
-    paddingTop: 50
+  itemNameText: {
+    color: Colors.light,
+    fontFamily: 'montserrat-bold',
+    fontSize: 22,
+    paddingBottom: 20
+  },
+  itemWrapper: {
+    flexDirection: 'row'
   },
   mealImage: {
     alignSelf: 'center',
-    borderRadius: 50,
-    height: 170,
+    borderRadius: 75,
+    height: 140,
     resizeMode: 'cover',
-    width: 170
-  },
-  nameText: {
-    color: Colors.light,
-    fontSize: 20
+    width: 140
   },
   optionIcon: {
     padding: 5
   },
-  proteinPercentText: {
-    color: Colors.cloudColor,
-    fontSize: 18
+  percentText: {
+    color: Colors.lightGrayL,
+    fontFamily: 'montserrat-regular',
+    fontSize: 17
   },
-  proteinValText: {
-    color: Colors.cloudColor,
-    fontSize: 22
-  },
-  val: {
-    color: Colors.light,
-    fontSize: 16,
-    paddingVertical: 2,
-    textAlign: 'center'
+  sectionItem: {
+    width: '50%'
   }
 });

@@ -4,21 +4,13 @@ import $t from 'i18n';
 import PropTypes from 'prop-types';
 
 import Colors from '../../../../../../constants/Colors';
-import ShadowStyleHigh from '../../../../../../constants/ShadowStyleHigh';
+import ShadowStyleLow from '../../../../../../constants/ShadowStyleLow';
 import SharedLinearGradientBackgroundHorizontal from '../../../../../shared/SharedLinearGradientBackgroundHorizontal';
 
-const GroceryValues = ({
-  proteins,
-  setProteins,
-  carbons,
-  setCarbons,
-  fats,
-  setFats,
-  calories
-}) => {
+const GroceryValues = ({ proteins, setProteins, carbons, setCarbons, fats, setFats, calories }) => {
   return (
     <View style={styles.inputWrapper}>
-      <View style={ShadowStyleHigh}>
+      <View style={ShadowStyleLow}>
         <SharedLinearGradientBackgroundHorizontal
           childrenColors={[
             Colors.darkBackgroundAppColor,
@@ -31,15 +23,13 @@ const GroceryValues = ({
           <View style={styles.groceryValueWrapper}>
             <View style={styles.groceryInputWrapper}>
               <TextInput
-                value={proteins}
+                value={String(proteins)}
                 placeholder={'0'}
                 placeholderTextColor={Colors.lightGray}
                 onChangeText={text => setProteins(text)}
                 style={[styles.inputGroceryValue, styles.proteinColorStyle]}
               />
-              <Text style={styles.groceriesNameText}>
-                {$t('common.proteins')}
-              </Text>
+              <Text style={styles.groceriesNameText}>{$t('common.proteins')}</Text>
             </View>
             <View style={styles.groceryInputWrapper}>
               <TextInput
@@ -49,9 +39,7 @@ const GroceryValues = ({
                 onChangeText={text => setCarbons(text)}
                 style={[styles.inputGroceryValue, styles.carbonColorStyle]}
               />
-              <Text style={styles.groceriesNameText}>
-                {$t('common.carbonUh')}
-              </Text>
+              <Text style={styles.groceriesNameText}>{$t('common.carbonUh')}</Text>
             </View>
             <View style={styles.groceryInputWrapper}>
               <TextInput
@@ -89,6 +77,7 @@ GroceryValues.propTypes = {
 const styles = StyleSheet.create({
   caloriesValue: {
     color: Colors.warningColor,
+    fontFamily: 'montserrat-regular',
     fontSize: 24
   },
   caloriesWrapper: {
@@ -107,11 +96,12 @@ const styles = StyleSheet.create({
   },
   gradientWrapper: {
     borderRadius: 10,
-    marginHorizontal: 10,
+    marginHorizontal: 5,
     padding: 20
   },
   groceriesNameText: {
     color: Colors.light,
+    fontFamily: 'montserrat-regular',
     textAlign: 'center'
   },
   groceryInputWrapper: {
@@ -125,18 +115,18 @@ const styles = StyleSheet.create({
   inputGroceryValue: {
     borderBottomColor: Colors.lightGray,
     borderBottomWidth: 1,
+    fontFamily: 'montserrat-regular',
     fontSize: 24,
     height: 50,
     textAlign: 'center'
   },
   inputText: {
     color: Colors.light,
-    fontSize: 18,
-    fontWeight: 'bold'
+    fontFamily: 'montserrat-bold',
+    fontSize: 18
   },
   inputWrapper: {
-    // padding: 20,
-    paddingTop: 30
+    paddingTop: 10
   },
   proteinColorStyle: {
     color: Colors.cloudColor

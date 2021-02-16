@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  Modal,
-  StyleSheet,
-  ScrollView,
-  SafeAreaView
-} from 'react-native';
+import { Modal, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -18,8 +12,7 @@ import ImportGroceryListModal from './ImportGroceryListModal';
 import { importedGroceryListSelector } from '../../../store/selectors/GrocerySelector';
 import { setImportedGroceries } from '../../../store/actions/GroceriesActions';
 import { updateRecipe, addRecipe } from '../../../store/actions/RecipeActions';
-import SharedHeaderWithBackButton from './SharedHeaderWithBackButton';
-import { isEditRecipeOrEditGroceryScreen } from '../../../helpers/IsEditRecipeOrEditGroceryScreen';
+import { IsEditScreen } from '../../../helpers/IsEditScreen';
 import RecipeEmailDescField from '../../Trainer/Nutritions/Recipe/RecipeModal/SharedCreateEditModal/RecipeEmailDescField';
 import { requiredFieldsValidation } from '../../../helpers/RequiredFieldsValidation';
 import { setShowStandardPopUp } from '../../../store/actions/ErrorActions';
@@ -48,13 +41,11 @@ const SharedCreateEditRecipeModal = ({
 
   useEffect(
     () => {
-      if (isEditRecipeOrEditGroceryScreen(screen)) {
+      if (IsEditScreen(screen)) {
         setName(recipe.name ? recipe.name : '');
         setRecipeImage(recipe.recipe_image_url ? recipe.recipe_image_url : 0);
         setRecipeType(recipe.recipe_type);
-        setDescription(
-          recipe.recipe_description ? recipe.recipe_description : ''
-        );
+        setDescription(recipe.recipe_description ? recipe.recipe_description : '');
         recipe.recipe_groceries &&
           recipe.recipe_groceries.forEach(recipeItem => {
             dispatch(setImportedGroceries(recipeItem));
@@ -64,8 +55,7 @@ const SharedCreateEditRecipeModal = ({
     [recipe]
   );
 
-  const handleImportGroceryShowModal = () =>
-    setIsImportGroceryModal(prevState => !prevState);
+  const handleImportGroceryShowModal = () => setIsImportGroceryModal(prevState => !prevState);
 
   const handleImage = (isCustom, image) => {
     setIsCustomImage(isCustom);
@@ -80,11 +70,7 @@ const SharedCreateEditRecipeModal = ({
           warningIcon: true
         })
       );
-    } else {
-      isEditRecipeOrEditGroceryScreen(screen)
-        ? handleUpdateRecipe()
-        : handleAddRecipe();
-    }
+    } else IsEditScreen(screen) ? handleUpdateRecipe() : handleAddRecipe();
   };
 
   const handleAddRecipe = () => {
@@ -108,8 +94,7 @@ const SharedCreateEditRecipeModal = ({
         recipeId: recipe.id,
         name,
         isCustomImage,
-        isImageChanged:
-          recipeImage.toString() !== recipe.recipe_image_url.toString(),
+        isImageChanged: recipeImage.toString() !== recipe.recipe_image_url.toString(),
         recipeImage,
         recipeType,
         description,
@@ -121,60 +106,42 @@ const SharedCreateEditRecipeModal = ({
   return (
     <Modal animationType="slide" transparent={true} visible={isVisible}>
       <StandardNotificationModal visible={isStandardModalVisible} />
-      <View style={styles.container}>
-        <SharedLinearGradientBackgroundVertical
-          childrenColors={[
-            Colors.lightBackgroundAppColor,
-            Colors.backgroundAppColor,
-            Colors.darkBackgroundAppColor
-          ]}
-          childrenStyle={{}}
-        >
-          <SafeAreaView style={styles.modalWrapper}>
-            <ScrollView style={styles.scrollWrapper}>
-              <ImportGroceryListModal
-                isImportGroceryModal={isImportGroceryModal}
-                closeModal={handleImportGroceryShowModal}
-              />
-              <SharedHeaderWithBackButton
-                goBack={
-                  isEditRecipeOrEditGroceryScreen(screen)
-                    ? closeEditModal
-                    : closeCreateModal
-                }
-                headerText={
-                  isEditRecipeOrEditGroceryScreen(screen)
-                    ? 'Edit Recipe'
-                    : 'Create Recipe'
-                }
-              />
-              <RecipeImage
-                handleIsCustomImage={handleImage}
-                screen={screen}
-                recipe={recipe}
-              />
-              <RecipeEmailDescField
-                name={name}
-                setName={setName}
-                description={description}
-                setDescription={setDescription}
-              />
-              <MealTypeRecipe
-                setRecipeType={type => setRecipeType(type)}
-                screen={screen}
-                recipe={recipe}
-              />
-              <ImportAddGrocery
-                handleImportGroceryModalVisible={handleImportGroceryShowModal}
-              />
-              <SubmitButtonRecipeModal
-                handleSubmitRecipe={handleSubmitForm}
-                screen={screen}
-              />
-            </ScrollView>
-          </SafeAreaView>
-        </SharedLinearGradientBackgroundVertical>
-      </View>
+      <SharedLinearGradientBackgroundVertical
+        childrenColors={[
+          Colors.lightBackgroundAppColor,
+          Colors.backgroundAppColor,
+          Colors.darkBackgroundAppColor
+        ]}
+        childrenStyle={{}}
+      >
+        <SafeAreaView style={styles.modalWrapper}>
+          <ScrollView style={styles.scrollWrapper}>
+            <ImportGroceryListModal
+              isImportGroceryModal={isImportGroceryModal}
+              closeModal={handleImportGroceryShowModal}
+            />
+            <RecipeImage
+              handleIsCustomImage={handleImage}
+              screen={screen}
+              recipe={recipe}
+              goBack={IsEditScreen(screen) ? closeEditModal : closeCreateModal}
+            />
+            <RecipeEmailDescField
+              name={name}
+              setName={setName}
+              description={description}
+              setDescription={setDescription}
+            />
+            <MealTypeRecipe
+              setRecipeType={type => setRecipeType(type)}
+              screen={screen}
+              recipe={recipe}
+            />
+            <ImportAddGrocery handleImportGroceryModalVisible={handleImportGroceryShowModal} />
+            <SubmitButtonRecipeModal handleSubmitRecipe={handleSubmitForm} screen={screen} />
+          </ScrollView>
+        </SafeAreaView>
+      </SharedLinearGradientBackgroundVertical>
     </Modal>
   );
 };
@@ -183,18 +150,16 @@ export default SharedCreateEditRecipeModal;
 
 SharedCreateEditRecipeModal.propTypes = {
   isVisible: PropTypes.bool,
-  recipe: PropTypes.object,
+  recipe: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   screen: PropTypes.string,
   closeCreateModal: PropTypes.func,
   closeEditModal: PropTypes.func
 };
 
 export const styles = StyleSheet.create({
-  container: {
-    paddingTop: 10
-  },
   modalWrapper: {
     alignSelf: 'center',
+    // paddingTop: Constants.statusBarHeight,
     width: '100%'
   },
   scrollWrapper: {

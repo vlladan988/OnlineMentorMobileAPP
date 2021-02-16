@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import $t from 'i18n';
 import { useDispatch, useSelector } from 'react-redux';
 
-import ShadowStyleHigh from '../../constants/ShadowStyleHigh';
-import Colors from '../../constants/Colors';
-import { deletePopUpMessageSelector } from '../../store/selectors/ErrorSelector';
-import { setShowDeletePopUp } from '../../store/actions/ErrorActions';
+import ShadowStyleHigh from '../../../constants/ShadowStyleHigh';
+import Colors from '../../../constants/Colors';
+import { deletePopUpMessageSelector } from '../../../store/selectors/ErrorSelector';
+import { setShowDeletePopUp } from '../../../store/actions/ErrorActions';
 
 const SharedDeleteModal = ({ isVisible, handleDelete }) => {
   const dispatch = useDispatch();

@@ -1,26 +1,16 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity
-} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import * as Icon from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 
 import IconName from '../../../../constants/IconName';
 import Colors from '../../../../constants/Colors';
-import ShadowStyleHigh from '../../../../constants/ShadowStyleHigh';
+import ShadowStyleLow from '../../../../constants/ShadowStyleLow';
 import SharedLinearGradientBackgroundHorizontal from '../../../shared/SharedLinearGradientBackgroundHorizontal';
 import { useDispatch } from 'react-redux';
 import { setMealTypeModal } from '../../../../store/actions/RecipeActions';
 
-const RecipeHeader = ({
-  searchText,
-  setSearchText,
-  handleCreateRecipeModalVisible
-}) => {
+const RecipeHeader = ({ searchText, setSearchText, handleCreateRecipeModalVisible }) => {
   const dispatch = useDispatch();
   return (
     <>
@@ -40,24 +30,17 @@ const RecipeHeader = ({
         />
       </View>
       <View style={styles.buttonsWrapper}>
-        <View style={[styles.buttonWrapper, ShadowStyleHigh]}>
+        <View style={[styles.buttonWrapper, ShadowStyleLow]}>
           <SharedLinearGradientBackgroundHorizontal
-            childrenColors={[
-              Colors.darkCloudColor,
-              Colors.cloudColor,
-              Colors.lightCloudColor
-            ]}
+            childrenColors={[Colors.darkCloudColor, Colors.cloudColor, Colors.lightCloudColor]}
             childrenStyle={styles.gradientWrapper}
           >
-            <TouchableOpacity
-              style={styles.headerButton}
-              onPress={handleCreateRecipeModalVisible}
-            >
+            <TouchableOpacity style={styles.headerButton} onPress={handleCreateRecipeModalVisible}>
               <Text style={styles.headerButtonText}>Create Recipe</Text>
             </TouchableOpacity>
           </SharedLinearGradientBackgroundHorizontal>
         </View>
-        <View style={[styles.buttonWrapper, ShadowStyleHigh]}>
+        <View style={[styles.buttonWrapper, ShadowStyleLow]}>
           <SharedLinearGradientBackgroundHorizontal
             childrenColors={[
               Colors.darkBackgroundAppColor,
@@ -101,16 +84,17 @@ const styles = StyleSheet.create({
   },
   headerButton: {
     alignItems: 'center',
-    paddingVertical: 20,
+    paddingVertical: 15,
     width: '100%'
   },
   headerButtonText: {
     color: 'white',
-    fontWeight: 'bold'
+    fontFamily: 'montserrat-bold'
   },
   inputSearchField: {
     color: Colors.light,
     flex: 1,
+    fontFamily: 'montserrat-regular',
     height: 40
   },
   searchIcon: {
@@ -118,7 +102,7 @@ const styles = StyleSheet.create({
   },
   searchWrapper: {
     alignItems: 'center',
-    borderBottomColor: Colors.borderLine,
+    borderBottomColor: Colors.lightGray,
     borderBottomWidth: 1,
     flexDirection: 'row',
     marginTop: 20

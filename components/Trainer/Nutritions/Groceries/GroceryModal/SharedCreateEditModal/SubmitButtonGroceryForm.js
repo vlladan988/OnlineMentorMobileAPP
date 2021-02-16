@@ -1,29 +1,22 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-// import $t from 'i18n';
 import PropTypes from 'prop-types';
 
 import Colors from '../../../../../../constants/Colors';
 import ShadowStyleHigh from '../../../../../../constants/ShadowStyleHigh';
-import { isEditRecipeOrEditGroceryScreen } from '../../../../../../helpers/IsEditRecipeOrEditGroceryScreen';
+import { IsEditScreen } from '../../../../../../helpers/IsEditScreen';
 import SharedLinearGradientBackgroundHorizontal from '../../../../../shared/SharedLinearGradientBackgroundHorizontal';
 
 const SubmitButtonGroceryForm = ({ submitForm, screen }) => {
   return (
     <View style={ShadowStyleHigh}>
       <SharedLinearGradientBackgroundHorizontal
-        childrenColors={[
-          Colors.darkCloudColor,
-          Colors.cloudColor,
-          Colors.lightCloudColor
-        ]}
+        childrenColors={[Colors.darkCloudColor, Colors.cloudColor, Colors.lightCloudColor]}
         childrenStyle={styles.buttonSubmitGradientWrapper}
       >
         <TouchableOpacity style={styles.submitButton} onPress={submitForm}>
           <Text style={styles.submitButtonText}>
-            {isEditRecipeOrEditGroceryScreen(screen)
-              ? 'Save Grocery'
-              : 'Create Grocery'}
+            {IsEditScreen(screen) ? 'Save Grocery' : 'Create Grocery'}
           </Text>
         </TouchableOpacity>
       </SharedLinearGradientBackgroundHorizontal>
@@ -41,19 +34,17 @@ SubmitButtonGroceryForm.propTypes = {
 export const styles = StyleSheet.create({
   buttonSubmitGradientWrapper: {
     alignSelf: 'center',
-    borderRadius: 30,
-    marginBottom: 20,
-    marginTop: 60,
-    width: '50%'
+    borderRadius: 40,
+    marginTop: 30
   },
   submitButton: {
     alignItems: 'center',
-    paddingVertical: 20,
-    width: '100%'
+    paddingHorizontal: 40,
+    paddingVertical: 20
   },
   submitButtonText: {
     color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold'
+    fontFamily: 'montserrat-bold',
+    fontSize: 18
   }
 });

@@ -4,10 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Colors from '../../../../constants/Colors';
 import StandardNotificationModal from '../../../shared/modal/StandardNotificationModal';
-import {
-  fetchRecipes,
-  getRecipeTypes
-} from '../../../../store/actions/RecipeActions';
+import { getRecipeTypes } from '../../../../store/actions/RecipeActions';
 import RecipeList from './RecipeList';
 import SharedCreateEditRecipeModal from '../../../shared/modal/SharedCreateEditRecipeModal';
 import { showStandardPopUpSelector } from '../../../../store/selectors/ErrorSelector';
@@ -21,6 +18,7 @@ import {
 import SearchByMealTypeModal from '../../../shared/modal/SearchByMealTypeModal';
 import { searchFilterListByMealType } from '../../../../helpers/SearchFilterListByMealType';
 import CountRecipe from './CountRecipe';
+import SharedRecipeModal from '../../../shared/modal/SharedRecipeModal';
 
 const Recipes = () => {
   const dispatch = useDispatch();
@@ -34,11 +32,11 @@ const Recipes = () => {
   const [choosedRecipe, setChoosedRecipe] = useState([]);
   const [choosedScreen, setChoosedScreen] = useState('create');
   const [searchText, setSearchText] = useState('');
+  const [isRecipeModalVisible, setIsRecipeModalVisible] = useState(false);
 
   const [filteredList, setFilteredList] = useState(recipeList);
 
   useEffect(() => {
-    dispatch(fetchRecipes());
     dispatch(getRecipeTypes());
   }, []);
 
@@ -67,8 +65,7 @@ const Recipes = () => {
     handleSetFilterBy('');
   };
 
-  const closeSharedCreateEditModal = () =>
-    setIsSharedModalVisible(prevState => !prevState);
+  const closeSharedCreateEditModal = () => setIsSharedModalVisible(prevState => !prevState);
 
   const handleCreateRecipeModalVisible = () => {
     setChoosedScreen('create');
@@ -81,6 +78,11 @@ const Recipes = () => {
     setChoosedRecipe(item);
   };
 
+  const handleRecipeModal = item => {
+    setChoosedRecipe(item);
+    setIsRecipeModalVisible(prevState => !prevState);
+  };
+
   return (
     <SharedLinearGradientBackgroundVertical
       childrenColors={[
@@ -91,6 +93,11 @@ const Recipes = () => {
       childrenStyle={styles.linearGradientWrapper}
     >
       <StandardNotificationModal visible={isStandardModalVisible} />
+      <SharedRecipeModal
+        isVisible={isRecipeModalVisible}
+        recipe={choosedRecipe}
+        closeModal={handleRecipeModal}
+      />
       <SearchByMealTypeModal
         isModalVisible={isMealTypeModalVisible}
         handleSearchRecipeByMealType={handleSearchRecipeByMealType}
@@ -115,6 +122,7 @@ const Recipes = () => {
       <RecipeList
         handleEditRecipeModalVisible={handleEditRecipeModalVisible}
         filteredList={filteredList}
+        showRecipeModal={handleRecipeModal}
       />
     </SharedLinearGradientBackgroundVertical>
   );
@@ -125,6 +133,6 @@ export default Recipes;
 export const styles = StyleSheet.create({
   linearGradientWrapper: {
     height: '100%',
-    paddingHorizontal: 10
+    paddingHorizontal: 5
   }
 });

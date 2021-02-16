@@ -4,7 +4,7 @@ import $t from 'i18n';
 import PropTypes from 'prop-types';
 
 import ShadowStyleHigh from '../../../../../../constants/ShadowStyleHigh';
-import { isEditRecipeOrEditGroceryScreen } from '../../../../../../helpers/IsEditRecipeOrEditGroceryScreen';
+import { IsEditScreen } from '../../../../../../helpers/IsEditScreen';
 import SharedLinearGradientButtonWrapper from '../../../../../shared/SharedLinearGradientBackgroundHorizontal';
 import Colors from '../../../../../../constants/Colors';
 
@@ -12,21 +12,12 @@ const SubmitButtonRecipeModal = ({ handleSubmitRecipe, screen }) => {
   return (
     <View style={ShadowStyleHigh}>
       <SharedLinearGradientButtonWrapper
-        childrenColors={[
-          Colors.darkCloudColor,
-          Colors.cloudColor,
-          Colors.lightCloudColor
-        ]}
+        childrenColors={[Colors.darkCloudColor, Colors.cloudColor, Colors.lightCloudColor]}
         childrenStyle={styles.buttonSubmitGradientWrapper}
       >
-        <TouchableOpacity
-          style={styles.submitButton}
-          onPress={handleSubmitRecipe}
-        >
+        <TouchableOpacity style={styles.submitButton} onPress={handleSubmitRecipe}>
           <Text style={styles.submitButtonText}>
-            {isEditRecipeOrEditGroceryScreen(screen)
-              ? $t('trainer.editRecipe')
-              : $t('trainer.createRecipe')}
+            {IsEditScreen(screen) ? $t('trainer.editRecipe') : $t('trainer.createRecipe')}
           </Text>
         </TouchableOpacity>
       </SharedLinearGradientButtonWrapper>
@@ -44,19 +35,18 @@ SubmitButtonRecipeModal.propTypes = {
 export const styles = StyleSheet.create({
   buttonSubmitGradientWrapper: {
     alignSelf: 'center',
-    borderRadius: 30,
+    borderRadius: 40,
     marginBottom: 20,
-    marginTop: 60,
-    width: '50%'
+    marginTop: 60
   },
   submitButton: {
     alignItems: 'center',
-    paddingVertical: 20,
-    width: '100%'
+    paddingHorizontal: 40,
+    paddingVertical: 20
   },
   submitButtonText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold'
+    color: Colors.light,
+    fontFamily: 'montserrat-bold',
+    fontSize: 18
   }
 });

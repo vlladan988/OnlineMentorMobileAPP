@@ -74,10 +74,11 @@ export const styles = StyleSheet.create({
   },
   buttonsWrapper: {
     alignItems: 'center',
-    paddingVertical: 30
+    paddingTop: 30
   },
   labels: {
     color: Colors.light,
+    fontFamily: 'montserrat-regular',
     fontSize: 16
   }
 });

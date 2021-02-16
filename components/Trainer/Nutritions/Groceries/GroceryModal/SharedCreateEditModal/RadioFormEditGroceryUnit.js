@@ -39,9 +39,7 @@ const RadioFormEditGroceryUnit = ({ setSelectedUnit, initValue }) => {
               isSelected={obj.value === selected}
               onPress={value => handleChoose(value)}
               borderWidth={1}
-              buttonInnerColor={
-                obj.value == selected ? Colors.light : 'transparent'
-              }
+              buttonInnerColor={obj.value == selected ? Colors.light : 'transparent'}
               buttonOuterColor={Colors.lightGray}
               buttonSize={15}
               buttonWrapStyle={styles.wrapStype}
@@ -63,7 +61,8 @@ const RadioFormEditGroceryUnit = ({ setSelectedUnit, initValue }) => {
 export default RadioFormEditGroceryUnit;
 
 RadioFormEditGroceryUnit.propTypes = {
-  setSelectedUnit: PropTypes.func
+  setSelectedUnit: PropTypes.func,
+  initValue: PropTypes.string
 };
 
 export const styles = StyleSheet.create({
@@ -77,6 +76,7 @@ export const styles = StyleSheet.create({
   },
   labels: {
     color: Colors.lightGray,
+    fontFamily: 'montserrat-regular',
     fontSize: 16
   },
   typeWrap: {

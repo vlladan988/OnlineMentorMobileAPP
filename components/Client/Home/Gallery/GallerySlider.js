@@ -10,9 +10,9 @@ import avatar from '../../../../assets/images/richFroning.jpg';
 import IconName from '../../../../constants/IconName';
 import { deleteGallery } from '../../../../store/actions/GalleryActions';
 import { dateFormat } from '../../../../helpers/DateFormat';
-import SharedDeleteModal from '../../../shared/SharedDeleteModal';
 import { showDeletePopUpSelector } from '../../../../store/selectors/ErrorSelector';
 import { setShowDeletePopUp } from '../../../../store/actions/ErrorActions';
+import SharedDeleteModal from '../../../shared/modal/SharedDeleteModal';
 
 const GallerySlider = () => {
   const dispatch = useDispatch();
@@ -31,10 +31,7 @@ const GallerySlider = () => {
 
   return gallery.map((photo, index) => (
     <View key={index} style={styles.container}>
-      <SharedDeleteModal
-        isVisible={isDeleteModalVisible}
-        handleDelete={handleDeleteGallery}
-      />
+      <SharedDeleteModal isVisible={isDeleteModalVisible} handleDelete={handleDeleteGallery} />
       <View style={styles.header}>
         <View style={styles.profileWrapper}>
           <Image source={avatar} style={styles.profileImage} />
@@ -46,10 +43,7 @@ const GallerySlider = () => {
             </Text>
           </View>
         </View>
-        <TouchableOpacity
-          style={styles.iconWrapper}
-          onPress={() => saveGalleryId(photo.id)}
-        >
+        <TouchableOpacity style={styles.iconWrapper} onPress={() => saveGalleryId(photo.id)}>
           <Icon.Entypo name={IconName.dots} color={Colors.black} size={24} />
         </TouchableOpacity>
       </View>
