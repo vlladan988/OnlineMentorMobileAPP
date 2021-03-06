@@ -11,6 +11,7 @@ import groceriesReducer from './GroceriesReducer';
 import recipeReducer from './RecipeReducer';
 import templateReducer from './TemplateReducer';
 import templateMealReducer from './TemplateMealReducer';
+import dailyPlanReducer from './DailyPlanReducer';
 
 export default combineReducers({
   userReducer,
@@ -23,5 +24,6 @@ export default combineReducers({
   groceriesReducer,
   recipeReducer,
   templateReducer,
-  templateMealReducer
+  templateMealReducer,
+  dailyPlanReducer
 });

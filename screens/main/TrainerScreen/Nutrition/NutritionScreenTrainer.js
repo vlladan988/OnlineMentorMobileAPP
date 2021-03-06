@@ -6,12 +6,15 @@ import Colors from '../../../../constants/Colors';
 import Groceries from '../../../../components/Trainer/Nutritions/Groceries/Groceries';
 import Recipes from '../../../../components/Trainer/Nutritions/Recipe/Recipes';
 import Templates from '../../../../components/Trainer/Nutritions/Template/Templates';
+import DailyNutritionPlan from '../../../../components/Trainer/Nutritions/DailyNutritionPlan/DailyNutritionPlan';
 
 const GroceriesComp = () => <Groceries />;
 
 const RecipeComp = () => <Recipes />;
 
 const TemplateComp = () => <Templates />;
+
+const DailyNutritionPlanComp = () => <DailyNutritionPlan />;
 
 export default createMaterialTopTabNavigator(
   {
@@ -31,6 +34,12 @@ export default createMaterialTopTabNavigator(
       screen: TemplateComp,
       navigationOptions: {
         tabBarLabel: 'Templates'
+      }
+    },
+    DailyPlanComp: {
+      screen: DailyNutritionPlanComp,
+      navigationOptions: {
+        tabBarLabel: 'Daily Plan'
       }
     }
   },

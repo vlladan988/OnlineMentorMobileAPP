@@ -56,11 +56,7 @@ const GroceryList = ({
 
   const renderItem = ({ item }) => (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={ShadowStyleLow}
-        onPress={() => handleUpdateGrocery(item)}
-        activeOpacity={0.7}
-      >
+      <View style={ShadowStyleLow}>
         <SharedLinearGradientBackgroundHorizontal
           childrenColors={[
             Colors.darkBackgroundAppColor,
@@ -149,7 +145,7 @@ const GroceryList = ({
             </View>
           </View>
         </SharedLinearGradientBackgroundHorizontal>
-      </TouchableOpacity>
+      </View>
     </View>
   );
 

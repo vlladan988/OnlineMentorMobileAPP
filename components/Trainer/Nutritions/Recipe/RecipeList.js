@@ -230,7 +230,9 @@ const styles = StyleSheet.create({
   },
   mealImage: {
     alignSelf: 'center',
+    borderColor: Colors.light,
     borderRadius: 75,
+    borderWidth: 1,
     height: 140,
     resizeMode: 'cover',
     width: 140

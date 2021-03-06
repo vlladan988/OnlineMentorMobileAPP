@@ -98,7 +98,7 @@ WorkoutStack.navigationOptions = {
   ),
   tabBarIcon: ({ focused }) => (
     <Icon.FontAwesome5
-      name={IconName.workout}
+      name={IconName.userAdd}
       size={26}
       color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
     />
@@ -149,10 +149,7 @@ SettingsStack.navigationOptions = {
     <HandleTabBarLabelStyle focused={focused} name={$t('tabBar.settings')} />
   ),
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-    />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
   )
 };
 

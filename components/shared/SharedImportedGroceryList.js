@@ -4,22 +4,22 @@ import * as Icon from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import $t from 'i18n';
 
-import IconName from '../../../../../../constants/IconName';
-import ShadowStyleLow from '../../../../../../constants/ShadowStyleLow';
-import Colors from '../../../../../../constants/Colors';
+import IconName from '../../constants/IconName';
+import ShadowStyleLow from '../../constants/ShadowStyleLow';
+import Colors from '../../constants/Colors';
 import { useSelector, useDispatch } from 'react-redux';
-import { importedGroceryListSelector } from '../../../../../../store/selectors/GrocerySelector';
+import { importedGroceryListSelector } from '../../store/selectors/GrocerySelector';
 import {
   clearImportedGroceries,
   updateImportedGroceries
-} from '../../../../../../store/actions/GroceriesActions';
-import { isIncrementGrocery } from '../../../../../../helpers/IsIncrementGrocery';
-import { updateGroceryByNumber } from '../../../../../../helpers/UpdateGroceryByNumber';
-import { updateGroceryByIncrementDecrement } from '../../../../../../helpers/updateGroceryByIncrementDecrement';
-import { removeItemFromArrayById } from '../../../../../../helpers/RemoveItemFromArrayById';
-import SharedLinearGradientBackgroundHorizontal from '../../../../../shared/SharedLinearGradientBackgroundHorizontal';
+} from '../../store/actions/GroceriesActions';
+import { isIncrementGrocery } from '../../helpers/IsIncrementGrocery';
+import { updateGroceryByNumber } from '../../helpers/UpdateGroceryByNumber';
+import { updateGroceryByIncrementDecrement } from '../../helpers/updateGroceryByIncrementDecrement';
+import { removeItemFromArrayById } from '../../helpers/RemoveItemFromArrayById';
+import SharedLinearGradientBackgroundHorizontal from './SharedLinearGradientBackgroundHorizontal';
 
-const ImportedGroceryList = () => {
+const SharedImportedGroceryList = ({ closeIcon }) => {
   const dispatch = useDispatch();
   const renderData = useSelector(importedGroceryListSelector());
 
@@ -70,12 +70,14 @@ const ImportedGroceryList = () => {
               {item.unit})
             </Text>
             <View>
-              <Icon.AntDesign
-                onPress={() => deleteRecipeGroceryFromImportedList(item)}
-                name={IconName.closeCircle}
-                size={30}
-                color={Colors.warningColor}
-              />
+              {closeIcon && (
+                <Icon.AntDesign
+                  onPress={() => deleteRecipeGroceryFromImportedList(item)}
+                  name={IconName.closeCircle}
+                  size={30}
+                  color={Colors.warningColor}
+                />
+              )}
             </View>
           </View>
           <View style={styles.incDecWrapper}>
@@ -134,21 +136,19 @@ const ImportedGroceryList = () => {
   );
 };
 
-export default ImportedGroceryList;
+export default SharedImportedGroceryList;
 
-ImportedGroceryList.propTypes = {
-  handleChooseGrocery: PropTypes.func,
-  showEditGroceryModal: PropTypes.func,
-  deleteGrocery: PropTypes.func
+SharedImportedGroceryList.propTypes = {
+  closeIcon: PropTypes.func
 };
 
 const styles = StyleSheet.create({
   calorieValText: {
-    color: Colors.warningColor,
+    color: Colors.cloudColor,
     fontSize: 22
   },
   carbonsValText: {
-    color: Colors.mainYellow,
+    color: Colors.oker,
     fontSize: 22
   },
   container: {
@@ -189,14 +189,14 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   proteinValText: {
-    color: Colors.cloudColor,
+    color: Colors.oker,
     fontSize: 22
   },
   val: {
     color: Colors.light
   },
   valueText: {
-    borderBottomColor: Colors.lightGrayL,
+    borderBottomColor: Colors.light,
     borderBottomWidth: 1,
     color: Colors.light,
     fontSize: 18,

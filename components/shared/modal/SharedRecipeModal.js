@@ -31,12 +31,20 @@ const SharedRecipeModal = ({ isVisible, closeModal, recipe }) => {
   return (
     <Modal animationType="fade" transparent={true} visible={isVisible}>
       <SharedLinearGradientBackgroundVertical
-        childrenColors={[Colors.darkBackground, Colors.backgroundColor, Colors.lightBackground]}
+        childrenColors={[
+          Colors.darkBackgroundAppColor,
+          Colors.backgroundAppColor,
+          Colors.lightBackgroundAppColor
+        ]}
         childrenStyle={styles.gradientModalWrapper}
       >
         <SafeAreaView>
           <ScrollView style={styles.scroll}>
-            <TouchableOpacity style={styles.goBackIconWrapper} onPress={() => closeModal([])}>
+            <TouchableOpacity
+              style={styles.goBackIconWrapper}
+              activeOpacity={0.7}
+              onPress={() => closeModal([])}
+            >
               <Icon.Ionicons name={IconName.goBack} size={30} color={Colors.light} />
               <View style={styles.caloriesWrapper}>
                 <Icon.MaterialCommunityIcons name={IconName.fire} color={Colors.oker} size={30} />
@@ -86,6 +94,10 @@ const SharedRecipeModal = ({ isVisible, closeModal, recipe }) => {
                           style={styles.dotIcon}
                         />
                         <Text style={styles.valueText}>{grocery.name}</Text>
+                        <Text style={styles.valueTypeText}>
+                          {' '}
+                          {grocery.unit_type} {grocery.unit}
+                        </Text>
                       </View>
                     ))}
                 </View>
@@ -127,7 +139,7 @@ export default SharedRecipeModal;
 SharedRecipeModal.propTypes = {
   isVisible: PropTypes.bool,
   closeModal: PropTypes.func,
-  recipe: PropTypes.object
+  recipe: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 
 const styles = StyleSheet.create({
@@ -176,8 +188,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   groceryDetailWrapper: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
     paddingVertical: 10
   },
   groceryHeaderText: {
@@ -188,12 +198,11 @@ const styles = StyleSheet.create({
   groceryValueWrapper: {
     alignItems: 'center',
     flexDirection: 'row',
-    paddingVertical: 5,
-    width: '50%'
+    paddingVertical: 5
   },
   groceryWrapper: {
     paddingLeft: 10,
-    paddingTop: 20
+    paddingTop: 70
   },
   imgBottom: {
     borderRadius: 20
@@ -233,6 +242,11 @@ const styles = StyleSheet.create({
   },
   valueText: {
     color: Colors.light,
+    fontFamily: 'montserrat-bold',
+    fontSize: 20
+  },
+  valueTypeText: {
+    color: Colors.oker,
     fontFamily: 'montserrat-bold',
     fontSize: 20
   },

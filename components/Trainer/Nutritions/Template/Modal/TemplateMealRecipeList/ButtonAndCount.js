@@ -27,7 +27,7 @@ export default ButtonAndCount;
 
 ButtonAndCount.propTypes = {
   showImportRecipeModal: PropTypes.func,
-  countRecipe: PropTypes.string
+  countRecipe: PropTypes.number
 };
 
 const styles = StyleSheet.create({

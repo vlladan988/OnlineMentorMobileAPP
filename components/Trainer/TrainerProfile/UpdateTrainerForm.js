@@ -86,7 +86,7 @@ export const UpdateTrainerForm = ({ trainer, onSubmit }) => (
             </View>
             <View style={styles.inputFieldWrapper}>
               <Icon.FontAwesome5
-                name={IconName.workout}
+                name={IconName.userAdd}
                 color={Colors.lightText}
                 size={22}
                 style={styles.icon}
@@ -168,20 +168,11 @@ export const UpdateTrainerForm = ({ trainer, onSubmit }) => (
           </View>
         </View>
         <SharedLinearGradientBackgroundHorizontal
-          childrenColors={[
-            Colors.darkCloudColor,
-            Colors.cloudColor,
-            Colors.lightCloudColor
-          ]}
+          childrenColors={[Colors.darkCloudColor, Colors.cloudColor, Colors.lightCloudColor]}
           childrenStyle={styles.buttonWrapper}
         >
-          <TouchableOpacity
-            style={styles.registerButton}
-            onPress={handleSubmit}
-          >
-            <Text style={styles.registerText}>
-              {$t('profile.updateUser.update')}
-            </Text>
+          <TouchableOpacity style={styles.registerButton} onPress={handleSubmit}>
+            <Text style={styles.registerText}>{$t('profile.updateUser.update')}</Text>
           </TouchableOpacity>
         </SharedLinearGradientBackgroundHorizontal>
       </View>

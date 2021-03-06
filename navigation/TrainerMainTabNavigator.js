@@ -24,6 +24,7 @@ import WelcomeScreen from '../screens/main/TrainerScreen/WelcomeScreen';
 import { addHeaderLeftNavigator, addHeaderRightNavigator } from '../helpers';
 import Layout from '../constants/Layout';
 import TemplateMealScreenTrainer from '../screens/main/TrainerScreen/Nutrition/TemplateMealScreenTrainer';
+import DailyMealsScreenTrainer from '../screens/main/TrainerScreen/Nutrition/DailyMealsScreenTrainer';
 
 const HomeStack = createStackNavigator({
   Welcome: WelcomeScreen,
@@ -92,6 +93,12 @@ const NutritionStack = createStackNavigator({
     navigationOptions: {
       headerStyle: HeaderBarStyle
     }
+  },
+  DailyMealsScreenTrainer: {
+    screen: DailyMealsScreenTrainer,
+    navigationOptions: {
+      headerStyle: HeaderBarStyle
+    }
   }
 });
 
@@ -126,12 +133,7 @@ WorkoutStack.navigationOptions = {
     <HandleTabBarLabelStyle focused={focused} name={$t('tabBar.workout')} />
   ),
   tabBarIcon: ({ focused }) => (
-    // <Icon.FontAwesome5
-    //   name={IconName.workout}
-    //   size={26}
-    //   color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-    // />
-    <Icon.MaterialCommunityIcons
+    <Icon.Entypo
       name={IconName.workout}
       size={26}
       color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}

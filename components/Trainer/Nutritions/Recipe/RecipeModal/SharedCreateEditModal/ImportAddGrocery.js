@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 
 import Colors from '../../../../../../constants/Colors';
 import ShadowStyleHigh from '../../../../../../constants/ShadowStyleHigh';
-import ImportedGroceryList from './ImportedGroceryList';
+import SharedImportedGroceryList from '../../../../../shared/SharedImportedGroceryList';
 import SharedLinearGradientBackgroundHorizontal from '../../../../../shared/SharedLinearGradientBackgroundHorizontal';
 
 const ImportAddGrocery = ({ handleImportGroceryModalVisible }) => {
   return (
     <View style={styles.inputGroceriesWrapper}>
       <Text style={styles.inputText}>{$t('trainer.groceries').toUpperCase()}</Text>
-      <ImportedGroceryList />
+      <SharedImportedGroceryList closeIcon={true} />
       <View style={[ShadowStyleHigh, styles.groceriesButtonWrapper]}>
         <SharedLinearGradientBackgroundHorizontal
           childrenColors={[Colors.darkOker, Colors.oker, Colors.lightOker]}

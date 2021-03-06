@@ -27,7 +27,7 @@ const TemplateMealHeader = ({
   template
 }) => {
   const dispatch = useDispatch();
-  const optionValue = ['Assign To...', 'Add Meal', 'Edit', 'Delete'];
+  const optionValue = ['Assign to client', 'Add Meal', 'Edit', 'Delete'];
 
   const handleDropdownPicker = value => {
     switch (value) {
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   dropdownStyle: {
     backgroundColor: 'transparent',
     borderWidth: 0,
-    width: 140
+    width: 160
   },
   dropdownTextHighlightStyle: {
     backgroundColor: Colors.light,

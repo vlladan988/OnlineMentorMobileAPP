@@ -8,12 +8,12 @@ import {
   TouchableOpacity,
   TextInput
 } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import * as Icon from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 
 import Colors from '../../../constants/Colors';
 import IconName from '../../../constants/IconName';
-import { useSelector, useDispatch } from 'react-redux';
 import {
   groceryListSelector,
   importedGroceryListSelector
@@ -47,16 +47,10 @@ const ImportGroceryListModal = ({ isImportGroceryModal, closeModal }) => {
   };
 
   const deleteRecipeGroceryFromImportedList = grocery =>
-    dispatch(
-      updateImportedGroceries(removeItemFromArrayByName(renderData, grocery))
-    );
+    dispatch(updateImportedGroceries(removeItemFromArrayByName(renderData, grocery)));
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={isImportGroceryModal}
-    >
+    <Modal animationType="slide" transparent={true} visible={isImportGroceryModal}>
       <View style={styles.container}>
         <View style={styles.modalWrapper}>
           <View style={styles.searchContainer}>
@@ -78,11 +72,7 @@ const ImportGroceryListModal = ({ isImportGroceryModal, closeModal }) => {
 
             <View style={[ShadowStyleHigh, styles.closeIconWrapper]}>
               <TouchableOpacity onPress={handleCloseModal}>
-                <Icon.Fontisto
-                  name={IconName.close}
-                  size={32}
-                  color={Colors.light}
-                />
+                <Icon.Fontisto name={IconName.close} size={32} color={Colors.light} />
               </TouchableOpacity>
             </View>
           </View>
@@ -94,9 +84,7 @@ const ImportGroceryListModal = ({ isImportGroceryModal, closeModal }) => {
                   <View style={styles.importGroceryIcon} />
                   {isInImportedRecipeGroceryList(renderData, grocery) ? (
                     <Icon.AntDesign
-                      onPress={() =>
-                        deleteRecipeGroceryFromImportedList(grocery)
-                      }
+                      onPress={() => deleteRecipeGroceryFromImportedList(grocery)}
                       name={IconName.closeCircle}
                       size={26}
                       color={Colors.warningColor}

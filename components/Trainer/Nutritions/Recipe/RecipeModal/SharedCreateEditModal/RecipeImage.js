@@ -21,6 +21,10 @@ const RecipeImage = ({ handleIsCustomImage, screen, recipe, goBack }) => {
   const [isCustomImage, setIsCustomImage] = useState(false);
   const [imageName, setImageName] = useState(0);
 
+  const handleGoBack = () => {
+    goBack();
+  };
+
   useEffect(() => {
     if (IsEditScreen(screen)) {
       if (isDefaultRecipeImage(recipe.recipe_image_url)) {
@@ -67,7 +71,7 @@ const RecipeImage = ({ handleIsCustomImage, screen, recipe, goBack }) => {
         changeImageType={changeImageType}
         imageId={isCustomImage ? null : imageName}
       />
-      <TouchableOpacity onPress={goBack} style={styles.goBackIconWrapper}>
+      <TouchableOpacity onPress={handleGoBack} style={styles.goBackIconWrapper}>
         <Icon.MaterialCommunityIcons name={IconName.backCircle} size={50} color={Colors.light} />
       </TouchableOpacity>
     </>

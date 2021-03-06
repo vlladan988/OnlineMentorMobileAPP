@@ -103,6 +103,22 @@ import {
   DELETE_TEMPLATE_MEAL_RECIPE,
   CHANGE_TEMPLATE_MEAL_ORDER
 } from '../actionTypes/TemplateMealActionTypes';
+import {
+  handleAddDailyMeal,
+  handleFetchDailyMeals,
+  handleAddDailyMealRecipe,
+  handleRemoveDailyMeal,
+  handleUpdateDailyMealRecipe,
+  handleRemoveDailyMealRecipe
+} from './DailyMealSagas';
+import {
+  ADD_DAILY_MEAL,
+  FETCH_DAILY_MEAL,
+  ADD_DAILY_MEAL_RECIPE,
+  REMOVE_DAILY_MEAL,
+  UPDATE_DAILY_MEAL_RECIPE,
+  REMOVE_DAILY_MEAL_RECIPE
+} from '../actionTypes/DailyPlanActionTypes';
 
 export default function* rootSaga() {
   yield all([
@@ -149,6 +165,12 @@ export default function* rootSaga() {
     takeLatest(GET_TEMPLATE_MEAL_RECIPIES, handleGetTemplateMealRecipies),
     takeLatest(ADD_TEMPLATE_MEAL_RECIPE, handleAddTemplateMealRecipe),
     takeLatest(DELETE_TEMPLATE_MEAL_RECIPE, handleDeleteTemplateMealRecipe),
-    takeLatest(CHANGE_TEMPLATE_MEAL_ORDER, handleChangeTemplateMealOrder)
+    takeLatest(CHANGE_TEMPLATE_MEAL_ORDER, handleChangeTemplateMealOrder),
+    takeLatest(FETCH_DAILY_MEAL, handleFetchDailyMeals),
+    takeLatest(ADD_DAILY_MEAL, handleAddDailyMeal),
+    takeLatest(REMOVE_DAILY_MEAL, handleRemoveDailyMeal),
+    takeLatest(ADD_DAILY_MEAL_RECIPE, handleAddDailyMealRecipe),
+    takeLatest(UPDATE_DAILY_MEAL_RECIPE, handleUpdateDailyMealRecipe),
+    takeLatest(REMOVE_DAILY_MEAL_RECIPE, handleRemoveDailyMealRecipe)
   ]);
 }

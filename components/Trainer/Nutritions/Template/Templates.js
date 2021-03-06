@@ -16,7 +16,6 @@ import SharedGroceryTemplateHeader from '../../../shared/modal/SharedGroceryTemp
 const Templates = () => {
   const dispatch = useDispatch();
 
-  // const [searchText, setSearchText] = useState('');
   const [isCreateEditModelVisible, setIsCreateEditModelVisible] = useState(false);
 
   const templateList = useSelector(templatesSelector());
@@ -37,10 +36,8 @@ const Templates = () => {
 
   const showCreateEditTemplateModal = () => setIsCreateEditModelVisible(prevState => !prevState);
 
-  const handleSearchTemplateByLetter = letter => {
-    // setSearchText(letter);
+  const handleSearchTemplateByLetter = letter =>
     setFilteredList(searchFilterListByName(templateList, letter));
-  };
 
   return (
     <SharedLinearGradientBackgroundVertical

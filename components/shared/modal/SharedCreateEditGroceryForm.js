@@ -34,9 +34,9 @@ const SharedCreateEditGroceryForm = ({ closeModal, choosedGrocery, screen }) => 
         setName(choosedGrocery.name);
         setUnit(choosedGrocery.unit);
         setUnitType(choosedGrocery.unit_type);
-        setProteins(choosedGrocery.proteins);
-        setCarbons(choosedGrocery.carbons);
-        setFats(choosedGrocery.fats);
+        setProteins(String(choosedGrocery.proteins));
+        setCarbons(String(choosedGrocery.carbons));
+        setFats(String(choosedGrocery.fats));
         setCalories(choosedGrocery.calories);
       }
     },

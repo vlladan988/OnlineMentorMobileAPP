@@ -146,7 +146,7 @@
   "trainer": {
     "trainer": "Trainer",
     "createARecipe": "Create a recipe",
-    "recipeName": "Recipe Name*",
+    "recipeName": "Recipe Name",
     "recipeNameText": "Chicken and rice in soja sos",
     "uploadRecipeImage": "Click on the image for upload or choose one of the options:",
     "recipeImage": "Recipe image",

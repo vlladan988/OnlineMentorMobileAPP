@@ -46,9 +46,7 @@ const SignUpScreen = () => {
       <SafeAreaView>
         <KeyboardAwareScrollView enableOnAndroid>
           <LoginHeader screen={'addTrainer'} />
-          <SharedTrainerClientChooseButton
-            userType={value => setSelected(value)}
-          />
+          <SharedTrainerClientChooseButton userType={value => setSelected(value)} />
           {selected === 1 ? (
             <SignUpForm onSubmit={handleSignUp} signUpErrors={signUpErrors} />
           ) : (

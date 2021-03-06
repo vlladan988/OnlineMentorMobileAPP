@@ -23,7 +23,7 @@ const GroceryValues = ({ proteins, setProteins, carbons, setCarbons, fats, setFa
           <View style={styles.groceryValueWrapper}>
             <View style={styles.groceryInputWrapper}>
               <TextInput
-                value={String(proteins)}
+                value={proteins}
                 placeholder={'0'}
                 placeholderTextColor={Colors.lightGray}
                 onChangeText={text => setProteins(text)}
