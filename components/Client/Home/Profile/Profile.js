@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 import * as Icon from '@expo/vector-icons';
 
-import HeaderImage from './HeaderImage';
-import ProfileDetails from './ProfileDetails';
 import IconName from '../../../../constants/IconName';
 import Colors from '../../../../constants/Colors';
 import EditClientProfileModal from '../../../shared/modal/EditClientProfileModal';
 import { useSelector, useDispatch } from 'react-redux';
 import { userSelector } from '../../../../store/selectors/UserSelector';
 import { getTrainer } from '../../../../store/actions/TrainerActions';
+import SharedClientProfileImage from '../../../shared/SharedClientProfileImage';
+import SharedClientProfileDetails from '../../../shared/SharedClientProfileDetails';
+import { isClient } from '../../../../helpers/IsClient';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -21,20 +22,19 @@ const Profile = () => {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const user = useSelector(userSelector());
+
   return (
     <View style={styles.container}>
-      <HeaderImage />
-      <ProfileDetails user={user} />
-      <TouchableOpacity
-        style={styles.editIcon}
-        onPress={() => setIsModalVisible(!isModalVisible)}
-      >
-        <Icon.MaterialIcons
-          name={IconName.edit}
-          size={40}
-          color={Colors.cloudColor}
-        />
-      </TouchableOpacity>
+      <SharedClientProfileImage client={user} user={user} />
+      <SharedClientProfileDetails client={user} />
+      {isClient(user) && (
+        <TouchableOpacity
+          style={styles.editIcon}
+          onPress={() => setIsModalVisible(!isModalVisible)}
+        >
+          <Icon.Entypo name={IconName.edit} size={26} color={Colors.light} />
+        </TouchableOpacity>
+      )}
       <EditClientProfileModal
         isVisible={isModalVisible}
         closeModal={() => setIsModalVisible(!isModalVisible)}
@@ -50,13 +50,13 @@ Profile.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
+    backgroundColor: Colors.lightGrayBackground,
     height: '100%'
   },
   editIcon: {
-    bottom: 20,
     position: 'absolute',
-    right: 20
+    right: 20,
+    top: 20
   }
 });
 

@@ -8,7 +8,7 @@ import lunch from '../../../../../../assets/images/lunch.png';
 import dinner from '../../../../../../assets/images/dinner.jpg';
 import ShadowStyleHigh from '../../../../../../constants/ShadowStyleHigh';
 import Colors from '../../../../../../constants/Colors';
-import { isDefaultRecipeImage } from '../../../../../../helpers/IsDefaultRecipeImage';
+import { isDefaultImage } from '../../../../../../helpers/IsDefaultImage';
 import IconName from '../../../../../../constants/IconName';
 
 const DailyRecipeImage = ({ recipe, goBack }) => {
@@ -17,7 +17,7 @@ const DailyRecipeImage = ({ recipe, goBack }) => {
   return (
     <ImageBackground
       source={
-        isDefaultRecipeImage(recipe.recipe_image_url)
+        isDefaultImage(recipe.recipe_image_url)
           ? image[recipe.recipe_image_url]
           : { uri: recipe.recipe_image_url }
       }

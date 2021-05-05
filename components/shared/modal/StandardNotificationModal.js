@@ -33,15 +33,11 @@ const StandardNotificationModal = ({ visible }) => {
           <Icon.MaterialCommunityIcons
             style={styles.closeIcon}
             name={warningIcon ? IconName.sadIcon : IconName.happyIcon}
-            size={60}
+            size={50}
             color={warningIcon ? Colors.warningColor : Colors.cloudColor}
           />
           <View style={styles.buttons}>
-            <TouchableOpacity
-              style={styles.buttonWrapper}
-              onPress={closeModal}
-              activeOpacity={1}
-            >
+            <TouchableOpacity style={styles.buttonWrapper} onPress={closeModal} activeOpacity={1}>
               <Text style={styles.buttonText}>{$t('common.ok')}</Text>
             </TouchableOpacity>
           </View>
@@ -61,8 +57,8 @@ StandardNotificationModal.propTypes = {
 const styles = StyleSheet.create({
   buttonText: {
     color: Colors.light,
+    fontFamily: 'montserrat-bold',
     fontSize: 18,
-    fontWeight: 'bold',
     paddingVertical: 10
   },
   buttonWrapper: {
@@ -83,7 +79,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   messageText: {
-    fontSize: 22,
+    fontFamily: 'montserrat-regular',
+    fontSize: 20,
     paddingHorizontal: 40,
     textAlign: 'center'
   },

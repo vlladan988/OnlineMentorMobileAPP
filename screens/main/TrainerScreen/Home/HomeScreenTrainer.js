@@ -4,9 +4,13 @@ import Colors from '../../../../constants/Colors';
 import SelectedClientProfile from '../../../../components/Trainer/Home/Profile/SelectedClientProfile';
 import SelectedClientGoals from '../../../../components/Trainer/Home/Goal/SelectedClientGoals';
 import SelectedClientGallery from '../../../../components/Trainer/Home/Gallery/SelectedClientGallery';
+import SharedClientTemplate from '../../../../components/shared/SharedClientTemplate';
+import SharedClientDailyPlan from '../../../../components/shared/SharedClientDailyPlan';
 
 const SelectedClientProfileComp = () => <SelectedClientProfile />;
 const SelectedClientGoalsComp = () => <SelectedClientGoals />;
+const SelectedClientTemplateComp = () => <SharedClientTemplate />;
+const SelectedClientDailyPlanComp = () => <SharedClientDailyPlan />;
 const SelectedClientGalleryComp = () => <SelectedClientGallery />;
 
 export default createMaterialTopTabNavigator(
@@ -21,6 +25,18 @@ export default createMaterialTopTabNavigator(
       screen: SelectedClientGoalsComp,
       navigationOptions: {
         tabBarLabel: 'Goals'
+      }
+    },
+    Template: {
+      screen: SelectedClientTemplateComp,
+      navigationOptions: {
+        tabBarLabel: 'Template'
+      }
+    },
+    DailyPlan: {
+      screen: SelectedClientDailyPlanComp,
+      navigationOptions: {
+        tabBarLabel: 'Daily Plan'
       }
     },
     Gallery: {
@@ -49,7 +65,8 @@ export default createMaterialTopTabNavigator(
             backgroundColor: Colors.cloudColor
           },
           labelStyle: {
-            color: Colors.black
+            color: Colors.black,
+            fontFamily: 'montserrat-bold'
           }
         }
       };

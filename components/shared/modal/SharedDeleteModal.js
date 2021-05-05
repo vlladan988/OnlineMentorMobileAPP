@@ -15,7 +15,7 @@ const SharedDeleteModal = ({ isVisible, handleDelete }) => {
 
   const closeModal = () => dispatch(setShowDeletePopUp(''));
 
-  const deleteGrocery = () => {
+  const submit = () => {
     closeModal();
     handleDelete();
   };
@@ -26,10 +26,7 @@ const SharedDeleteModal = ({ isVisible, handleDelete }) => {
         <View style={styles.modalWrapper}>
           <Text style={styles.mainText}>{popUpMessage}</Text>
           <View style={styles.buttons}>
-            <TouchableOpacity
-              style={[styles.buttonWrapper, styles.borderLine]}
-              onPress={deleteGrocery}
-            >
+            <TouchableOpacity style={[styles.buttonWrapper, styles.borderLine]} onPress={submit}>
               <Text style={styles.buttonText}>{$t('common.yes')}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonWrapper} onPress={closeModal}>

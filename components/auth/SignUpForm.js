@@ -10,6 +10,7 @@ import ErrorText from '../shared/Text/ErrorText';
 import Colors from '../../constants/Colors';
 import IconName from '../../constants/IconName';
 import SharedLinearGradientBackgroundHorizontal from '../shared/SharedLinearGradientBackgroundHorizontal';
+import { signUpValidationRules } from '../../validation/auth';
 
 export const SignUpForm = ({ onSubmit, signUpErrors }) => (
   <Formik
@@ -20,6 +21,7 @@ export const SignUpForm = ({ onSubmit, signUpErrors }) => (
       confirm_password: ''
     }}
     onSubmit={onSubmit}
+    validationSchema={signUpValidationRules}
   >
     {({ handleSubmit }) => (
       <View style={styles.container}>
@@ -54,13 +56,11 @@ export const SignUpForm = ({ onSubmit, signUpErrors }) => (
               placeholder={$t('auth.enterEmail')}
               style={styles.inputField}
               placeholderTextColor={Colors.lightText}
+              keyboardType={'email-address'}
             />
           </View>
         </View>
-        <ErrorText
-          error={!!signUpErrors.message}
-          message={signUpErrors.message}
-        />
+        <ErrorText error={!!signUpErrors.message} message={signUpErrors.message} />
         <View style={styles.inputFieldWrapper}>
           <Icon.MaterialCommunityIcons
             name={IconName.password}
@@ -98,11 +98,7 @@ export const SignUpForm = ({ onSubmit, signUpErrors }) => (
           </View>
         </View>
         <SharedLinearGradientBackgroundHorizontal
-          childrenColors={[
-            Colors.darkCloudColor,
-            Colors.cloudColor,
-            Colors.lightCloudColor
-          ]}
+          childrenColors={[Colors.darkCloudColor, Colors.cloudColor, Colors.lightCloudColor]}
           childrenStyle={styles.registerButton}
         >
           <TouchableOpacity onPress={handleSubmit} style={styles.submitButton}>

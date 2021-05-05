@@ -5,4 +5,3 @@ export const FETCH_RECIPE = 'FETCH_RECIPE';
 export const SET_RECIPIES = 'SET_RECIPIES';
 export const DELETE_RECIPE = 'DELETE_RECIPE';
 export const UPDATE_RECIPE = 'UPDATE_RECIPE';
-export const SET_RECIPE_MODAL = 'SET_RECIPE_MODAL';

@@ -39,10 +39,12 @@ const styles = StyleSheet.create({
   },
   itemText: {
     color: Colors.lightGray,
+    fontFamily: 'montserrat-regular',
     fontSize: 16
   },
   nameText: {
     color: Colors.backgroundAppColor,
+    fontFamily: 'montserrat-bold',
     fontSize: 22
   },
   profileImage: {

@@ -6,7 +6,6 @@ import * as Icon from '@expo/vector-icons';
 
 import $t from 'i18n';
 import { TextInputField } from '../../shared/FormFields';
-import { updateProfileValidationRules } from '../../../validation/profile';
 import IconName from '../../../constants/IconName';
 import Colors from '../../../constants/Colors';
 import { IsFieldEmpty } from '../../../helpers/IsFieldEmpty';
@@ -26,7 +25,8 @@ export const UpdateTrainerForm = ({ trainer, onSubmit }) => (
       height: String(trainer.height)
     }}
     onSubmit={onSubmit}
-    validationSchema={() => updateProfileValidationRules()}
+    // validationSchema={updateProfileValidationRules}
+    validationSchema={{}}
   >
     {({ handleSubmit }) => (
       <View style={styles.container}>
@@ -41,8 +41,7 @@ export const UpdateTrainerForm = ({ trainer, onSubmit }) => (
                 placeholderTextColor={Colors.warningText}
               />
               <Text style={styles.itemName}>
-                {$t('client.age')}
-                {trainer.age}
+                {$t('client.age')} {trainer.age}
               </Text>
             </View>
             <View style={styles.itemWrapper}>
@@ -115,6 +114,7 @@ export const UpdateTrainerForm = ({ trainer, onSubmit }) => (
                   placeholder={IsFieldEmpty(trainer.phone_number)}
                   style={styles.inputField}
                   placeholderTextColor={Colors.warningText}
+                  keyboardType={'phone-pad'}
                 />
               </View>
             </View>
@@ -213,12 +213,14 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   inputField: {
-    color: Colors.white,
+    color: Colors.light,
+    fontFamily: 'montserrat-regular',
     height: 50,
     textAlign: 'center'
   },
   inputFieldDesc: {
     color: Colors.light,
+    fontFamily: 'montserrat-italic',
     height: 50,
     marginVertical: 20,
     textAlign: 'center'
@@ -243,8 +245,8 @@ const styles = StyleSheet.create({
   },
   itemValue: {
     color: Colors.cloudColor,
+    fontFamily: 'montserrat-bold',
     fontSize: 22,
-    fontWeight: 'bold',
     minWidth: 40,
     textAlign: 'center'
   },
@@ -257,10 +259,10 @@ const styles = StyleSheet.create({
   registerButton: {
     alignItems: 'center',
     paddingVertical: 15
-    // width: '100%'
   },
   registerText: {
     color: Colors.light,
-    fontSize: 20
+    fontFamily: 'montserrat-bold',
+    fontSize: 18
   }
 });

@@ -26,5 +26,6 @@ export const showDeletePopUpSelector = () =>
   createSelector(errorStateSelector, popUp => popUp.deletePopUp);
 export const deletePopUpMessageSelector = () =>
   createSelector(errorStateSelector, popUp => popUp.deletePopUpMessage);
-export const isWarningMessage = () =>
-  createSelector(errorStateSelector, popUp => popUp.isWarning);
+export const isWarningMessage = () => createSelector(errorStateSelector, popUp => popUp.isWarning);
+export const inputFealdErrorMessage = () =>
+  createSelector(errorStateSelector, error => error.fieldErrorText);

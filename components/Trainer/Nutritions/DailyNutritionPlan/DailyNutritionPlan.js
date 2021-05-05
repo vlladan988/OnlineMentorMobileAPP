@@ -101,7 +101,6 @@ const DailyNutritionPlan = () => {
           />
         </View>
         <View style={styles.step2Wrapper}>
-          {/* <Text style={styles.stepText}>Step 2</Text> */}
           <TouchableOpacity
             style={[ShadowStyleLow, styles.buttonWrapper]}
             onPress={() => sheetRef.current.snapTo(0)}

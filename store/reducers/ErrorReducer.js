@@ -8,7 +8,8 @@ import {
   PASSWORD_CHANGE_ERROR,
   SOCIAL_LOGIN_ERROR_SET,
   SHOW_STANDARD_POP_UP,
-  SHOW_DELETE_POP_UP
+  SHOW_DELETE_POP_UP,
+  INPUT_FIELD_ERROR_SET
 } from '../actionTypes/ErrorActionTypes';
 
 const initialState = {
@@ -24,7 +25,8 @@ const initialState = {
   standardPopUpMessage: '',
   isWarning: false,
   deletePopUp: false,
-  deletePopUpMessage: ''
+  deletePopUpMessage: '',
+  fieldErrorText: ''
 };
 
 export default (state = initialState, action) =>
@@ -37,6 +39,9 @@ export default (state = initialState, action) =>
         break;
       case SIGNIN_ERROR_SET:
         draft.signInError = action.payload;
+        break;
+      case INPUT_FIELD_ERROR_SET:
+        draft.fieldErrorText = action.payload;
         break;
       case SIGNUP_ERRORS_SET:
         draft.signUpErrors = action.payload;

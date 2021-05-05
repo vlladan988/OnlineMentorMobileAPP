@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   submitButtonText: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold'
+    color: Colors.light,
+    fontFamily: 'montserrat-bold',
+    fontSize: 18
   }
 });

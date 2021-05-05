@@ -12,7 +12,7 @@ import dinner from '../../../../../../assets/images/dinner.jpg';
 import ShadowStyleHigh from '../../../../../../constants/ShadowStyleHigh';
 import Colors from '../../../../../../constants/Colors';
 import { IsEditScreen } from '../../../../../../helpers/IsEditScreen';
-import { isDefaultRecipeImage } from '../../../../../../helpers/IsDefaultRecipeImage';
+import { isDefaultImage } from '../../../../../../helpers/IsDefaultImage';
 import IconName from '../../../../../../constants/IconName';
 
 const RecipeImage = ({ handleIsCustomImage, screen, recipe, goBack }) => {
@@ -27,7 +27,7 @@ const RecipeImage = ({ handleIsCustomImage, screen, recipe, goBack }) => {
 
   useEffect(() => {
     if (IsEditScreen(screen)) {
-      if (isDefaultRecipeImage(recipe.recipe_image_url)) {
+      if (isDefaultImage(recipe.recipe_image_url)) {
         changeImageType(parseInt(recipe.recipe_image_url));
       } else {
         setIsCustomImage(true);
@@ -52,10 +52,12 @@ const RecipeImage = ({ handleIsCustomImage, screen, recipe, goBack }) => {
       quality: 1
     });
 
-    setIsCustomImage(true);
-    setImageName(result);
+    if (!result.cancelled) {
+      setIsCustomImage(true);
+      setImageName(result);
 
-    handleIsCustomImage(true, result.base64);
+      handleIsCustomImage(true, result.base64);
+    }
   };
 
   return (

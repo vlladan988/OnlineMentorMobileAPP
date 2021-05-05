@@ -38,9 +38,9 @@ const AddRemoveTemplateMealRecipeModal = ({
       <View style={styles.iconWrapper}>
         <View style={styles.importRecipeIcon} />
         <Icon.AntDesign
-          name={!IsInMealRecipe(renderData, item) ? IconName.plus : IconName.success}
+          name={!IsInMealRecipe(renderData, item) ? IconName.plus : IconName.closeCircle}
           size={30}
-          color={Colors.cloudColor}
+          color={!IsInMealRecipe(renderData, item) ? Colors.cloudColor : Colors.warningColor}
         />
       </View>
     </TouchableOpacity>
@@ -58,7 +58,7 @@ const AddRemoveTemplateMealRecipeModal = ({
   const keyExtractor = useCallback(item => item.id.toString(), []);
 
   return (
-    <Modal animationType="slide" transparent={true} visible={isVisible}>
+    <Modal animationType="fade" transparent={true} visible={isVisible}>
       <View style={styles.container}>
         <SharedLinearGradientBackgroundHorizontal
           childrenColors={[
@@ -146,10 +146,12 @@ const styles = StyleSheet.create({
   inputSearchField: {
     color: Colors.light,
     flex: 1,
+    fontFamily: 'montserrat-italic',
     height: 40
   },
   itemNameText: {
     color: Colors.light,
+    fontFamily: 'montserrat-regular',
     fontSize: 20,
     width: '80%'
   },

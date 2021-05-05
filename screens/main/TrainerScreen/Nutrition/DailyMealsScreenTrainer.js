@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {
-  StyleSheet,
-  SafeAreaView,
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ScrollView
-} from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import BottomSheet from 'reanimated-bottom-sheet';
-import * as Icon from '@expo/vector-icons';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import SharedLinearGradientBackgroundVertical from '../../../../components/shared/SharedLinearGradientBackgroundVertical';
 import Colors from '../../../../constants/Colors';
@@ -30,15 +21,16 @@ import {
 } from '../../../../store/actions/DailyPlanActions';
 import { dailyMealListSelector } from '../../../../store/selectors/DailyPlanSelector';
 import SharedCreateEditDailyRecipeModal from '../../../../components/shared/modal/SharedCreateEditDailyRecipeModal';
-import { recipeListSelector } from '../../../../store/selectors/RecipeSelector';
 import { importedGroceryListSelector } from '../../../../store/selectors/GrocerySelector';
-import IconName from '../../../../constants/IconName';
+import ChooseRecipeModal from '../../../../components/shared/modal/ChooseRecipeModal';
+import AddMealModal from '../../../../components/shared/modal/AddMealModal';
+import { requiredFieldsValidation } from '../../../../helpers/RequiredFieldsValidation';
+import { setInputFealdError } from '../../../../store/actions/ErrorActions';
 
 const DailyMealsScreenTrainer = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const dailyMealList = useSelector(dailyMealListSelector());
-  const recipeList = useSelector(recipeListSelector());
   const importedGroceryList = useSelector(importedGroceryListSelector());
 
   const client = navigation.state.params.client;
@@ -50,6 +42,8 @@ const DailyMealsScreenTrainer = ({ navigation }) => {
   const [choosedMeal, setChoosedMeal] = useState(null);
   const [choosedRecipe, setChoosedRecipe] = useState(null);
   const [isCreateEditModal, setIsCreateEditModal] = useState(false);
+  const [isChooseRecipeModal, setIsChooseRecipeModal] = useState(false);
+  const [isCreateMealModal, setIsCreateMealModal] = useState(false);
 
   useEffect(() => {
     dispatch(
@@ -72,6 +66,10 @@ const DailyMealsScreenTrainer = ({ navigation }) => {
 
   const showCreateEditModal = () => setIsCreateEditModal(prevState => !prevState);
 
+  const handleShowChooseRecipeModal = () => setIsChooseRecipeModal(prevState => !prevState);
+
+  const handleShowAddMealModal = () => setIsCreateMealModal(prevState => !prevState);
+
   const handleCloseModal = () => {
     setChoosedRecipe(null);
     showCreateEditModal();
@@ -80,15 +78,19 @@ const DailyMealsScreenTrainer = ({ navigation }) => {
   const handleChoosedMeal = meal => setChoosedMeal(meal);
 
   const handleAddMeal = () => {
-    dispatch(
-      addDailyMeal({
-        clientId: client.id,
-        name: mealText,
-        date
-      })
-    );
-    sheetRefMeal.current.snapTo(1);
-    setMealText('');
+    if (requiredFieldsValidation(new Array(mealText))) {
+      dispatch(setInputFealdError('The Name field is required.'));
+    } else {
+      dispatch(
+        addDailyMeal({
+          clientId: client.id,
+          name: mealText,
+          date
+        })
+      );
+      handleShowAddMealModal();
+      setMealText('');
+    }
   };
 
   const handleRemoveMeal = () => {
@@ -102,10 +104,10 @@ const DailyMealsScreenTrainer = ({ navigation }) => {
   };
 
   const handleChooseRecipe = (recipe, screen) => {
+    screen === 'create' && handleShowChooseRecipeModal();
     setScreen(screen);
     setChoosedRecipe(recipe);
     showCreateEditModal();
-    sheetRefRecipe.current.snapTo(1);
   };
 
   const handleCreateRecipe = () => {
@@ -145,74 +147,30 @@ const DailyMealsScreenTrainer = ({ navigation }) => {
     );
   };
 
-  const handleShowBottomSheetRecipe = () => {
-    sheetRefMeal.current.snapTo(1);
-    sheetRefRecipe.current.snapTo(0);
-  };
-
-  const handleShowBottomSheetMeal = () => {
-    sheetRefRecipe.current.snapTo(1);
-    sheetRefMeal.current.snapTo(0);
-  };
-
-  const sheetRefMeal = React.useRef(null);
-
-  const mealContent = () => (
-    <View style={styles.contentWrapper}>
-      <View style={styles.line} />
-      <ScrollView>
-        <View style={styles.addMealInputWrapper}>
-          <TextInput
-            placeholder={'Breakfast, Dinner...'}
-            value={mealText}
-            onChangeText={text => setMealText(text)}
-            style={styles.addMealInput}
-          />
-          <TouchableOpacity style={styles.saveButtonWrapper} onPress={handleAddMeal}>
-            <Text style={styles.buttonText}>Save</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-    </View>
-  );
-
-  const sheetRefRecipe = React.useRef(null);
-
-  const recipeContent = () => (
-    <View style={styles.contentWrapper}>
-      <View style={styles.line} />
-      <TextInput
-        value={''}
-        placeholder={'Search recipe'}
-        placeholderTextColor={Colors.backgroundAppColor}
-        style={styles.searchRecipe}
-      />
-      <ScrollView>
-        {recipeList.map((recipe, index) => (
-          <TouchableOpacity
-            onPress={() => handleChooseRecipe(recipe, 'create')}
-            key={index}
-            style={styles.recipeBottomSheetWrapper}
-          >
-            <Text style={styles.recipeBottomSheetText}>{recipe.name}</Text>
-            <Icon.AntDesign name={IconName.success} size={26} color={Colors.cloudColor} />
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
-    </View>
-  );
-
   return (
-    <>
-      <SharedLinearGradientBackgroundVertical
-        childrenColors={[
-          Colors.lightBackgroundAppColor,
-          Colors.backgroundAppColor,
-          Colors.darkBackgroundAppColor
-        ]}
-        childrenStyle={styles.gradientWrapper}
-      >
-        <SafeAreaView style={styles.container}>
+    <SharedLinearGradientBackgroundVertical
+      childrenColors={[
+        Colors.lightBackgroundAppColor,
+        Colors.backgroundAppColor,
+        Colors.darkBackgroundAppColor
+      ]}
+      childrenStyle={styles.gradientWrapper}
+    >
+      <SafeAreaView style={styles.container}>
+        <KeyboardAwareScrollView enableOnAndroid>
+          <ChooseRecipeModal
+            isVisible={isChooseRecipeModal}
+            closeModal={handleShowChooseRecipeModal}
+            chooseRecipe={handleChooseRecipe}
+            recipes={choosedMeal}
+          />
+          <AddMealModal
+            isVisible={isCreateMealModal}
+            closeModal={handleShowAddMealModal}
+            handleSave={handleAddMeal}
+            setMealText={setMealText}
+            mealText={mealText}
+          />
           <SharedCreateEditDailyRecipeModal
             isCreateEditModal={isCreateEditModal}
             closeModal={handleCloseModal}
@@ -223,35 +181,21 @@ const DailyMealsScreenTrainer = ({ navigation }) => {
           />
           <DailyMealsHeader client={client} date={date} />
           <DailyMeals
-            showAddMealBottomSheet={handleShowBottomSheetMeal}
+            showAddMealModal={handleShowAddMealModal}
             meals={dailyMealList}
             setMeal={handleChoosedMeal}
           />
           <CountAndRemoveButton choosedMeal={choosedMeal} handleRemoveMeal={handleRemoveMeal} />
           <DailyMealList
-            showCreateEditModal={handleShowBottomSheetRecipe}
+            showCreateEditModal={handleShowChooseRecipeModal}
             recipes={choosedMeal}
-            showAddMealBottomSheet={handleShowBottomSheetMeal}
+            showAddMealModal={handleShowAddMealModal}
             handleEditDailyRecipeModalVisible={handleChooseRecipe}
             handleDeleteDailyRecipe={handleDeleteRecipe}
           />
-        </SafeAreaView>
-      </SharedLinearGradientBackgroundVertical>
-      <BottomSheet
-        ref={sheetRefMeal}
-        snapPoints={[120, 0, 0]}
-        borderRadius={10}
-        renderContent={mealContent}
-        initialSnap={1}
-      />
-      <BottomSheet
-        ref={sheetRefRecipe}
-        snapPoints={[400, 0, 0]}
-        borderRadius={10}
-        renderContent={recipeContent}
-        initialSnap={1}
-      />
-    </>
+        </KeyboardAwareScrollView>
+      </SafeAreaView>
+    </SharedLinearGradientBackgroundVertical>
   );
 };
 
@@ -266,66 +210,10 @@ DailyMealsScreenTrainer.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  addMealInput: {
-    flex: 1,
-    height: 40,
-    paddingLeft: 10
-  },
-  addMealInputWrapper: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  buttonText: {
-    color: Colors.light,
-    fontFamily: 'montserrat-regular'
-  },
   container: {
     flex: 1
   },
-  contentWrapper: {
-    backgroundColor: Colors.light,
-    height: 400
-  },
   gradientWrapper: {
     flex: 1
-  },
-  line: {
-    alignSelf: 'center',
-    backgroundColor: Colors.lightGrayL,
-    borderRadius: 20,
-    height: 10,
-    marginVertical: 20,
-    width: 80
-  },
-  recipeBottomSheetText: {
-    fontFamily: 'montserrat-regular',
-    fontSize: 18
-  },
-  recipeBottomSheetWrapper: {
-    alignItems: 'center',
-    borderBottomColor: Colors.lightGrayL,
-    borderBottomWidth: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: 5,
-    paddingHorizontal: 5,
-    paddingVertical: 8
-  },
-  saveButtonWrapper: {
-    backgroundColor: Colors.cloudColor,
-    borderRadius: 10,
-    marginRight: 10,
-    paddingHorizontal: 15,
-    paddingVertical: 5
-  },
-  searchRecipe: {
-    backgroundColor: Colors.white,
-    borderRadius: 10,
-    borderWidth: 0.2,
-    height: 40,
-    margin: 10,
-    marginBottom: 30,
-    paddingLeft: 20
   }
 });

@@ -25,6 +25,7 @@ import { addHeaderLeftNavigator, addHeaderRightNavigator } from '../helpers';
 import Layout from '../constants/Layout';
 import TemplateMealScreenTrainer from '../screens/main/TrainerScreen/Nutrition/TemplateMealScreenTrainer';
 import DailyMealsScreenTrainer from '../screens/main/TrainerScreen/Nutrition/DailyMealsScreenTrainer';
+import SharedClientDailyMeals from '../components/shared/SharedClientDailyMeals';
 
 const HomeStack = createStackNavigator({
   Welcome: WelcomeScreen,
@@ -42,6 +43,12 @@ const HomeStack = createStackNavigator({
       };
     }
   },
+  SelectedClientDailyPlanScreen: {
+    screen: SharedClientDailyMeals,
+    navigationOptions: {
+      headerStyle: HeaderBarStyle
+    }
+  },
   ClientCreate,
   ChangePassword,
   EditProfile: {
@@ -51,7 +58,10 @@ const HomeStack = createStackNavigator({
       return {
         ...headerLeftNav,
         headerStyle: HeaderBarStyle,
-        headerTitleStyle: { color: Colors.white, fontWeight: 'bold' },
+        headerTitleStyle: {
+          color: Colors.white,
+          fontFamily: 'montserrat-bold'
+        },
         title: 'Update profile'
       };
     }

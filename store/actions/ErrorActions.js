@@ -7,7 +7,8 @@ import {
   FORGOT_PASSWORD_ERROR_SET,
   SOCIAL_LOGIN_ERROR_SET,
   SHOW_STANDARD_POP_UP,
-  SHOW_DELETE_POP_UP
+  SHOW_DELETE_POP_UP,
+  INPUT_FIELD_ERROR_SET
 } from '../actionTypes/ErrorActionTypes';
 
 export const setGlobalError = payload => ({
@@ -17,6 +18,11 @@ export const setGlobalError = payload => ({
 
 export const setSignInError = payload => ({
   type: SIGNIN_ERROR_SET,
+  payload
+});
+
+export const setInputFealdError = payload => ({
+  type: INPUT_FIELD_ERROR_SET,
   payload
 });
 

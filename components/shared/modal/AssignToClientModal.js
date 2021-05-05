@@ -39,7 +39,7 @@ const AssignToClientModal = ({ isVisible, closeModal, submit }) => {
     setClientFilteredList(filteredList);
   };
   return (
-    <Modal animationType="slide" transparent={true} visible={isVisible}>
+    <Modal animationType="fade" transparent={true} visible={isVisible}>
       <View style={styles.container}>
         <SharedLinearGradientBackgroundHorizontal
           childrenColors={[
@@ -60,8 +60,8 @@ const AssignToClientModal = ({ isVisible, closeModal, submit }) => {
               <TextInput
                 style={styles.inputSearchField}
                 placeholder={'Search clients'}
+                autoCorrect={false}
                 placeholderTextColor={Colors.lightGray}
-                // onChangeText={text => handleSearchRecipeList(text)}
                 onChangeText={text => handleSearchRecipeList(text)}
                 value={searchText}
               />
@@ -82,14 +82,7 @@ const AssignToClientModal = ({ isVisible, closeModal, submit }) => {
                 onPress={() => submit(client)}
               >
                 <Text style={styles.itemNameText}>{client.full_name}</Text>
-                <TouchableOpacity
-                  style={styles.iconWrapper}
-                  //   onPress={
-                  //     IsInMealRecipe(renderData, client)
-                  //       ? () => deleteRecipe(client)
-                  //       : () => addRecipe(client)
-                  //   }
-                >
+                <TouchableOpacity style={styles.iconWrapper}>
                   <View style={styles.addIcon} />
                   <Icon.AntDesign name={IconName.plus} size={30} color={Colors.cloudColor} />
                 </TouchableOpacity>
@@ -143,10 +136,12 @@ const styles = StyleSheet.create({
   inputSearchField: {
     color: Colors.light,
     flex: 1,
+    fontFamily: 'montserrat-italic',
     height: 40
   },
   itemNameText: {
     color: Colors.light,
+    fontFamily: 'montserrat-regular',
     fontSize: 20,
     width: '80%'
   },

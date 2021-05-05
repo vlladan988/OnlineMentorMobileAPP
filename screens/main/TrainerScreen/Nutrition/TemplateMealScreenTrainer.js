@@ -80,6 +80,7 @@ const TemplateMealScreenTrainer = ({ navigation }) => {
       ]}
       childrenStyle={styles.gradientWrapper}
     >
+      {/* <KeyboardAwareScrollView enableOnAndroid> */}
       <AssignToClientModal
         closeModal={showAssignToClientModal}
         isVisible={isAssignToClientModalVisible}
@@ -111,6 +112,7 @@ const TemplateMealScreenTrainer = ({ navigation }) => {
         template={choosedTemplate}
       />
       <TemplateMealList template={choosedTemplate} showMealDetails={showRecipeList} />
+      {/* </KeyboardAwareScrollView> */}
     </SharedLinearGradientBackgroundVertical>
   );
 };

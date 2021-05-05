@@ -15,6 +15,7 @@ export default {
   lightGray: '#7A879B',
   lightGrayL: '#a0abba',
   lightText: '#ededed',
+  lightGrayBackground: '#f5f5f5',
   lightCloudColor: '#46dee3',
   cloudColor: mainColor,
   darkCloudColor: '#37b5b8',

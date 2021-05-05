@@ -65,6 +65,7 @@
   "validation": {
     "firstNameIsRequired": "First name is required.",
     "lastNameIsRequired": "Last name is required.",
+    "fullNameIsRequired": "Full name is required.",
     "emailIsRequired": "Email is required.",
     "passwordIsRequired": "Password is required.",
     "confirmPasswordIsRequired": "Confirm password is required.",

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Modal } from 'react-native';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 
 import SharedLinearGradientBackgroundVertical from '../SharedLinearGradientBackgroundVertical';
 import Colors from '../../../constants/Colors';
@@ -8,7 +9,6 @@ import TemplateMealRecipeHeader from '../../Trainer/Nutritions/Template/Modal/Te
 import ButtonAndCount from '../../Trainer/Nutritions/Template/Modal/TemplateMealRecipeList/ButtonAndCount';
 import TemplateMealRecipeList from '../../Trainer/Nutritions/Template/Modal/TemplateMealRecipeList/TemplateMealRecipeList';
 import AddRemoveTemplateMealRecipeModal from '../../../components/shared/modal/AddRemoveTemplateMealRecipeModal';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   getTemplateMealRecipies,
   deleteTemplateMealRecipe,

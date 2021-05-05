@@ -15,8 +15,9 @@ ErrorText.propTypes = {
 const styles = StyleSheet.create({
   text: {
     alignSelf: 'center',
-    color: Colors.warningText,
-    textAlign: 'center'
+    color: Colors.warningColor,
+    fontFamily: 'montserrat-italic'
+    // textAlign: 'center'
   }
 });
 

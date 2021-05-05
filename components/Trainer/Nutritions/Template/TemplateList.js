@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'rea
 import * as Icon from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 
-import templateImg from '../../../../assets/images/templateImg.jpg';
+import clientTemplateSmall from '../../../../assets/images/clientTemplateSmall.jpg';
 import Colors from '../../../../constants/Colors';
 import SharedLinearGradientBackgroundHorizontal from '../../../shared/SharedLinearGradientBackgroundHorizontal';
 import ShadowStyleLow from '../../../../constants/ShadowStyleLow';
@@ -36,7 +36,9 @@ const TemplateList = ({ filteredList }) => {
             <View style={styles.itemWrapper}>
               <Image
                 source={
-                  template.template_image_url ? { uri: template.template_image_url } : templateImg
+                  template.template_image_url
+                    ? { uri: template.template_image_url }
+                    : clientTemplateSmall
                 }
                 style={styles.profileImage}
               />

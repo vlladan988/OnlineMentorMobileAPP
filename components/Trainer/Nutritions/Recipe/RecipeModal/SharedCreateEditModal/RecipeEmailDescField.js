@@ -1,34 +1,50 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import $t from 'i18n';
 import PropTypes from 'prop-types';
 
 import Colors from '../../../../../../constants/Colors';
+import ErrorText from '../../../../../shared/Text/ErrorText';
+import { inputFealdErrorMessage } from '../../../../../../store/selectors/ErrorSelector';
+import { setInputFealdError } from '../../../../../../store/actions/ErrorActions';
 
 const RecipeEmailDescField = ({ name, setName, description, setDescription }) => {
+  const dispatch = useDispatch();
+
+  const errorMessage = useSelector(inputFealdErrorMessage());
   return (
     <View style={styles.container}>
       <View style={styles.inputNameWrapper}>
-        <Text style={styles.inputText}>{$t('trainer.recipeName')}</Text>
+        <Text style={styles.inputText}>{$t('trainer.recipeName')}*</Text>
         <TextInput
           style={styles.input}
+          autoCorrect={false}
+          onEndEditing={() => dispatch(setInputFealdError(''))}
+          clearButtonMode={'always'}
           placeholder={$t('trainer.recipeNameText')}
           placeholderTextColor={Colors.lightGrayL}
           onChangeText={text => setName(text)}
           value={name}
+          selectionColor={Colors.light}
         />
       </View>
       <View style={styles.inputDescWrapper}>
         <Text style={styles.inputText}>{$t('trainer.recipeDesc')}*</Text>
         <TextInput
           style={styles.input}
+          autoCorrect={false}
+          onEndEditing={() => dispatch(setInputFealdError(''))}
+          clearButtonMode={'always'}
           placeholder={'Prepare Checken with Rice and vegetables...'}
           multiline={true}
           placeholderTextColor={Colors.lightGrayL}
           onChangeText={text => setDescription(text)}
           value={description}
+          selectionColor={Colors.light}
         />
       </View>
+      <ErrorText error={!!errorMessage} message={errorMessage} />
     </View>
   );
 };

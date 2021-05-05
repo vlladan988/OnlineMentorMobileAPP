@@ -74,14 +74,18 @@ import {
   handleAddTemplate,
   handleUpdateTemplate,
   handleDeleteTemplate,
-  handleAssignTemplateToClient
+  handleAssignTemplateToClient,
+  handleGetTemplates,
+  handleUnassignTemplateFromClient
 } from './TemplateSagas';
 import {
   FETCH_TEMPLATES,
   ADD_TEMPLATE,
   UPDATE_TEMPLATE,
   DELETE_TEMPLATE,
-  ASSIGN_TEMPLATE_TO_CLIENT
+  ASSIGN_TEMPLATE_TO_CLIENT,
+  UNASSIGN_TEMPLATE_TO_CLIENT,
+  GET_TEMPLATES
 } from '../actionTypes/TemplateActionTypes';
 import {
   handleGetTemplateMeals,
@@ -154,10 +158,12 @@ export default function* rootSaga() {
     takeLatest(UPDATE_GROCERIES, handleUpdateGrocery),
     takeLatest(DELETE_GROCERIES, handleDeleteGrocery),
     takeLatest(FETCH_TEMPLATES, handleFetchTemplates),
+    takeLatest(GET_TEMPLATES, handleGetTemplates),
     takeLatest(ADD_TEMPLATE, handleAddTemplate),
     takeLatest(UPDATE_TEMPLATE, handleUpdateTemplate),
     takeLatest(DELETE_TEMPLATE, handleDeleteTemplate),
     takeLatest(ASSIGN_TEMPLATE_TO_CLIENT, handleAssignTemplateToClient),
+    takeLatest(UNASSIGN_TEMPLATE_TO_CLIENT, handleUnassignTemplateFromClient),
     takeLatest(GET_TEMPLATE_MEALS, handleGetTemplateMeals),
     takeLatest(ADD_TEMPLATE_MEAL, handleAddTemplateMeal),
     takeLatest(EDIT_TEMPLATE_MEAL, handleEditTemplateMeal),

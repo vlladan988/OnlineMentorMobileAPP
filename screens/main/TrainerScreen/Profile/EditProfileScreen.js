@@ -37,11 +37,8 @@ const EditProfileScreen = () => {
     >
       <View style={styles.container}>
         <StandardNotificationModal visible={isStandardModalVisible} />
-        <HeaderProfileImage
-          trainer={trainer}
-          setProfileImageUrl={image => setPhotoUrl(image)}
-        />
         <KeyboardAwareScrollView enableOnAndroid>
+          <HeaderProfileImage trainer={trainer} setProfileImageUrl={image => setPhotoUrl(image)} />
           <UpdateTrainerForm onSubmit={handleSubmit} trainer={trainer} />
         </KeyboardAwareScrollView>
       </View>

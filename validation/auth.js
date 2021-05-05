@@ -11,17 +11,17 @@ export const signInValidationRules = Yup.object().shape({
 });
 
 export const signUpValidationRules = Yup.object().shape({
-  full_name: Yup.string().required($t('validation.lastNameIsRequired')),
+  full_name: Yup.string().required($t('validation.fullNameIsRequired')),
   email: Yup.string()
     .required($t('validation.emailIsRequired'))
     .email($t('validation.mustBeValidEmail')),
   password: Yup.string()
     .required($t('validation.passwordIsRequired'))
     .min(8, $t('validation.passwordMinCharacters')),
-  c_password: Yup.string()
+  confirm_password: Yup.string()
     .required($t('validation.confirmPasswordIsRequired'))
     .min(8, $t('validation.confirmPasswordMinCharacters'))
-  // .oneOf([Yup.ref('password'), null], $t('auth.passwordsMustMatch'))
+    .oneOf([Yup.ref('password'), null], $t('auth.passwordsMustMatch'))
 });
 
 export const forgotPasswordValidationRules = Yup.object().shape({

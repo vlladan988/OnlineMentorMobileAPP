@@ -16,9 +16,7 @@ import Colors from '../../constants/Colors';
 const GuestSignUpScreen = () => {
   const dispatch = useDispatch();
 
-  const handleSignUp = useCallback(data =>
-    dispatch(signUp({ credentials: data, userType: 2 }))
-  );
+  const handleSignUp = useCallback(data => dispatch(signUp({ credentials: data, userType: 2 })));
   const handleSetSignUpErrors = data => dispatch(setSignUpErrors(data));
 
   const signUpErrors = useSelector(signUpErrorsSelector());
@@ -31,7 +29,7 @@ const GuestSignUpScreen = () => {
     <SharedLinearGradientBackgroundVertical
       childrenColors={[
         Colors.lightBackgroundAppColor,
-        Colors.backgroundAppColor,
+        Colors.darkBackgroundAppColor,
         Colors.darkBackgroundAppColor
       ]}
       childrenStyle={styles.gradientBackground}

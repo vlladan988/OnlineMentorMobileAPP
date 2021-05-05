@@ -17,7 +17,6 @@ const SharedCreateEditGroceryModal = ({ isVisible, closeModal, choosedGrocery, s
           Colors.backgroundAppColor,
           Colors.darkBackgroundAppColor
         ]}
-        childrenStyle={{}}
       >
         <SafeAreaView style={styles.modalWrapper}>
           <ScrollView style={styles.scrollWrapper}>
@@ -26,7 +25,7 @@ const SharedCreateEditGroceryModal = ({ isVisible, closeModal, choosedGrocery, s
               headerText={IsEditScreen(screen) ? 'Edit Grocery' : 'Create Grocery'}
             />
             <SharedCreateEditGroceryForm
-              closeModal={() => closeModal('')}
+              closeModal={closeModal}
               choosedGrocery={choosedGrocery}
               screen={screen}
             />

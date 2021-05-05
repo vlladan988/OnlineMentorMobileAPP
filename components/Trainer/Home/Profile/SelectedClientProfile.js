@@ -1,15 +1,20 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 
-import SelectedClientHeaderImage from './SelectedClientHeaderImage';
-import SelectedClientProfileDetails from './SelectedClientProfileDetails';
+import SharedClientProfileDetails from '../../../shared/SharedClientProfileDetails';
 import { resetGoal } from '../../../../store/actions/GoalActions';
 import { resetGallery } from '../../../../store/actions/GalleryActions';
+import { currentClientSelector } from '../../../../store/selectors/ClientSelector';
+import Colors from '../../../../constants/Colors';
+import SharedClientProfileImage from '../../../shared/SharedClientProfileImage';
+import { userSelector } from '../../../../store/selectors/UserSelector';
 
 const SelectedClientProfile = () => {
   const dispatch = useDispatch();
+
+  const client = useSelector(currentClientSelector());
+  const user = useSelector(userSelector());
 
   useEffect(() => {
     dispatch(resetGoal());
@@ -18,19 +23,16 @@ const SelectedClientProfile = () => {
 
   return (
     <View style={styles.container}>
-      <SelectedClientHeaderImage />
-      <SelectedClientProfileDetails />
+      <SharedClientProfileImage client={client} user={user} />
+      <SharedClientProfileDetails client={client} />
     </View>
   );
-};
-
-SelectedClientProfile.propTypes = {
-  title: PropTypes.string
 };
 
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    backgroundColor: Colors.lightGrayBackground,
     height: '100%'
   }
 });

@@ -13,7 +13,7 @@ import ModalDropdown from 'react-native-modal-dropdown';
 import Constants from 'expo-constants';
 import PropTypes from 'prop-types';
 
-import templateImg from '../../../../assets/images/templateImg.jpg';
+import clientTemplateSmall from '../../../../assets/images/clientTemplateSmall.jpg';
 import NavigationService from '../../../../services/NavigationService';
 import IconName from '../../../../constants/IconName';
 import Colors from '../../../../constants/Colors';
@@ -58,7 +58,7 @@ const TemplateMealHeader = ({
         source={
           template && template.template_image_url
             ? { uri: template.template_image_url }
-            : templateImg
+            : clientTemplateSmall
         }
         style={styles.templateImage}
       >

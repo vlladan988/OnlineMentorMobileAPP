@@ -49,8 +49,14 @@ const ImportGroceryListModal = ({ isImportGroceryModal, closeModal }) => {
   const deleteRecipeGroceryFromImportedList = grocery =>
     dispatch(updateImportedGroceries(removeItemFromArrayByName(renderData, grocery)));
 
+  const handleAddRemove = grocery => {
+    isInImportedRecipeGroceryList(renderData, grocery)
+      ? deleteRecipeGroceryFromImportedList(grocery)
+      : dispatch(setImportedGroceries(grocery));
+  };
+
   return (
-    <Modal animationType="slide" transparent={true} visible={isImportGroceryModal}>
+    <Modal animationType="fade" transparent={true} visible={isImportGroceryModal}>
       <View style={styles.container}>
         <View style={styles.modalWrapper}>
           <View style={styles.searchContainer}>
@@ -67,6 +73,7 @@ const ImportGroceryListModal = ({ isImportGroceryModal, closeModal }) => {
                 placeholderTextColor={Colors.lightGray}
                 onChangeText={text => handleSearchGrocery(text)}
                 value={searchText}
+                selectionColor={Colors.light}
               />
             </View>
 
@@ -78,27 +85,25 @@ const ImportGroceryListModal = ({ isImportGroceryModal, closeModal }) => {
           </View>
           <ScrollView style={styles.scrollWrapper}>
             {groceriesFiltered.map((grocery, index) => (
-              <View style={styles.itemWrapper} key={index}>
+              <TouchableOpacity
+                style={styles.itemWrapper}
+                key={index}
+                onPress={() => handleAddRemove(grocery)}
+              >
                 <Text style={styles.itemNameText}>{grocery.name}</Text>
                 <TouchableOpacity style={styles.iconWrapper}>
                   <View style={styles.importGroceryIcon} />
                   {isInImportedRecipeGroceryList(renderData, grocery) ? (
                     <Icon.AntDesign
-                      onPress={() => deleteRecipeGroceryFromImportedList(grocery)}
                       name={IconName.closeCircle}
                       size={26}
                       color={Colors.warningColor}
                     />
                   ) : (
-                    <Icon.AntDesign
-                      onPress={() => dispatch(setImportedGroceries(grocery))}
-                      name={IconName.plus}
-                      size={26}
-                      color={Colors.cloudColor}
-                    />
+                    <Icon.AntDesign name={IconName.plus} size={26} color={Colors.cloudColor} />
                   )}
                 </TouchableOpacity>
-              </View>
+              </TouchableOpacity>
             ))}
           </ScrollView>
         </View>
@@ -127,7 +132,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   iconWrapper: {
-    alignItems: 'center',
+    alignItems: 'flex-end',
     paddingVertical: 10,
     width: '20%'
   },
@@ -142,21 +147,25 @@ const styles = StyleSheet.create({
   inputSearchField: {
     color: Colors.light,
     flex: 1,
+    fontFamily: 'montserrat-italic',
     height: 40
   },
   itemNameText: {
     color: Colors.light,
+    fontFamily: 'montserrat-regular',
     fontSize: 20,
     width: '80%'
   },
   itemWrapper: {
     alignItems: 'center',
+    borderBottomColor: Colors.lightGray,
+    borderBottomWidth: 1,
     flexDirection: 'row'
   },
   modalWrapper: {
     backgroundColor: Colors.backgroundAppColor,
     borderRadius: 20,
-    maxHeight: '70%',
+    maxHeight: '60%',
     width: '85%'
   },
   scrollWrapper: {

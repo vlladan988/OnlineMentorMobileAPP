@@ -92,6 +92,8 @@ const SharedImportedGroceryList = ({ closeIcon }) => {
               value={item.unit_type.toString()}
               onChangeText={number => handleChangeValueByNumber(number, item)}
               style={styles.valueText}
+              keyboardType={'number-pad'}
+              selectionColor={Colors.light}
             />
             <Icon.AntDesign
               onPress={() => handleChangeValueByIncrementDecrement(true, item)}
@@ -139,7 +141,7 @@ const SharedImportedGroceryList = ({ closeIcon }) => {
 export default SharedImportedGroceryList;
 
 SharedImportedGroceryList.propTypes = {
-  closeIcon: PropTypes.func
+  closeIcon: PropTypes.bool
 };
 
 const styles = StyleSheet.create({

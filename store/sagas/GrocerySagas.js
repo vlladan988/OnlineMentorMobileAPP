@@ -12,7 +12,7 @@ export function* handleFetchGroceries() {
   try {
     yield put(setLoader(true));
     const { data: groceries } = yield call(groceryService.fetchGroceries);
-    yield put(setGroceries(groceries));
+    yield put(setGroceries(groceries.reverse()));
   } catch (error) {
     yield put(setGlobalError({ bool: true, message: error.response.data.message }));
   } finally {
@@ -25,16 +25,7 @@ export function* handleAddGrocery({ payload }) {
     yield put(setLoader(true));
     const groceryList = yield select(groceryListSelector());
     const isNameUnique = IsGroceryNameUniqueValidation(groceryList, payload);
-    const isEmptyName = payload.name === '';
-    if (isEmptyName) {
-      yield put(
-        setShowStandardPopUp({
-          message: 'You should enter name of grocery.',
-          warningIcon: true
-        })
-      );
-      return;
-    } else if (isNameUnique) {
+    if (isNameUnique) {
       yield put(
         setShowStandardPopUp({
           message: 'Grocery name already in use.',
@@ -43,8 +34,8 @@ export function* handleAddGrocery({ payload }) {
       );
       return;
     } else {
-      var { data: groceries } = yield call(groceryService.addGrocery, payload);
-      yield put(setGroceries(groceries));
+      const { data: groceries } = yield call(groceryService.addGrocery, payload);
+      yield put(setGroceries(groceries.reverse()));
     }
     yield put(
       setShowStandardPopUp({
@@ -63,7 +54,7 @@ export function* handleUpdateGrocery({ payload }) {
   try {
     yield put(setLoader(true));
     const { data: groceries } = yield call(groceryService.updateGrocery, payload);
-    yield put(setGroceries(groceries));
+    yield put(setGroceries(groceries.reverse()));
 
     yield put(setShowStandardPopUp({ message: 'Grocery Updated !', warningIcon: false }));
     yield put(fetchRecipes());
@@ -78,7 +69,7 @@ export function* handleDeleteGrocery({ payload }) {
   try {
     yield put(setLoader(true));
     const { data: groceries } = yield call(groceryService.deleteGrocery, payload);
-    yield put(setGroceries(groceries));
+    yield put(setGroceries(groceries.reverse()));
     yield put(fetchRecipes());
     yield put(setShowStandardPopUp({ message: 'Grocery Deleted !', warningIcon: false }));
   } catch (error) {

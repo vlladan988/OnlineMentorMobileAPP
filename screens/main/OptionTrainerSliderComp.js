@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import * as Icon from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -28,7 +22,7 @@ const OptionTrainerSliderComp = ({ navigation }) => {
       <ScrollView>
         <View style={styles.optionWrapper}>
           <View style={styles.optionDetailsWrapper}>
-            <Text>{$t('client.addClient')}</Text>
+            <Text style={styles.itemText}>{$t('client.addClient')}</Text>
             <TouchableOpacity
               style={styles.addUserbutton}
               onPress={() => navigation.navigate('ClientCreate')}
@@ -43,7 +37,7 @@ const OptionTrainerSliderComp = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.optionDetailsWrapper}>
-          <Text>{$t('trainer.editProfile')}</Text>
+          <Text style={styles.itemText}>{$t('trainer.editProfile')}</Text>
           <TouchableOpacity
             style={styles.editClientButton}
             onPress={() => navigation.navigate('EditProfile')}
@@ -57,7 +51,7 @@ const OptionTrainerSliderComp = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.optionDetailsWrapper}>
-          <Text>{$t('auth.logOut')}</Text>
+          <Text style={styles.itemText}>{$t('auth.logOut')}</Text>
           <TouchableOpacity style={styles.logoutUser} onPress={_signOutAsync}>
             <Icon.FontAwesome5
               name={IconName.logout}
@@ -95,6 +89,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 60
   },
+  itemText: {
+    fontFamily: 'montserrat-regular',
+    fontSize: 16
+  },
   logoutUser: {
     alignItems: 'center',
     backgroundColor: Colors.warningColor,
@@ -116,8 +114,8 @@ const styles = StyleSheet.create({
   },
   trainerText: {
     color: Colors.backgroundAppColor,
+    fontFamily: 'montserrat-bold',
     fontSize: 30,
-    fontWeight: 'bold',
     paddingBottom: 5
   },
   trainerWrapper: {

@@ -23,7 +23,6 @@ const HeaderProfileImage = ({ trainer, setProfileImageUrl }) => {
       setProfileImageUrl(result.base64);
     }
   };
-  console.log('profileImage', profileImage);
 
   return (
     <View style={styles.container}>
@@ -54,6 +53,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: Colors.lightGray,
+    fontFamily: 'montserrat-bold',
     fontSize: 18,
     paddingTop: 15
   },

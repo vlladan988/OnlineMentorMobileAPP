@@ -102,7 +102,7 @@ ReciepeTypeRadioButtons.propTypes = {
   changeMealType: PropTypes.func,
   setCustomType: PropTypes.func,
   mealType: PropTypes.any,
-  recipe: PropTypes.object,
+  recipe: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   screen: PropTypes.string
 };
 

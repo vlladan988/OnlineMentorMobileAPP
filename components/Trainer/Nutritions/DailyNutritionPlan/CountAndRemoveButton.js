@@ -47,8 +47,7 @@ const styles = StyleSheet.create({
   countWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingBottom: 40,
-    zIndex: 1
+    paddingBottom: 40
   },
   deleteMealButtonWrapper: {
     alignItems: 'center',

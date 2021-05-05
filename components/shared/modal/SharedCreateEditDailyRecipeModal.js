@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Modal, SafeAreaView, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import SharedLinearGradientBackgroundVertical from '../SharedLinearGradientBackgroundVertical';
 import Colors from '../../../constants/Colors';
@@ -51,24 +52,26 @@ const SharedCreateEditDailyRecipeModal = ({
         ]}
       >
         <SafeAreaView style={styles.modalWrapper}>
-          <ScrollView style={styles.scrollWrapper}>
-            {recipe && (
-              <>
-                <DailyRecipeImage screen={'create'} recipe={recipe} goBack={closeModal} />
-                <DailyRecipeEmailDescType
-                  name={recipe.name}
-                  description={''}
-                  recipeDetails={recipe}
-                />
-                <SharedImportedGroceryList closeIcon={false} />
-                <SubmitButtonDailyRecipe
-                  handleCreateRecipe={handleCreateRecipe}
-                  handleEditRecipe={handleEditRecipe}
-                  screen={screen}
-                />
-              </>
-            )}
-          </ScrollView>
+          <KeyboardAwareScrollView enableOnAndroid>
+            <ScrollView style={styles.scrollWrapper}>
+              {recipe && (
+                <>
+                  <DailyRecipeImage screen={'create'} recipe={recipe} goBack={closeModal} />
+                  <DailyRecipeEmailDescType
+                    name={recipe.name}
+                    description={''}
+                    recipeDetails={recipe}
+                  />
+                  <SharedImportedGroceryList closeIcon={false} />
+                  <SubmitButtonDailyRecipe
+                    handleCreateRecipe={handleCreateRecipe}
+                    handleEditRecipe={handleEditRecipe}
+                    screen={screen}
+                  />
+                </>
+              )}
+            </ScrollView>
+          </KeyboardAwareScrollView>
         </SafeAreaView>
       </SharedLinearGradientBackgroundVertical>
     </Modal>
@@ -80,7 +83,6 @@ export default SharedCreateEditDailyRecipeModal;
 SharedCreateEditDailyRecipeModal.propTypes = {
   isCreateEditModal: PropTypes.bool,
   screen: PropTypes.string,
-  // recipe: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   recipe: PropTypes.object,
   closeModal: PropTypes.func,
   handleCreateRecipe: PropTypes.func,

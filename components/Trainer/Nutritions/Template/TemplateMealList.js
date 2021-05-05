@@ -82,7 +82,7 @@ const TemplateMealList = ({ template, showMealDetails }) => {
           <Text style={styles.durationText}>Days: {template && template.template_duration}</Text>
           <Text style={styles.typeText}>Type: {template && template.template_meal_type}</Text>
         </View>
-        <Text style={styles.countText}>Count: {renderData.length}</Text>
+        <Text style={styles.countText}>Meals: {renderData.length}</Text>
       </View>
       <DraggableFlatList
         data={renderData}

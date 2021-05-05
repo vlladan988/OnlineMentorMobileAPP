@@ -44,7 +44,7 @@ const GallerySlider = () => {
           </View>
         </View>
         <TouchableOpacity style={styles.iconWrapper} onPress={() => saveGalleryId(photo.id)}>
-          <Icon.Entypo name={IconName.dots} color={Colors.black} size={24} />
+          <Icon.Fontisto name={IconName.close} size={32} color={Colors.backgroundAppColor} />
         </TouchableOpacity>
       </View>
       <SliderBox
@@ -62,7 +62,7 @@ export default GallerySlider;
 const styles = StyleSheet.create({
   container: {
     elevation: 24,
-    marginTop: 50,
+    marginTop: 10,
     paddingBottom: 30,
     shadowColor: '#000',
     shadowOffset: {
@@ -96,9 +96,9 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   profileImage: {
-    borderColor: Colors.warningColor,
+    borderColor: Colors.light,
     borderRadius: 50,
-    borderWidth: 2,
+    borderWidth: 1,
     height: 50,
     marginHorizontal: 10,
     marginVertical: 10,

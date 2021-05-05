@@ -1,25 +1,26 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 
-import NutritionPlan from '../../../../components/Client/Nutrition/NutritionPlan';
+// import NutritionPlan from '../../../../components/Client/Nutrition/NutritionPlan';
 import Colors from '../../../../constants/Colors';
+import SharedClientTemplate from '../../../../components/shared/SharedClientTemplate';
+import SharedClientDailyPlan from '../../../../components/shared/SharedClientDailyPlan';
 
-const NutritionPlanComp = () => <NutritionPlan />;
-
-const NutritionPlanComp2 = () => <NutritionPlan />;
+const ClientTemplateComp = () => <SharedClientTemplate />;
+const ClientDailyComp = () => <SharedClientDailyPlan />;
 
 export default createMaterialTopTabNavigator(
   {
-    NutritionPlanComp: {
-      screen: NutritionPlanComp,
+    ClientTemplateComp: {
+      screen: ClientTemplateComp,
       navigationOptions: {
-        tabBarLabel: 'Nutrition Plan'
+        tabBarLabel: 'Template'
       }
     },
-    NutritionPlanComp2: {
-      screen: NutritionPlanComp2,
+    ClientDailyComp: {
+      screen: ClientDailyComp,
       navigationOptions: {
-        tabBarLabel: 'Meals'
+        tabBarLabel: 'Daily Plan'
       }
     }
   },

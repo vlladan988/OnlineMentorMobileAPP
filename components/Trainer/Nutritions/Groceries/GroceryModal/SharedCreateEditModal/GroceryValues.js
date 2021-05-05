@@ -24,30 +24,36 @@ const GroceryValues = ({ proteins, setProteins, carbons, setCarbons, fats, setFa
             <View style={styles.groceryInputWrapper}>
               <TextInput
                 value={proteins}
+                keyboardType={'number-pad'}
                 placeholder={'0'}
                 placeholderTextColor={Colors.lightGray}
                 onChangeText={text => setProteins(text)}
                 style={[styles.inputGroceryValue, styles.proteinColorStyle]}
+                selectionColor={Colors.light}
               />
               <Text style={styles.groceriesNameText}>{$t('common.proteins')}</Text>
             </View>
             <View style={styles.groceryInputWrapper}>
               <TextInput
                 value={carbons}
+                keyboardType={'number-pad'}
                 placeholder={'0'}
                 placeholderTextColor={Colors.lightGray}
                 onChangeText={text => setCarbons(text)}
                 style={[styles.inputGroceryValue, styles.carbonColorStyle]}
+                selectionColor={Colors.light}
               />
               <Text style={styles.groceriesNameText}>{$t('common.carbonUh')}</Text>
             </View>
             <View style={styles.groceryInputWrapper}>
               <TextInput
                 value={fats}
+                keyboardType={'number-pad'}
                 placeholder={'0'}
                 placeholderTextColor={Colors.lightGray}
                 onChangeText={text => setFats(text)}
                 style={[styles.inputGroceryValue, styles.fatColorStyle]}
+                selectionColor={Colors.light}
               />
               <Text style={styles.groceriesNameText}>{$t('common.fats')}</Text>
             </View>
@@ -76,7 +82,7 @@ GroceryValues.propTypes = {
 
 const styles = StyleSheet.create({
   caloriesValue: {
-    color: Colors.warningColor,
+    color: Colors.cloudColor,
     fontFamily: 'montserrat-regular',
     fontSize: 24
   },
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 30
   },
   carbonColorStyle: {
-    color: Colors.mainYellow
+    color: Colors.oker
   },
   fatColorStyle: {
     color: Colors.oker
@@ -129,6 +135,6 @@ const styles = StyleSheet.create({
     paddingTop: 10
   },
   proteinColorStyle: {
-    color: Colors.cloudColor
+    color: Colors.oker
   }
 });

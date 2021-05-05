@@ -62,7 +62,7 @@ export default RadioFormEditGroceryUnit;
 
 RadioFormEditGroceryUnit.propTypes = {
   setSelectedUnit: PropTypes.func,
-  initValue: PropTypes.string
+  initValue: PropTypes.oneOfType([PropTypes.string, null])
 };
 
 export const styles = StyleSheet.create({

@@ -7,7 +7,7 @@ import Colors from '../../../../constants/Colors';
 import ShadowStyleLow from '../../../../constants/ShadowStyleLow';
 import IconName from '../../../../constants/IconName';
 
-const DailyMeals = ({ showAddMealBottomSheet, meals, setMeal }) => {
+const DailyMeals = ({ showAddMealModal, meals, setMeal }) => {
   const [choosedMealId, setChoosedMealId] = useState(null);
 
   useEffect(
@@ -45,7 +45,7 @@ const DailyMeals = ({ showAddMealBottomSheet, meals, setMeal }) => {
             <Text style={styles.mealText}>{meal.name}</Text>
           </TouchableOpacity>
         ))}
-        <TouchableOpacity style={styles.addMealIconWrapper} onPress={showAddMealBottomSheet}>
+        <TouchableOpacity style={styles.addMealIconWrapper} onPress={showAddMealModal}>
           <Icon.AntDesign name={IconName.plus} size={30} color={Colors.lightOker} />
         </TouchableOpacity>
       </ScrollView>
@@ -56,7 +56,7 @@ const DailyMeals = ({ showAddMealBottomSheet, meals, setMeal }) => {
 export default DailyMeals;
 
 DailyMeals.propTypes = {
-  showAddMealBottomSheet: PropTypes.func,
+  showAddMealModal: PropTypes.func,
   meals: PropTypes.array,
   setMeal: PropTypes.func
 };

@@ -10,10 +10,7 @@ import Colors from '../../../../constants/Colors';
 import IconName from '../../../../constants/IconName';
 import StandardNotificationModal from '../../../shared/modal/StandardNotificationModal';
 import { showStandardPopUpSelector } from '../../../../store/selectors/ErrorSelector';
-import {
-  getGallery,
-  saveGallery
-} from '../../../../store/actions/GalleryActions';
+import { getGallery, saveGallery } from '../../../../store/actions/GalleryActions';
 import { userSelector } from '../../../../store/selectors/UserSelector';
 
 const AddImage = () => {
@@ -62,105 +59,100 @@ const AddImage = () => {
   return (
     <>
       <StandardNotificationModal visible={isStandardModalVisible} />
-      <>
-        <View style={styles.pickerWrapper}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => pickImage('front')}
-          >
-            <Text style={styles.buttonText}>{$t('gallery.front')}</Text>
-          </TouchableOpacity>
-          <View>
-            {frontImage ? (
-              <TouchableOpacity onPress={() => pickImage('front')}>
-                <Image source={{ uri: frontImage.uri }} style={styles.image} />
-                <TouchableOpacity
-                  style={styles.deleteIcon}
-                  onPress={() => setFrontImage(null)}
-                >
-                  <Icon.MaterialIcons
-                    name={IconName.delete}
-                    size={36}
-                    color={Colors.warning}
-                  />
-                </TouchableOpacity>
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity
-                style={styles.noImage}
-                onPress={() => pickImage('front')}
-              />
-            )}
-          </View>
-        </View>
-        <View style={styles.pickerWrapper}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => pickImage('back')}
-          >
-            <Text style={styles.buttonText}>{$t('gallery.back')}</Text>
-          </TouchableOpacity>
-          <View>
-            {backImage ? (
-              <TouchableOpacity onPress={() => pickImage('back')}>
-                <Image source={{ uri: backImage.uri }} style={styles.image} />
-                <TouchableOpacity
-                  style={styles.deleteIcon}
-                  onPress={() => setBackImage(null)}
-                >
-                  <Icon.MaterialIcons
-                    name={IconName.delete}
-                    size={36}
-                    color={Colors.warning}
-                  />
-                </TouchableOpacity>
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity
-                style={styles.noImage}
-                onPress={() => pickImage('back')}
-              />
-            )}
-          </View>
-        </View>
-        <View style={styles.pickerWrapper}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => pickImage('side')}
-          >
-            <Text style={styles.buttonText}>{$t('gallery.side')}</Text>
-          </TouchableOpacity>
-          <View>
-            {sideImage ? (
-              <TouchableOpacity onPress={() => pickImage('side')}>
-                <Image source={{ uri: sideImage.uri }} style={styles.image} />
-                <TouchableOpacity
-                  style={styles.deleteIcon}
-                  onPress={() => setSideImage(null)}
-                >
-                  <Icon.MaterialIcons
-                    name={IconName.delete}
-                    size={36}
-                    color={Colors.warning}
-                  />
-                </TouchableOpacity>
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity
-                style={styles.noImage}
-                onPress={() => pickImage('side')}
-              />
-            )}
-          </View>
-        </View>
-        <View>
-          <Text style={styles.dateText}>{$t('common.date')}:</Text>
-          <Text style={styles.dateText}>{moment().format('ll')}</Text>
-        </View>
-        <TouchableOpacity style={styles.saveButton} onPress={handleUploadPhoto}>
-          <Text style={styles.saveButtonText}>{$t('common.save')}</Text>
+      <View style={styles.pickerWrapper}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.button}
+          onPress={() => pickImage('front')}
+        >
+          <Text style={styles.buttonText}>{$t('gallery.front')}</Text>
         </TouchableOpacity>
-      </>
+        <View>
+          {frontImage ? (
+            <TouchableOpacity activeOpacity={0.7} onPress={() => pickImage('front')}>
+              <Image source={{ uri: frontImage.uri }} style={styles.image} />
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.deleteIcon}
+                onPress={() => setFrontImage(null)}
+              >
+                <Icon.Fontisto name={IconName.close} size={32} color={Colors.warningColor} />
+              </TouchableOpacity>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              activeOpacity={0.7}
+              style={styles.noImage}
+              onPress={() => pickImage('front')}
+            />
+          )}
+        </View>
+      </View>
+      <View style={styles.pickerWrapper}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.button}
+          onPress={() => pickImage('back')}
+        >
+          <Text style={styles.buttonText}>{$t('gallery.back')}</Text>
+        </TouchableOpacity>
+        <View>
+          {backImage ? (
+            <TouchableOpacity activeOpacity={0.7} onPress={() => pickImage('back')}>
+              <Image source={{ uri: backImage.uri }} style={styles.image} />
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.deleteIcon}
+                onPress={() => setBackImage(null)}
+              >
+                <Icon.Fontisto name={IconName.close} size={32} color={Colors.warningColor} />
+              </TouchableOpacity>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              activeOpacity={0.7}
+              style={styles.noImage}
+              onPress={() => pickImage('back')}
+            />
+          )}
+        </View>
+      </View>
+      <View style={styles.pickerWrapper}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.button}
+          onPress={() => pickImage('side')}
+        >
+          <Text style={styles.buttonText}>{$t('gallery.side')}</Text>
+        </TouchableOpacity>
+        <View>
+          {sideImage ? (
+            <TouchableOpacity activeOpacity={0.7} onPress={() => pickImage('side')}>
+              <Image source={{ uri: sideImage.uri }} style={styles.image} />
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.deleteIcon}
+                onPress={() => setSideImage(null)}
+              >
+                <Icon.Fontisto name={IconName.close} size={32} color={Colors.warningColor} />
+              </TouchableOpacity>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              activeOpacity={0.7}
+              style={styles.noImage}
+              onPress={() => pickImage('side')}
+            />
+          )}
+        </View>
+      </View>
+      <View>
+        <Text style={styles.dateText}>{$t('common.date')}:</Text>
+        <Text style={styles.dateText}>{moment().format('ll')}</Text>
+      </View>
+      <TouchableOpacity activeOpacity={0.7} style={styles.saveButton} onPress={handleUploadPhoto}>
+        <Text style={styles.saveButtonText}>{$t('common.save')}</Text>
+      </TouchableOpacity>
     </>
   );
 };
@@ -174,17 +166,18 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: 'center',
     backgroundColor: Colors.cloudColor,
-    borderRadius: 5,
-    marginVertical: 10,
+    borderRadius: 10,
+    marginVertical: 5,
     paddingHorizontal: 35,
     paddingVertical: 10
   },
   buttonText: {
     color: Colors.white,
-    fontWeight: 'bold'
+    fontFamily: 'montserrat-bold'
   },
   dateText: {
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontFamily: 'montserrat-regular'
   },
   deleteIcon: {
     position: 'absolute',
@@ -194,7 +187,7 @@ const styles = StyleSheet.create({
   image: {
     alignSelf: 'center',
     height: 250,
-    marginVertical: 30,
+    marginVertical: 15,
     width: 250
   },
   noImage: {
@@ -202,39 +195,24 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.1)',
     borderRadius: 10,
     height: 250,
-    marginVertical: 30,
+    marginVertical: 10,
     width: 250
   },
   pickerWrapper: {
-    elevation: 24,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 12
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 16.0
+    paddingVertical: 20
   },
   saveButton: {
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: Colors.cloudColor,
     borderRadius: 5,
-    elevation: 24,
     marginVertical: 15,
-    paddingVertical: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 12
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 16.0,
-    width: '80%'
+    paddingVertical: 10
   },
   saveButtonText: {
     color: Colors.white,
+    fontFamily: 'montserrat-bold',
     fontSize: 18,
-    fontWeight: 'bold'
+    paddingHorizontal: 20
   }
 });

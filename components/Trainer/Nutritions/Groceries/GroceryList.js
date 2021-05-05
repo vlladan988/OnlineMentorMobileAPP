@@ -11,6 +11,7 @@ import ShadowStyleLow from '../../../../constants/ShadowStyleLow';
 import SharedLinearGradientBackgroundHorizontal from '../../../shared/SharedLinearGradientBackgroundHorizontal';
 import { recipePercentValue } from '../../../../helpers/RecipePercentValue';
 import SharedAnimatedDropdown from '../../../shared/SharedAnimatedDropdown';
+import { formatGroceryUnit } from '../../../../helpers/FormatGroceryUnit';
 
 const GroceryList = ({
   renderListGroceries,
@@ -58,17 +59,12 @@ const GroceryList = ({
     <View style={styles.container}>
       <View style={ShadowStyleLow}>
         <SharedLinearGradientBackgroundHorizontal
-          childrenColors={[
-            Colors.darkBackgroundAppColor,
-            Colors.backgroundAppColor,
-            Colors.lightBackgroundAppColor
-          ]}
+          childrenColors={[Colors.darkBackgroundAppColor, Colors.lightBackgroundAppColor]}
           childrenStyle={styles.gradientWrapper}
         >
           <View style={styles.item}>
             <Text style={styles.nameText}>
-              {item.name} ({item.unit_type}
-              {item.unit})
+              {item.name} {formatGroceryUnit(item.unit_type, item.unit)}
             </Text>
             <View style={styles.dotsIconWrapper}>
               {choosedItem.id === item.id && (

@@ -18,7 +18,7 @@ import { sumRecipeGrocery } from '../../../../helpers/SumRecipeGrocery';
 import IconName from '../../../../constants/IconName';
 import { recipePercentValue } from '../../../../helpers/RecipePercentValue';
 import SharedAnimatedDropdown from '../../../shared/SharedAnimatedDropdown';
-import { isDefaultRecipeImage } from '../../../../helpers/IsDefaultRecipeImage';
+import { isDefaultImage } from '../../../../helpers/IsDefaultImage';
 
 const DailyMealList = ({
   showCreateEditModal,
@@ -124,7 +124,7 @@ const DailyMealList = ({
                   <View style={[ShadowStyleLow, styles.imgWrapper]}>
                     <Image
                       source={
-                        isDefaultRecipeImage(recipe.recipe_image_url)
+                        isDefaultImage(recipe.recipe_image_url)
                           ? image[recipe.recipe_image_url]
                           : { uri: recipe.recipe_image_url }
                       }

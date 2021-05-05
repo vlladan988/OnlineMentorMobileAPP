@@ -8,6 +8,7 @@ import Colors from '../../../../../../constants/Colors';
 import IconName from '../../../../../../constants/IconName';
 import ShadowStyleLow from '../../../../../../constants/ShadowStyleLow';
 import ShadowStyleHigh from '../../../../../../constants/ShadowStyleHigh';
+import { CutTextLength } from '../../../../../../helpers/CutTextLength';
 
 const TemplateMealRecipeList = ({ renderData, deleteRecipe, showRecipeModal }) => {
   const keyExtractor = useCallback(item => item.id.toString(), []);
@@ -35,7 +36,7 @@ const TemplateMealRecipeList = ({ renderData, deleteRecipe, showRecipeModal }) =
         ]}
         childrenStyle={styles.gradientWrapper}
       >
-        <Text style={styles.proteinValText}>{item.name}</Text>
+        <Text style={styles.proteinValText}>{CutTextLength(item.name, 18)}</Text>
         <View style={styles.iconsWrapper}>
           <Icon.AntDesign
             name={IconName.right}

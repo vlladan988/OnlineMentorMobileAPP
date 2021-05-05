@@ -38,7 +38,7 @@ const SignUpScreen = () => {
     <SharedLinearGradientBackgroundVertical
       childrenColors={[
         Colors.lightBackgroundAppColor,
-        Colors.backgroundAppColor,
+        Colors.darkBackgroundAppColor,
         Colors.darkBackgroundAppColor
       ]}
       childrenStyle={styles.gradientBackground}

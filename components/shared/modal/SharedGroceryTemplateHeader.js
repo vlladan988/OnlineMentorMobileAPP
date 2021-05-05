@@ -31,6 +31,7 @@ const SharedGroceryTemplateHeader = ({ showModal, handleSearch, placeHolder, fil
             placeholderTextColor={Colors.lightGray}
             onChangeText={text => searchList(text)}
             value={searchText}
+            selectionColor={Colors.light}
           />
         </View>
         <View style={styles.addButtonWrapper}>
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
   inputSearchField: {
     color: Colors.light,
     flex: 1,
-    fontFamily: 'montserrat-regular',
+    fontFamily: 'montserrat-italic',
     height: 40
   },
   searchIcon: {

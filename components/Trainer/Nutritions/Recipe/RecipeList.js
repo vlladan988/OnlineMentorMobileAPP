@@ -12,7 +12,7 @@ import breakfast from '../../../../assets/images/meal.jpg';
 import Colors from '../../../../constants/Colors';
 import ShadowStyleLow from '../../../../constants/ShadowStyleLow';
 import { sumRecipeGrocery } from '../../../../helpers/SumRecipeGrocery';
-import { isDefaultRecipeImage } from '../../../../helpers/IsDefaultRecipeImage';
+import { isDefaultImage } from '../../../../helpers/IsDefaultImage';
 import { deleteRecipe } from '../../../../store/actions/RecipeActions';
 import SharedLinearGradientBackgroundHorizontal from '../../../shared/SharedLinearGradientBackgroundHorizontal';
 import { showDeletePopUpSelector } from '../../../../store/selectors/ErrorSelector';
@@ -132,7 +132,7 @@ const RecipeList = ({ handleEditRecipeModalVisible, filteredList, showRecipeModa
             <View style={[ShadowStyleHigh, styles.imgWrapper]}>
               <Image
                 source={
-                  isDefaultRecipeImage(item.recipe_image_url)
+                  isDefaultImage(item.recipe_image_url)
                     ? image[item.recipe_image_url]
                     : { uri: item.recipe_image_url }
                 }

@@ -1,8 +1,9 @@
 import produce from 'immer';
-import { SET_TEMPLATES } from '../actionTypes/TemplateActionTypes';
+import { SET_TEMPLATES, SET_CLIENT_TEMPLATES } from '../actionTypes/TemplateActionTypes';
 
 const initialState = {
-  templates: []
+  templates: [],
+  clientTemplates: []
 };
 
 export default (state = initialState, action) =>
@@ -11,6 +12,9 @@ export default (state = initialState, action) =>
     switch (action.type) {
       case SET_TEMPLATES:
         draft.templates = action.payload;
+        break;
+      case SET_CLIENT_TEMPLATES:
+        draft.clientTemplates = action.payload;
         break;
     }
   });

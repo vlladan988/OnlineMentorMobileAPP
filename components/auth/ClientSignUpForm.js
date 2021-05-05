@@ -9,7 +9,7 @@ import $t from 'i18n';
 import ErrorText from '../shared/Text/ErrorText';
 import Colors from '../../constants/Colors';
 import IconName from '../../constants/IconName';
-import { forgotPasswordValidationRules } from '../../validation/auth';
+import { signUpValidationRules } from '../../validation/auth';
 import SharedLinearGradientBackgroundHorizontal from '../shared/SharedLinearGradientBackgroundHorizontal';
 
 export const ClientSignUpForm = ({ onSubmit, signUpErrors }) => (
@@ -21,7 +21,7 @@ export const ClientSignUpForm = ({ onSubmit, signUpErrors }) => (
       confirm_password: ''
     }}
     onSubmit={onSubmit}
-    validationSchema={forgotPasswordValidationRules}
+    validationSchema={signUpValidationRules}
   >
     {({ handleSubmit }) => (
       <View style={styles.container}>
@@ -56,13 +56,11 @@ export const ClientSignUpForm = ({ onSubmit, signUpErrors }) => (
               placeholder={$t('auth.enterClientEmail')}
               style={styles.inputField}
               placeholderTextColor={Colors.lightText}
+              keyboardType={'email-address'}
             />
           </View>
         </View>
-        <ErrorText
-          error={!!signUpErrors.message}
-          message={signUpErrors.message}
-        />
+        <ErrorText error={!!signUpErrors.message} message={signUpErrors.message} />
         <View style={styles.inputFieldWrapper}>
           <Icon.MaterialCommunityIcons
             name={IconName.password}
@@ -101,11 +99,7 @@ export const ClientSignUpForm = ({ onSubmit, signUpErrors }) => (
           </View>
         </View>
         <SharedLinearGradientBackgroundHorizontal
-          childrenColors={[
-            Colors.darkCloudColor,
-            Colors.cloudColor,
-            Colors.lightCloudColor
-          ]}
+          childrenColors={[Colors.darkCloudColor, Colors.cloudColor, Colors.lightCloudColor]}
           childrenStyle={styles.registerButton}
         >
           <TouchableOpacity onPress={handleSubmit} style={styles.submitButton}>
@@ -137,6 +131,7 @@ const styles = StyleSheet.create({
   inputField: {
     backgroundColor: 'transparent',
     color: Colors.white,
+    fontFamily: 'montserrat-regular',
     height: 50,
     textAlign: 'center'
   },
@@ -156,7 +151,9 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   registerButtonText: {
-    color: Colors.white
+    color: Colors.white,
+    fontFamily: 'montserrat-bold',
+    fontSize: 18
   },
   submitButton: {
     alignItems: 'center',

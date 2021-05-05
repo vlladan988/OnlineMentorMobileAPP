@@ -14,25 +14,13 @@ const LoginHeader = ({ screen }) => {
     <View style={styles.container}>
       {IsClientScreen(screen) ? (
         <>
-          <Icon.FontAwesome5
-            name={IconName.userAdd}
-            size={100}
-            color={Colors.cloudColor}
-          />
-          <Text style={styles.headerText}>
-            {$t('auth.addClient').toUpperCase()}
-          </Text>
+          <Icon.FontAwesome5 name={IconName.userAdd} size={100} color={Colors.cloudColor} />
+          <Text style={styles.headerText}>{$t('auth.addClient').toUpperCase()}</Text>
         </>
       ) : (
         <>
-          <Icon.Fontisto
-            name={IconName.cloud}
-            size={150}
-            color={Colors.cloudColor}
-          />
-          <Text style={styles.headerText}>
-            {$t('auth.tigsAcademy').toUpperCase()}
-          </Text>
+          <Icon.Fontisto name={IconName.cloud} size={150} color={Colors.cloudColor} />
+          <Text style={styles.headerText}>{$t('auth.tigsAcademy').toUpperCase()}</Text>
         </>
       )}
     </View>
@@ -53,6 +41,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: Colors.lightGray,
+    fontFamily: 'montserrat-bold',
     fontSize: 18,
     paddingTop: 15
   }

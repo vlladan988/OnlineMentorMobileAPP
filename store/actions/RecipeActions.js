@@ -5,8 +5,7 @@ import {
   FETCH_RECIPE,
   SET_RECIPIES,
   DELETE_RECIPE,
-  UPDATE_RECIPE,
-  SET_RECIPE_MODAL
+  UPDATE_RECIPE
 } from '../actionTypes/RecipeActionTypes';
 
 export const getRecipeTypes = () => ({
@@ -41,14 +40,3 @@ export const deleteRecipe = payload => ({
   type: DELETE_RECIPE,
   payload
 });
-
-export const setMealTypeModal = () => ({
-  type: SET_RECIPE_MODAL
-});
-//   export const updateGoal = payload => ({
-//     type: UPDATE_GOAL,
-//     payload
-//   });
-//   export const resetGoal = () => ({
-//     type: RESET_GOAL
-//   });

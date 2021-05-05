@@ -33,7 +33,7 @@ const Groceries = () => {
 
   const [screen, setScreen] = useState('create');
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [choosedGrocery, setChoosedGrocery] = useState(false);
+  const [choosedGrocery, setChoosedGrocery] = useState(null);
   const [groceriesFiltered, setGroceriesFiltered] = useState(groceries);
 
   useEffect(
@@ -46,6 +46,11 @@ const Groceries = () => {
   const handleSearchGroceryByLetter = letter => {
     const filteredList = searchFilterListByName(groceries, letter);
     setGroceriesFiltered(filteredList);
+  };
+
+  const handleCloseModal = () => {
+    handleShowCreateEditGroceryModal('');
+    setChoosedGrocery(null);
   };
 
   const handleShowCreateEditGroceryModal = screenType => {
@@ -62,18 +67,14 @@ const Groceries = () => {
 
   return (
     <SharedLinearGradientBackgroundVertical
-      childrenColors={[
-        Colors.lightBackgroundAppColor,
-        Colors.backgroundAppColor,
-        Colors.darkBackgroundAppColor
-      ]}
+      childrenColors={[Colors.lightBackgroundAppColor, Colors.darkBackgroundAppColor]}
       childrenStyle={styles.linearGradientContainer}
     >
       <StandardNotificationModal visible={isStandardModalVisible} />
       <SharedDeleteModal isVisible={isDeleteModalVisible} handleDelete={handleDeleteGrocery} />
       <SharedCreateEditGroceryModal
         isVisible={isModalVisible}
-        closeModal={() => handleShowCreateEditGroceryModal('')}
+        closeModal={handleCloseModal}
         choosedGrocery={choosedGrocery}
         screen={screen}
       />

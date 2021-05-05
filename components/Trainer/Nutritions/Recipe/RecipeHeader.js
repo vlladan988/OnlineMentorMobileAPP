@@ -7,11 +7,13 @@ import IconName from '../../../../constants/IconName';
 import Colors from '../../../../constants/Colors';
 import ShadowStyleLow from '../../../../constants/ShadowStyleLow';
 import SharedLinearGradientBackgroundHorizontal from '../../../shared/SharedLinearGradientBackgroundHorizontal';
-import { useDispatch } from 'react-redux';
-import { setMealTypeModal } from '../../../../store/actions/RecipeActions';
 
-const RecipeHeader = ({ searchText, setSearchText, handleCreateRecipeModalVisible }) => {
-  const dispatch = useDispatch();
+const RecipeHeader = ({
+  searchText,
+  setSearchText,
+  handleCreateRecipeModalVisible,
+  showRecipeTypeBottomSheet
+}) => {
   return (
     <>
       <View style={styles.searchWrapper}>
@@ -27,6 +29,7 @@ const RecipeHeader = ({ searchText, setSearchText, handleCreateRecipeModalVisibl
           placeholderTextColor={Colors.lightGray}
           onChangeText={text => setSearchText(text)}
           value={searchText}
+          selectionColor={Colors.light}
         />
       </View>
       <View style={styles.buttonsWrapper}>
@@ -49,10 +52,7 @@ const RecipeHeader = ({ searchText, setSearchText, handleCreateRecipeModalVisibl
             ]}
             childrenStyle={styles.gradientWrapper}
           >
-            <TouchableOpacity
-              style={styles.headerButton}
-              onPress={() => dispatch(setMealTypeModal())}
-            >
+            <TouchableOpacity style={styles.headerButton} onPress={showRecipeTypeBottomSheet}>
               <Text style={styles.headerButtonText}>Type</Text>
             </TouchableOpacity>
           </SharedLinearGradientBackgroundHorizontal>
@@ -67,6 +67,7 @@ export default RecipeHeader;
 RecipeHeader.propTypes = {
   searchText: PropTypes.string,
   setSearchText: PropTypes.func,
+  showRecipeTypeBottomSheet: PropTypes.func,
   handleCreateRecipeModalVisible: PropTypes.func
 };
 

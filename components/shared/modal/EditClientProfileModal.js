@@ -1,38 +1,47 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  Modal,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity
-} from 'react-native';
+import { View, Text, Modal, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 import { useDispatch } from 'react-redux';
 import * as Icon from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import $t from 'i18n';
+import * as ImagePicker from 'expo-image-picker';
 
 import Colors from '../../../constants/Colors';
+import richFroning from '../../../assets/images/richFroning.jpg';
 import IconName from '../../../constants/IconName';
 import { updateClient } from '../../../store/actions/ClientActions';
 import { isCredEmpty } from '../../../helpers/IsCredEmpty';
-import SharedLinearGradientBackgroundHorizontal from '../SharedLinearGradientBackgroundHorizontal';
+import Layout from '../../../constants/Layout';
 
 const EditClientProfileModal = ({ isVisible, closeModal, user }) => {
   const dispatch = useDispatch();
 
-  const [age, setAge] = useState('');
-  const [weight, setWeight] = useState('');
-  const [height, setHeight] = useState('');
-  const [desc, setDesc] = useState('');
-  const [city, setCity] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [age, setAge] = useState(user.age);
+  const [weight, setWeight] = useState(user.weight);
+  const [height, setHeight] = useState(user.height);
+  const [desc, setDesc] = useState(user.description);
+  const [city, setCity] = useState(user.city);
+  const [phoneNumber, setPhoneNumber] = useState(user.phone_number);
+  const [profileImage, setProfileImage] = useState(null);
+
+  const pickProfileImage = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      base64: true,
+      quality: 1
+    });
+
+    if (!result.cancelled) setProfileImage(result);
+  };
 
   const handleUpdateClient = () => {
     dispatch(
       updateClient({
         clientId: user.id,
+        profileImage: profileImage ? profileImage.base64 : null,
         age: isCredEmpty(age) ? user.age : age,
         weight: isCredEmpty(weight) ? user.weight : weight,
         height: isCredEmpty(height) ? user.height : height,
@@ -41,129 +50,150 @@ const EditClientProfileModal = ({ isVisible, closeModal, user }) => {
         phoneNumber: isCredEmpty(phoneNumber) ? user.phone_number : phoneNumber
       })
     );
-    setAge('');
-    setWeight('');
-    setHeight('');
-    setDesc('');
-    setCity('');
-    setPhoneNumber('');
+    // setAge('');
+    // setWeight('');
+    // setHeight('');
+    // setDesc('');
+    // setCity('');
+    // setPhoneNumber('');
     closeModal();
   };
 
   return (
-    <Modal animationType="slide" transparent={true} visible={isVisible}>
-      <View style={styles.container}>
-        <SharedLinearGradientBackgroundHorizontal
-          childrenColors={[
-            Colors.lightBackgroundAppColor,
-            Colors.backgroundAppColor,
-            Colors.darkBackgroundAppColor
-          ]}
-          childrenStyle={styles.gradientWrapper}
-        >
-          <KeyboardAwareScrollView enableOnAndroid>
-            <View style={styles.itemWrapper}>
-              <Text style={styles.itemText}>{$t('client.age')}</Text>
-              <View style={styles.inputWrapper}>
-                <TextInput
-                  style={styles.inputField}
-                  keyboardType={'numeric'}
-                  onChangeText={text => setAge(text)}
-                  value={age}
-                  placeholder={String(user.age)}
-                  placeholderTextColor={Colors.lightGray}
-                  textAlign={'center'}
-                />
+    <Modal animationType="fade" transparent={true} visible={isVisible}>
+      <TouchableOpacity onPress={closeModal} activeOpacity={1} style={styles.container}>
+        <KeyboardAwareScrollView enableOnAndroid>
+          <TouchableOpacity onPress={closeModal} activeOpacity={1} style={styles.scrollContainer}>
+            <TouchableOpacity activeOpacity={1} style={styles.modalWrapper}>
+              <TouchableOpacity
+                onPress={pickProfileImage}
+                style={[styles.areaWrapper, styles.userWrapper]}
+              >
+                {profileImage ? (
+                  <Image
+                    source={profileImage ? { uri: profileImage.uri } : richFroning}
+                    style={styles.profileImage}
+                  />
+                ) : (
+                  <Image
+                    source={
+                      user.photo_url
+                        ? { uri: user.photo_url }
+                        : profileImage
+                          ? { uri: profileImage.uri }
+                          : richFroning
+                    }
+                    style={styles.profileImage}
+                  />
+                )}
+                <Text style={styles.userName}>{user.full_name}</Text>
+              </TouchableOpacity>
+              <View style={styles.areaWrapper}>
+                <View style={styles.detailWrapper}>
+                  <View style={styles.itemWrapper}>
+                    <TextInput
+                      value={String(age)}
+                      autoCorrect={false}
+                      autoFocus={false}
+                      placeholder={'25'}
+                      keyboardType={'number-pad'}
+                      maxLength={2}
+                      selectionColor={Colors.backgroundAppColor}
+                      placeholderTextColor={Colors.lightGray}
+                      onChangeText={text => setAge(text)}
+                      style={styles.input}
+                    />
+                    <Text style={styles.itemName}>{$t('client.age')}</Text>
+                  </View>
+                  <View style={styles.itemWrapper}>
+                    <TextInput
+                      value={String(weight)}
+                      autoCorrect={false}
+                      placeholder={'80'}
+                      keyboardType={'number-pad'}
+                      maxLength={3}
+                      selectionColor={Colors.backgroundAppColor}
+                      placeholderTextColor={Colors.lightGray}
+                      onChangeText={text => setWeight(text)}
+                      style={styles.input}
+                    />
+                    <Text style={styles.itemName}>{$t('client.weight-kg')}</Text>
+                  </View>
+                  <View style={styles.itemWrapper}>
+                    <TextInput
+                      value={String(height)}
+                      autoCorrect={false}
+                      placeholder={'180'}
+                      keyboardType={'number-pad'}
+                      maxLength={3}
+                      selectionColor={Colors.backgroundAppColor}
+                      placeholderTextColor={Colors.lightGray}
+                      onChangeText={text => setHeight(text)}
+                      style={styles.input}
+                    />
+                    <Text style={styles.itemName}>{$t('client.height-cm')}</Text>
+                  </View>
+                </View>
               </View>
-            </View>
-            <View style={styles.itemWrapper}>
-              <Text style={styles.itemText}>{$t('client.weight')}</Text>
-              <View style={styles.inputWrapper}>
-                <TextInput
-                  style={styles.inputField}
-                  keyboardType={'numeric'}
-                  onChangeText={text => setWeight(text)}
-                  value={weight}
-                  placeholder={String(user.weight)}
-                  placeholderTextColor={Colors.lightGray}
-                  textAlign={'center'}
-                />
-                <Text style={styles.unit}>{$t('client.kg')}</Text>
+              <View style={styles.areaWrapper}>
+                <View style={styles.descWrapper}>
+                  <TextInput
+                    value={String(desc)}
+                    autoCorrect={false}
+                    placeholder={'Text about your self...'}
+                    numberOfLines={5}
+                    multiline={true}
+                    selectionColor={Colors.backgroundAppColor}
+                    placeholderTextColor={Colors.lightGray}
+                    onChangeText={text => setDesc(text)}
+                    style={styles.descriptionText}
+                  />
+                </View>
               </View>
-            </View>
-            <View style={styles.itemWrapper}>
-              <Text style={styles.itemText}>{$t('client.height')}</Text>
-              <View style={styles.inputWrapper}>
-                <TextInput
-                  style={styles.inputField}
-                  keyboardType={'numeric'}
-                  onChangeText={text => setHeight(text)}
-                  value={height}
-                  placeholder={String(user.height)}
-                  placeholderTextColor={Colors.lightGray}
-                  textAlign={'center'}
-                />
-                <Text style={styles.unit}>{$t('client.cm')}</Text>
+              <View style={[styles.areaWrapper, styles.bottom]}>
+                <View style={styles.credWrapper}>
+                  <Icon.MaterialIcons
+                    name={IconName.city}
+                    color={Colors.backgroundAppColor}
+                    size={26}
+                    style={styles.icon}
+                  />
+                  <TextInput
+                    value={String(city)}
+                    autoCorrect={false}
+                    placeholder={'France, Paris'}
+                    selectionColor={Colors.backgroundAppColor}
+                    placeholderTextColor={Colors.lightGray}
+                    onChangeText={text => setCity(text)}
+                    style={styles.inputCityAndNumber}
+                  />
+                </View>
+                <View style={styles.credWrapper}>
+                  <Icon.AntDesign
+                    name={IconName.phone}
+                    color={Colors.backgroundAppColor}
+                    size={26}
+                    style={styles.icon}
+                  />
+                  <TextInput
+                    value={String(phoneNumber)}
+                    autoCorrect={false}
+                    placeholder={'0123456789'}
+                    keyboardType={'number-pad'}
+                    selectionColor={Colors.backgroundAppColor}
+                    placeholderTextColor={Colors.lightGray}
+                    onChangeText={text => setPhoneNumber(text)}
+                    style={styles.inputCityAndNumber}
+                  />
+                </View>
               </View>
-            </View>
-            <View style={styles.descWrapper}>
-              <View style={styles.descTextWrapper}>
-                <Text style={styles.descText}>{$t('common.desc')}</Text>
-              </View>
-              <TextInput
-                numberOfLines={5}
-                multiline={true}
-                style={styles.descInput}
-                onChangeText={text => setDesc(text)}
-                value={desc}
-                placeholder={String(user.description)}
-                placeholderTextColor={Colors.backgroundAppColor}
-                textAlign={'center'}
-              />
-            </View>
-            <View style={styles.itemCredWrapper}>
-              <Text style={styles.itemCredText}>{$t('client.city')}</Text>
-              <View style={styles.inputCredWrapper}>
-                <TextInput
-                  style={styles.credInput}
-                  onChangeText={text => setCity(text)}
-                  value={city}
-                  placeholder={String(user.city)}
-                  placeholderTextColor={Colors.lightGray}
-                  textAlign={'center'}
-                />
-              </View>
-            </View>
-            <View style={styles.itemCredWrapper}>
-              <Text style={styles.itemCredText}>{$t('client.phone')}</Text>
-              <View style={styles.inputCredWrapper}>
-                <TextInput
-                  style={styles.credInput}
-                  keyboardType={'numeric'}
-                  onChangeText={text => setPhoneNumber(text)}
-                  value={phoneNumber}
-                  placeholder={String(user.phone_number)}
-                  placeholderTextColor={Colors.lightGray}
-                  textAlign={'center'}
-                />
-              </View>
-            </View>
-            <TouchableOpacity
-              style={styles.buttonWrapper}
-              onPress={handleUpdateClient}
-            >
-              <Text style={styles.buttonText}>{$t('common.save')}</Text>
+              <TouchableOpacity style={styles.buttonWrapper} onPress={handleUpdateClient}>
+                <Text style={styles.buttonText}>{$t('common.save')}</Text>
+              </TouchableOpacity>
             </TouchableOpacity>
-          </KeyboardAwareScrollView>
-          <Icon.Fontisto
-            style={styles.closeIcon}
-            name={IconName.close}
-            color={Colors.light}
-            size={30}
-            onPress={closeModal}
-          />
-        </SharedLinearGradientBackgroundHorizontal>
-      </View>
+          </TouchableOpacity>
+        </KeyboardAwareScrollView>
+      </TouchableOpacity>
     </Modal>
   );
 };
@@ -177,6 +207,15 @@ EditClientProfileModal.propTypes = {
 };
 
 const styles = StyleSheet.create({
+  areaWrapper: {
+    backgroundColor: Colors.white,
+    marginVertical: 10,
+    paddingHorizontal: 5
+  },
+  bottom: {
+    paddingHorizontal: 10,
+    paddingVertical: 15
+  },
   buttonText: {
     color: Colors.white,
     fontSize: 20,
@@ -185,103 +224,88 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     alignSelf: 'center',
     backgroundColor: Colors.cloudColor,
-    borderRadius: 20,
+    borderRadius: 50,
+    marginBottom: 10,
     marginTop: 30,
-    paddingHorizontal: 50,
-    paddingVertical: 15
-  },
-  closeIcon: {
-    position: 'absolute',
-    right: 25,
-    top: 25
+    paddingHorizontal: 30,
+    paddingVertical: 10
   },
   container: {
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    borderTopEndRadius: 20,
-    borderTopStartRadius: 20,
-    flex: 1,
-    justifyContent: 'flex-end'
+    backgroundColor: 'rgba(0,0,0,0.8)',
+    height: Layout.window.height
   },
-  credInput: {
-    color: Colors.cloudColor,
-    fontSize: 20
-  },
-  descInput: {
-    backgroundColor: Colors.light,
-    borderColor: Colors.lightGray,
-    borderRadius: 10,
-    borderWidth: 1,
-    fontSize: 18,
-    height: 100,
-    marginTop: 10,
-    width: '100%'
-  },
-  descText: {
-    color: Colors.cloudColor,
-    fontSize: 24
-  },
-  descTextWrapper: {
-    alignItems: 'flex-end',
-    width: '90%'
-  },
-  descWrapper: {
-    alignItems: 'center',
-    paddingHorizontal: 40,
-    paddingVertical: 30,
-    width: '100%'
-  },
-  gradientWrapper: {
-    borderRadius: 40,
-    height: '85%',
-    paddingTop: 50
-  },
-  inputCredWrapper: {
-    borderBottomColor: Colors.cloudColor,
-    borderBottomWidth: 1,
-    width: '70%'
-  },
-  inputField: {
-    color: Colors.cloudColor,
-    fontSize: 30
-  },
-  inputWrapper: {
-    borderBottomColor: Colors.cloudColor,
-    borderBottomWidth: 1,
-    flexDirection: 'row',
-    width: 70
-  },
-  itemCredText: {
-    color: Colors.cloudColor,
-    fontSize: 22,
-    fontWeight: 'bold',
-    width: '30%'
-  },
-  itemCredWrapper: {
+  credWrapper: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 40,
-    paddingVertical: 10,
-    width: '100%'
+    paddingVertical: 5
   },
-  itemText: {
-    color: Colors.cloudColor,
+  descWrapper: {
+    borderBottomColor: Colors.borderLine,
+    borderBottomWidth: 1,
+    paddingVertical: 20
+  },
+  descriptionText: {
+    fontFamily: 'montserrat-italic',
+    textAlign: 'center'
+  },
+  detailWrapper: {
+    borderBottomColor: Colors.borderLine,
+    borderBottomWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 10
+  },
+  icon: {
+    paddingRight: 10
+  },
+  input: {
+    borderBottomColor: Colors.lightGray,
+    borderBottomWidth: 1,
+    color: Colors.backgroundAppColor,
+    fontFamily: 'montserrat-regular',
     fontSize: 22,
-    fontWeight: 'bold'
+    paddingHorizontal: 10
+  },
+  inputCityAndNumber: {
+    borderBottomColor: Colors.lightGray,
+    borderBottomWidth: 1,
+    color: Colors.backgroundAppColor,
+    fontFamily: 'montserrat-regular',
+    fontSize: 18,
+    paddingHorizontal: 10
+  },
+  itemName: {
+    color: Colors.lightGray,
+    fontFamily: 'montserrat-regular'
   },
   itemWrapper: {
     alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 60,
+    justifyContent: 'center',
     paddingVertical: 10,
-    width: '100%'
+    width: '33%'
   },
-  unit: {
-    color: Colors.light,
-    position: 'absolute',
-    right: -10,
-    top: 0
+  modalWrapper: {
+    backgroundColor: Colors.lightGrayBackground,
+    borderRadius: 5
+  },
+  profileImage: {
+    borderRadius: 30,
+    height: 60,
+    marginHorizontal: 10,
+    width: 60
+  },
+  scrollContainer: {
+    alignItems: 'center',
+    height: Layout.window.height,
+    justifyContent: 'center'
+  },
+  userName: {
+    fontFamily: 'montserrat-regular',
+    fontSize: 22
+  },
+  userWrapper: {
+    alignItems: 'center',
+    flexDirection: 'row'
   }
 });

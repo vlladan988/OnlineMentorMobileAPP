@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -11,21 +12,25 @@ import GroceryAndMeasurements from '../../Trainer/Nutritions/Groceries/GroceryMo
 import GroceryValues from '../../Trainer/Nutritions/Groceries/GroceryModal/SharedCreateEditModal/GroceryValues';
 import SubmitButtonGroceryForm from '../../Trainer/Nutritions/Groceries/GroceryModal/SharedCreateEditModal/SubmitButtonGroceryForm';
 import { requiredFieldsValidation } from '../../../helpers/RequiredFieldsValidation';
-import { setShowStandardPopUp } from '../../../store/actions/ErrorActions';
-import { showStandardPopUpSelector } from '../../../store/selectors/ErrorSelector';
+import { setInputFealdError } from '../../../store/actions/ErrorActions';
+import {
+  showStandardPopUpSelector,
+  inputFealdErrorMessage
+} from '../../../store/selectors/ErrorSelector';
 import StandardNotificationModal from './StandardNotificationModal';
 
 const SharedCreateEditGroceryForm = ({ closeModal, choosedGrocery, screen }) => {
   const dispatch = useDispatch();
 
   const isStandardModalVisible = useSelector(showStandardPopUpSelector());
+  const errorMessage = useSelector(inputFealdErrorMessage());
 
   const [name, setName] = useState('');
   const [unit, setUnit] = useState(null);
-  const [unitType, setUnitType] = useState(false);
-  const [proteins, setProteins] = useState('');
-  const [carbons, setCarbons] = useState('');
-  const [fats, setFats] = useState('');
+  const [unitType, setUnitType] = useState(null);
+  const [proteins, setProteins] = useState('0');
+  const [carbons, setCarbons] = useState('0');
+  const [fats, setFats] = useState('0');
   const [calories, setCalories] = useState(null);
 
   useEffect(
@@ -52,26 +57,20 @@ const SharedCreateEditGroceryForm = ({ closeModal, choosedGrocery, screen }) => 
 
   useEffect(
     () => {
-      setUnitType(handleUnitType(unit));
+      unit && setUnitType(handleUnitType(unit));
     },
     [unit]
   );
 
   const handleSubmitForm = () => {
     if (requiredFieldsValidation(new Array(name))) {
-      dispatch(
-        setShowStandardPopUp({
-          message: 'Name field is Required !',
-          warningIcon: true
-        })
-      );
+      dispatch(setInputFealdError('The Name field is required.'));
     } else {
       IsEditScreen(screen) ? handleUpdateGrocery() : handleAddGrocery();
     }
   };
 
   const handleAddGrocery = () => {
-    closeModal();
     dispatch(
       addGroceries({
         name,
@@ -83,10 +82,10 @@ const SharedCreateEditGroceryForm = ({ closeModal, choosedGrocery, screen }) => 
         calories
       })
     );
+    closeModal();
   };
 
   const handleUpdateGrocery = () => {
-    closeModal();
     dispatch(
       updateGroceries({
         id: choosedGrocery.id,
@@ -99,10 +98,11 @@ const SharedCreateEditGroceryForm = ({ closeModal, choosedGrocery, screen }) => 
         calories
       })
     );
+    closeModal();
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAwareScrollView enableOnAndroid style={styles.container}>
       <StandardNotificationModal visible={isStandardModalVisible} />
       <GroceryAndMeasurements
         name={name}
@@ -111,6 +111,7 @@ const SharedCreateEditGroceryForm = ({ closeModal, choosedGrocery, screen }) => 
         unit={unit}
         setUnit={setUnit}
         choosedGrocery={choosedGrocery}
+        errorMessage={errorMessage}
       />
       <GroceryValues
         proteins={proteins}
@@ -122,7 +123,7 @@ const SharedCreateEditGroceryForm = ({ closeModal, choosedGrocery, screen }) => 
         calories={calories}
       />
       <SubmitButtonGroceryForm submitForm={handleSubmitForm} screen={screen} />
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 

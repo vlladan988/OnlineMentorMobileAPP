@@ -17,7 +17,7 @@ import * as Icon from '@expo/vector-icons';
 import SharedLinearGradientBackgroundVertical from '../SharedLinearGradientBackgroundVertical';
 import Colors from '../../../constants/Colors';
 import IconName from '../../../constants/IconName';
-import { isDefaultRecipeImage } from '../../../helpers/IsDefaultRecipeImage';
+import { isDefaultImage } from '../../../helpers/IsDefaultImage';
 import recipeBottom from '../../../assets/images/recipeBottom.jpg';
 import dinner from '../../../assets/images/dinner.jpg';
 import lunch from '../../../assets/images/lunch.png';
@@ -105,7 +105,7 @@ const SharedRecipeModal = ({ isVisible, closeModal, recipe }) => {
               <View style={styles.imgWrapper}>
                 <Image
                   source={
-                    isDefaultRecipeImage(recipe.recipe_image_url)
+                    isDefaultImage(recipe.recipe_image_url)
                       ? image[recipe.recipe_image_url]
                       : { uri: recipe.recipe_image_url }
                   }

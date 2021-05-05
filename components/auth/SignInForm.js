@@ -34,6 +34,7 @@ export const SignInForm = ({ onSubmit, signInError, goToForgotPassword }) => (
               placeholder={$t('auth.enterEmail')}
               style={styles.inputField}
               placeholderTextColor={Colors.lightText}
+              keyboardType={'email-address'}
             />
           </View>
         </View>
@@ -55,22 +56,13 @@ export const SignInForm = ({ onSubmit, signInError, goToForgotPassword }) => (
             />
           </View>
         </View>
-        <ErrorText
-          error={!!signInError}
-          message={$t('auth.invalidCredentials')}
-        />
+        <ErrorText error={!!signInError} message={$t('auth.invalidCredentials')} />
         <SharedLinearGradientBackgroundHorizontal
-          childrenColors={[
-            Colors.darkCloudColor,
-            Colors.cloudColor,
-            Colors.lightCloudColor
-          ]}
+          childrenColors={[Colors.darkCloudColor, Colors.cloudColor, Colors.lightCloudColor]}
           childrenStyle={styles.gradientButton}
         >
           <TouchableOpacity onPress={handleSubmit} style={styles.logInButton}>
-            <Text style={styles.loginButtonText}>
-              {$t('auth.logIn').toUpperCase()}
-            </Text>
+            <Text style={styles.loginButtonText}>{$t('auth.logIn').toUpperCase()}</Text>
           </TouchableOpacity>
         </SharedLinearGradientBackgroundHorizontal>
         <TouchableOpacity style={styles.button} onPress={goToForgotPassword}>

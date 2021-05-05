@@ -20,6 +20,7 @@ import HomeScreenClient from '../screens/main/ClientScreen/Home/HomeScreenClient
 import { addHeaderRightNavigator } from '../helpers';
 import Layout from '../constants/Layout';
 import NutritionScreenClient from '../screens/main/ClientScreen/Nutrition/NutritionScreenClient';
+import SharedClientDailyMeals from '../components/shared/SharedClientDailyMeals';
 
 const HomeStack = createStackNavigator({
   Home: {
@@ -63,6 +64,12 @@ const NutritionStack = createStackNavigator({
         headerTitleStyle: { color: Colors.white, fontWeight: 'bold' }
       };
     }
+  },
+  SelectedClientDailyPlanScreen: {
+    screen: SharedClientDailyMeals,
+    navigationOptions: {
+      headerStyle: HeaderBarStyle
+    }
   }
 });
 
@@ -71,7 +78,7 @@ NutritionStack.navigationOptions = {
     <HandleTabBarLabelStyle focused={focused} name={$t('tabBar.nutrition')} />
   ),
   tabBarIcon: ({ focused }) => (
-    <Icon.FontAwesome5
+    <Icon.MaterialCommunityIcons
       name={IconName.nutritions}
       size={26}
       color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
@@ -97,8 +104,8 @@ WorkoutStack.navigationOptions = {
     <HandleTabBarLabelStyle focused={focused} name={$t('tabBar.workout')} />
   ),
   tabBarIcon: ({ focused }) => (
-    <Icon.FontAwesome5
-      name={IconName.userAdd}
+    <Icon.Entypo
+      name={IconName.workout}
       size={26}
       color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
     />
@@ -164,7 +171,7 @@ const BottomTabNavigator = createBottomTabNavigator(
   {
     tabBarOptions: {
       style: {
-        backgroundColor: Colors.backgroundAppColor,
+        backgroundColor: Colors.darkBackgroundAppColor,
         borderTopColor: Colors.backgroundAppColor,
         borderTopWidth: 1,
         shadowColor: Colors.black,

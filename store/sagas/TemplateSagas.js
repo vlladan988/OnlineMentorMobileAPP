@@ -3,7 +3,7 @@ import { call, put } from 'redux-saga/effects';
 import { setLoader } from '../actions/LoaderAction';
 import { setGlobalError, setShowStandardPopUp } from '../actions/ErrorActions';
 import templateService from '../../services/TemplateService';
-import { setTemplates } from '../actions/TemplateActions';
+import { setTemplates, setClientTemplates } from '../actions/TemplateActions';
 
 export function* handleFetchTemplates() {
   try {
@@ -14,6 +14,15 @@ export function* handleFetchTemplates() {
     yield put(setGlobalError({ bool: true, message: error.response.data.message }));
   } finally {
     yield put(setLoader(false));
+  }
+}
+
+export function* handleGetTemplates(payload) {
+  try {
+    const { data: templates } = yield call(templateService.getTemplates, payload);
+    yield put(setClientTemplates(templates));
+  } catch (error) {
+    yield put(setGlobalError({ bool: true, message: error.response.data.message }));
   }
 }
 
@@ -70,6 +79,25 @@ export function* handleAssignTemplateToClient({ payload }) {
         warningIcon: false
       })
     );
+  } catch (error) {
+    if (error.response.status === 500) {
+      yield put(
+        setShowStandardPopUp({
+          message: 'Client already have one Template',
+          warningIcon: true
+        })
+      );
+    }
+  } finally {
+    yield put(setLoader(false));
+  }
+}
+
+export function* handleUnassignTemplateFromClient({ payload }) {
+  try {
+    yield put(setLoader(true));
+    yield call(templateService.unassignTemplateToClient, payload);
+    yield put(setClientTemplates([]));
   } catch (error) {
     yield put(setGlobalError({ bool: true, message: error.response.data.message }));
   } finally {

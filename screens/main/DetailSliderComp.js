@@ -21,7 +21,7 @@ const DetailSliderComp = ({ trainer }) => {
         </View>
         <View style={styles.iconWrapper}>
           <View style={styles.detailIconWrapper}>
-            <Icon.FontAwesome5 name={IconName.userAdd} color={Colors.light} size={22} />
+            <Icon.Entypo name={IconName.workout} color={Colors.light} size={22} />
           </View>
           <Text style={styles.itemText}>{trainer.main_sport}</Text>
         </View>
@@ -88,10 +88,13 @@ const styles = StyleSheet.create({
     marginRight: 30,
     marginTop: 10
   },
+  itemText: {
+    fontFamily: 'montserrat-regular'
+  },
   trainerText: {
     color: Colors.backgroundAppColor,
+    fontFamily: 'montserrat-bold',
     fontSize: 30,
-    fontWeight: 'bold',
     paddingBottom: 5
   },
   trainerWrapper: {
