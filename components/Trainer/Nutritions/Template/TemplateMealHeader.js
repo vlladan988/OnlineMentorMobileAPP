@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-unused-styles */
+/* eslint-disable no-unused-vars */
 /* eslint-disable indent */
 import React from 'react';
 import {
@@ -9,7 +11,7 @@ import {
   ScrollView
 } from 'react-native';
 import * as Icon from '@expo/vector-icons';
-import ModalDropdown from 'react-native-modal-dropdown';
+// import ModalDropdown from 'react-native-modal-dropdown';
 import Constants from 'expo-constants';
 import PropTypes from 'prop-types';
 
@@ -70,7 +72,7 @@ const TemplateMealHeader = ({
             <Icon.Ionicons name={IconName.goBack} size={30} color={Colors.light} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.headerDotsIconWrapper}>
-            <ModalDropdown
+            {/* <ModalDropdown
               defaultIndex={0}
               options={optionValue}
               onSelect={text => handleDropdownPicker(text)}
@@ -83,7 +85,7 @@ const TemplateMealHeader = ({
                 color={Colors.light}
                 size={30}
               />
-            </ModalDropdown>
+            </ModalDropdown> */}
           </TouchableOpacity>
           <View style={styles.detailWrapper}>
             <Text style={styles.nameText}>{template && template.name}</Text>

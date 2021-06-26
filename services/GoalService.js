@@ -1,13 +1,12 @@
 import ApiService from './ApiService';
 
 const ENDPOINTS = {
-  GOAL: '/goals/'
+  GOAL: '/goals'
 };
 
 class GoalService extends ApiService {
-  getGoal = params => this.apiClient.get(ENDPOINTS.GOAL + params);
-  updateGoal = params =>
-    this.apiClient.put(ENDPOINTS.GOAL + params.clientId, params);
+  getGoal = params => this.apiClient.get(ENDPOINTS.GOAL + '/' + params);
+  updateGoal = params => this.apiClient.put(ENDPOINTS.GOAL + '/' + params.clientId, params);
 }
 
 const goalService = new GoalService();

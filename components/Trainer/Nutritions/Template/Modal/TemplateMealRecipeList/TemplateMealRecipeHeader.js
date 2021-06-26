@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-unused-styles */
+/* eslint-disable no-unused-vars */
 /* eslint-disable indent */
 import React, { useState, useEffect } from 'react';
 import {
@@ -12,7 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as Icon from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import PropTypes from 'prop-types';
-import ModalDropdown from 'react-native-modal-dropdown';
+// import ModalDropdown from 'react-native-modal-dropdown';
 
 import clientTemplateSmall from '../../../../../../assets/images/clientTemplateSmall.jpg';
 import IconName from '../../../../../../constants/IconName';
@@ -64,7 +66,7 @@ const TemplateMealRecipeHeader = ({ closeModal, choosedMeal, showEditMealModal }
           <Icon.Ionicons name={IconName.goBack} size={30} color={Colors.light} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.headerDotsIconWrapper}>
-          <ModalDropdown
+          {/* <ModalDropdown
             defaultIndex={0}
             options={optionValue}
             onSelect={text => handleDropdownPicker(text)}
@@ -78,7 +80,7 @@ const TemplateMealRecipeHeader = ({ closeModal, choosedMeal, showEditMealModal }
               size={30}
               style={styles.optionIcon}
             />
-          </ModalDropdown>
+          </ModalDropdown> */}
         </TouchableOpacity>
         <Text style={styles.nameText}>{mealName}</Text>
 
