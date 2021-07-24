@@ -8,6 +8,7 @@ import ShadowStyleHigh from '../../../constants/ShadowStyleHigh';
 import Colors from '../../../constants/Colors';
 import { deletePopUpMessageSelector } from '../../../store/selectors/ErrorSelector';
 import { setShowDeletePopUp } from '../../../store/actions/ErrorActions';
+import Font from '../../../constants/Font';
 
 const SharedDeleteModal = ({ isVisible, handleDelete }) => {
   const dispatch = useDispatch();
@@ -26,10 +27,13 @@ const SharedDeleteModal = ({ isVisible, handleDelete }) => {
         <View style={styles.modalWrapper}>
           <Text style={styles.mainText}>{popUpMessage}</Text>
           <View style={styles.buttons}>
-            <TouchableOpacity style={[styles.buttonWrapper, styles.borderLine]} onPress={submit}>
+            <TouchableOpacity style={[styles.buttonWrapper, styles.leftButton]} onPress={submit}>
               <Text style={styles.buttonText}>{$t('common.yes')}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonWrapper} onPress={closeModal}>
+            <TouchableOpacity
+              style={[styles.buttonWrapper, styles.rightButton]}
+              onPress={closeModal}
+            >
               <Text style={styles.buttonText}>{$t('common.no')}</Text>
             </TouchableOpacity>
           </View>
@@ -49,13 +53,9 @@ SharedDeleteModal.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  borderLine: {
-    borderRightColor: Colors.light,
-    borderRightWidth: 1
-  },
   buttonText: {
     color: Colors.cloudColor,
-    fontSize: 18,
+    fontSize: Font.normal,
     paddingVertical: 10
   },
   buttonWrapper: {
@@ -71,8 +71,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center'
   },
+  leftButton: {
+    borderBottomLeftRadius: 10
+  },
   mainText: {
-    fontSize: 20,
+    fontSize: Font.normal,
     paddingVertical: 50
   },
   modalWrapper: {
@@ -82,5 +85,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'center',
     width: '90%'
+  },
+  rightButton: {
+    borderBottomRightRadius: 10
   }
 });

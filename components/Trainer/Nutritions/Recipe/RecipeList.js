@@ -21,6 +21,7 @@ import { recipePercentValue } from '../../../../helpers/RecipePercentValue';
 import SharedDeleteModal from '../../../shared/modal/SharedDeleteModal';
 import ShadowStyleHigh from '../../../../constants/ShadowStyleHigh';
 import SharedAnimatedDropdown from '../../../../components/shared/SharedAnimatedDropdown';
+import Font from '../../../../constants/Font';
 
 const RecipeList = ({ handleEditRecipeModalVisible, filteredList, showRecipeModal }) => {
   const dispatch = useDispatch();
@@ -150,7 +151,7 @@ const RecipeList = ({ handleEditRecipeModalVisible, filteredList, showRecipeModa
                   <Icon.MaterialCommunityIcons
                     name={IconName.dotsIcon}
                     color={Colors.light}
-                    size={30}
+                    size={26}
                     style={styles.optionIcon}
                   />
                 </TouchableOpacity>
@@ -185,7 +186,7 @@ const styles = StyleSheet.create({
   calorieText: {
     color: Colors.cloudColor,
     fontFamily: 'montserrat-bold',
-    fontSize: 18
+    fontSize: Font.normal
   },
   container: {
     marginVertical: 5
@@ -207,7 +208,7 @@ const styles = StyleSheet.create({
   gramsText: {
     color: Colors.oker,
     fontFamily: 'montserrat-bold',
-    fontSize: 18
+    fontSize: Font.normal
   },
   groceryValueWrapper: {
     alignItems: 'center',
@@ -222,7 +223,7 @@ const styles = StyleSheet.create({
   itemNameText: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 22,
+    fontSize: Font.normal,
     paddingBottom: 20
   },
   itemWrapper: {
@@ -231,11 +232,11 @@ const styles = StyleSheet.create({
   mealImage: {
     alignSelf: 'center',
     borderColor: Colors.light,
-    borderRadius: 75,
+    borderRadius: 60,
     borderWidth: 1,
-    height: 140,
+    height: 120,
     resizeMode: 'cover',
-    width: 140
+    width: 120
   },
   optionIcon: {
     padding: 5
@@ -243,7 +244,7 @@ const styles = StyleSheet.create({
   percentText: {
     color: Colors.lightGrayL,
     fontFamily: 'montserrat-regular',
-    fontSize: 17
+    fontSize: Font.normal
   },
   sectionItem: {
     width: '50%'

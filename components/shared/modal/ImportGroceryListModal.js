@@ -26,6 +26,7 @@ import {
 import { isInImportedRecipeGroceryList } from '../../../helpers/IsInImportedRecipeGroceryList';
 import { removeItemFromArrayByName } from '../../../helpers/RemoveItemFromArrayByName';
 import { searchFilterListByName } from '../../../helpers/SearchFilterListByName';
+import Font from '../../../constants/Font';
 
 const ImportGroceryListModal = ({ isImportGroceryModal, closeModal }) => {
   const dispatch = useDispatch();
@@ -63,7 +64,7 @@ const ImportGroceryListModal = ({ isImportGroceryModal, closeModal }) => {
             <View style={styles.searchWrapper}>
               <Icon.AntDesign
                 name={IconName.search}
-                size={26}
+                size={22}
                 style={styles.searchIcon}
                 color={Colors.light}
               />
@@ -79,7 +80,7 @@ const ImportGroceryListModal = ({ isImportGroceryModal, closeModal }) => {
 
             <View style={[ShadowStyleHigh, styles.closeIconWrapper]}>
               <TouchableOpacity onPress={handleCloseModal}>
-                <Icon.Fontisto name={IconName.close} size={32} color={Colors.light} />
+                <Icon.Fontisto name={IconName.close} size={26} color={Colors.light} />
               </TouchableOpacity>
             </View>
           </View>
@@ -96,11 +97,11 @@ const ImportGroceryListModal = ({ isImportGroceryModal, closeModal }) => {
                   {isInImportedRecipeGroceryList(renderData, grocery) ? (
                     <Icon.AntDesign
                       name={IconName.closeCircle}
-                      size={26}
+                      size={22}
                       color={Colors.warningColor}
                     />
                   ) : (
-                    <Icon.AntDesign name={IconName.plus} size={26} color={Colors.cloudColor} />
+                    <Icon.AntDesign name={IconName.plus} size={22} color={Colors.cloudColor} />
                   )}
                 </TouchableOpacity>
               </TouchableOpacity>
@@ -139,21 +140,22 @@ const styles = StyleSheet.create({
   importGroceryIcon: {
     backgroundColor: Colors.white,
     borderRadius: 50,
-    height: 26,
+    height: 22,
     position: 'absolute',
     top: 10,
-    width: 26
+    width: 22
   },
   inputSearchField: {
     color: Colors.light,
     flex: 1,
     fontFamily: 'montserrat-italic',
+    fontSize: Font.small,
     height: 40
   },
   itemNameText: {
     color: Colors.light,
     fontFamily: 'montserrat-regular',
-    fontSize: 20,
+    fontSize: Font.normal,
     width: '80%'
   },
   itemWrapper: {

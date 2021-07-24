@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Colors from '../../../../../../constants/Colors';
 import ShadowStyleLow from '../../../../../../constants/ShadowStyleLow';
 import SharedLinearGradientBackgroundHorizontal from '../../../../../shared/SharedLinearGradientBackgroundHorizontal';
+import Font from '../../../../../../constants/Font';
 
 const GroceryValues = ({ proteins, setProteins, carbons, setCarbons, fats, setFats, calories }) => {
   return (
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
   caloriesValue: {
     color: Colors.cloudColor,
     fontFamily: 'montserrat-regular',
-    fontSize: 24
+    fontSize: Font.large
   },
   caloriesWrapper: {
     alignItems: 'center',
@@ -108,6 +109,7 @@ const styles = StyleSheet.create({
   groceriesNameText: {
     color: Colors.light,
     fontFamily: 'montserrat-regular',
+    fontSize: Font.small,
     textAlign: 'center'
   },
   groceryInputWrapper: {
@@ -122,14 +124,14 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.lightGray,
     borderBottomWidth: 1,
     fontFamily: 'montserrat-regular',
-    fontSize: 24,
+    fontSize: Font.large,
     height: 50,
     textAlign: 'center'
   },
   inputText: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 18
+    fontSize: Font.normal
   },
   inputWrapper: {
     paddingTop: 10

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import IconName from '../../../constants/IconName';
 import Colors from '../../../constants/Colors';
+import Font from '../../../constants/Font';
 
 const SharedHeaderWithBackButton = ({ goBack, headerText }) => {
   return (
@@ -12,7 +13,7 @@ const SharedHeaderWithBackButton = ({ goBack, headerText }) => {
       <Icon.Ionicons
         onPress={goBack}
         name={IconName.goBack}
-        size={35}
+        size={26}
         color={Colors.light}
         style={styles.icon}
       />
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
   headerText: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 26
+    fontSize: Font.large
   },
   icon: {
     paddingRight: 10

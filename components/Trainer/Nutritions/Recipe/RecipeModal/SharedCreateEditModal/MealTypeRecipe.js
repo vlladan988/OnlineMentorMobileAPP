@@ -8,6 +8,7 @@ import Colors from '../../../../../../constants/Colors';
 import { IsEditScreen } from '../../../../../../helpers/IsEditScreen';
 import ShadowStyleLow from '../../../../../../constants/ShadowStyleLow';
 import SharedLinearGradientBackgroundHorizontal from '../../../../../shared/SharedLinearGradientBackgroundHorizontal';
+import Font from '../../../../../../constants/Font';
 
 const MealTypeRecipe = ({ setRecipeType, screen, recipe }) => {
   const [mealType, setMealType] = useState(null);
@@ -75,7 +76,7 @@ export const styles = StyleSheet.create({
   inputText: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 18
+    fontSize: Font.normal
   },
   mealTypeCancelPadding: {
     paddingVertical: 5

@@ -13,6 +13,7 @@ import Colors from '../../../../../../constants/Colors';
 import { recipeTypeSelector } from '../../../../../../store/selectors/RecipeSelector';
 import IconName from '../../../../../../constants/IconName';
 import { IsEditScreen } from '../../../../../../helpers/IsEditScreen';
+import Font from '../../../../../../constants/Font';
 
 const ReciepeTypeRadioButtons = ({ changeMealType, mealType, screen, recipe, setCustomType }) => {
   const recipeTypes = useSelector(recipeTypeSelector());
@@ -78,14 +79,14 @@ const ReciepeTypeRadioButtons = ({ changeMealType, mealType, screen, recipe, set
             <Icon.AntDesign
               onPress={() => handleAddMealType(customMeal)}
               name={IconName.success}
-              size={22}
+              size={20}
               color={Colors.cloudColor}
               style={styles.addMealIcon}
             />
           ) : (
             <Icon.AntDesign
               name={IconName.plus}
-              size={22}
+              size={20}
               color={Colors.lightOker}
               style={styles.addMealIcon}
             />
@@ -130,13 +131,13 @@ export const styles = StyleSheet.create({
   inputAddMeal: {
     color: Colors.black,
     fontFamily: 'montserrat-regular',
-    fontSize: 14,
+    fontSize: Font.small,
     paddingRight: 30
   },
   labels: {
     color: Colors.lightGray,
     fontFamily: 'montserrat-regular',
-    fontSize: 16
+    fontSize: Font.small
   },
   typeWrap: {
     alignItems: 'center',

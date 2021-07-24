@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import Colors from '../../../constants/Colors';
+import Font from '../../../constants/Font';
 
 const ErrorText = props => {
   return <Text style={styles.text}>{props.error ? props.message : ''}</Text>;
@@ -16,8 +17,8 @@ const styles = StyleSheet.create({
   text: {
     alignSelf: 'center',
     color: Colors.warningColor,
-    fontFamily: 'montserrat-italic'
-    // textAlign: 'center'
+    fontFamily: 'montserrat-italic',
+    fontSize: Font.small
   }
 });
 

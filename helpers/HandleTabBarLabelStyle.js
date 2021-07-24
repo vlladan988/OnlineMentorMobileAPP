@@ -3,6 +3,7 @@ import { Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Colors from '../constants/Colors';
+import Font from '../constants/Font';
 
 const HandleTabBarLabelStyle = ({ focused, name }) => {
   return (
@@ -27,6 +28,8 @@ HandleTabBarLabelStyle.propTypes = {
 
 export const styles = StyleSheet.create({
   text: {
-    fontFamily: 'montserrat-regular'
+    fontFamily: 'montserrat-regular',
+    fontSize: Font.small,
+    textAlign: 'center'
   }
 });

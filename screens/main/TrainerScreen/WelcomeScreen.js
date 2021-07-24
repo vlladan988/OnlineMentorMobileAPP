@@ -26,6 +26,7 @@ import IconName from '../../../constants/IconName';
 import SharedDeleteModal from '../../../components/shared/modal/SharedDeleteModal';
 import { showDeletePopUpSelector } from '../../../store/selectors/ErrorSelector';
 import { setShowDeletePopUp } from '../../../store/actions/ErrorActions';
+import Font from '../../../constants/Font';
 
 const WelcomeScreen = () => {
   const dispatch = useDispatch();
@@ -102,7 +103,7 @@ const WelcomeScreen = () => {
         <Icon.MaterialCommunityIcons
           onPress={() => handleShowDeleteModal(item)}
           name={IconName.deleteCircle}
-          size={32}
+          size={26}
           style={styles.deleteIcon}
           color={Colors.light}
         />
@@ -129,7 +130,7 @@ const WelcomeScreen = () => {
       <View style={styles.searchWrapper}>
         <Icon.AntDesign
           name={IconName.search}
-          size={26}
+          size={20}
           style={styles.searchIcon}
           color={Colors.backgroundAppColor}
         />
@@ -161,7 +162,11 @@ WelcomeScreen.navigationOptions = ({ navigation }) => {
   return {
     ...headerRightNav,
     headerStyle: HeaderBarStyle,
-    headerTitleStyle: { color: Colors.white, fontFamily: 'montserrat-bold' },
+    headerTitleStyle: {
+      color: Colors.white,
+      fontSize: Font.normall,
+      fontFamily: 'montserrat-bold'
+    },
     title: 'Client List'
   };
 };
@@ -172,8 +177,8 @@ const styles = StyleSheet.create({
   clientCity: {
     color: Colors.light,
     fontFamily: 'montserrat-regular',
-    fontSize: 18,
-    paddingLeft: 30
+    fontSize: Font.small,
+    paddingLeft: 15
   },
   clientDetails: {
     backgroundColor: 'rgba(0,0,0,0.4)',
@@ -185,8 +190,8 @@ const styles = StyleSheet.create({
   clientName: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 22,
-    paddingLeft: 30
+    fontSize: Font.normal,
+    paddingLeft: 15
   },
   container: {
     borderRadius: 20,
@@ -196,7 +201,7 @@ const styles = StyleSheet.create({
   countText: {
     color: Colors.backgroundAppColor,
     fontFamily: 'montserrat-regular',
-    fontSize: 20,
+    fontSize: Font.normal,
     paddingVertical: 2
   },
   countWrapper: {
@@ -213,9 +218,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     bottom: 0,
     justifyContent: 'flex-end',
-    left: 0,
+    left: 5,
     position: 'absolute',
-    right: 0,
+    right: 5,
     top: 0
   },
   headerWrapper: {
@@ -227,7 +232,7 @@ const styles = StyleSheet.create({
   helloText: {
     color: Colors.backgroundAppColor,
     fontFamily: 'montserrat-bold',
-    fontSize: 22
+    fontSize: Font.normal
   },
   image: {
     flex: 1,
@@ -238,15 +243,17 @@ const styles = StyleSheet.create({
     color: Colors.backgroundAppColor,
     flex: 1,
     fontFamily: 'montserrat-regular',
+    fontSize: Font.small,
     height: 40
   },
   itemName: {
     color: Colors.light,
-    fontFamily: 'montserrat-italic'
+    fontFamily: 'montserrat-italic',
+    fontSize: Font.small
   },
   itemValue: {
     color: Colors.light,
-    fontSize: 22,
+    fontSize: Font.cmall,
     fontWeight: 'bold'
   },
   itemWrapper: {
@@ -259,11 +266,11 @@ const styles = StyleSheet.create({
   },
   nameCityWrapper: {
     backgroundColor: 'rgba(0,0,0,0.4)',
-    paddingBottom: 20
+    paddingBottom: 10
   },
   profileImageLarge: {
     borderRadius: 20,
-    height: 250,
+    height: 150,
     width: '100%'
   },
   searchIcon: {
@@ -274,6 +281,6 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.lightGray,
     borderBottomWidth: 1,
     flexDirection: 'row',
-    marginTop: 20
+    marginTop: 7
   }
 });

@@ -8,6 +8,7 @@ import { IsNotEmptyString } from '../../../../helpers/IsNotEmptyString';
 import IconName from '../../../../constants/IconName';
 import Colors from '../../../../constants/Colors';
 import AnimatedInfo from './AnimatedInfo';
+import Font from '../../../../constants/Font';
 
 const CountRecipe = ({ filteredList, filterBy, clearMealTypeText }) => {
   const [showInfo, setShowInfo] = useState(false);
@@ -32,7 +33,7 @@ const CountRecipe = ({ filteredList, filterBy, clearMealTypeText }) => {
           </TouchableOpacity>
         )}
         <TouchableOpacity style={styles.infoIconWrapper} onPress={handleShowInfo}>
-          <Icon.AntDesign name={IconName.info} size={30} color={Colors.light} />
+          <Icon.AntDesign name={IconName.info} size={26} color={Colors.light} />
         </TouchableOpacity>
         {showInfo && <AnimatedInfo recipeExample={filteredList} />}
       </View>
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
   },
   clearText: {
     color: Colors.light,
-    fontSize: 20,
+    fontSize: Font.normal,
     paddingVertical: 2
   },
   clearTypeWrapper: {
@@ -69,8 +70,7 @@ const styles = StyleSheet.create({
   countText: {
     color: Colors.light,
     fontFamily: 'montserrat-regular',
-    fontSize: 20,
-    paddingVertical: 2
+    fontSize: Font.normal
   },
   countTextWrapper: {
     borderBottomColor: Colors.light,

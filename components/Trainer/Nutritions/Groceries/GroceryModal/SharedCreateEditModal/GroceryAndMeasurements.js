@@ -10,6 +10,7 @@ import ShadowStyleLow from '../../../../../../constants/ShadowStyleLow';
 import SharedLinearGradientBackgroundHorizontal from '../../../../../shared/SharedLinearGradientBackgroundHorizontal';
 import ErrorText from '../../../../../shared/Text/ErrorText';
 import { setInputFealdError } from '../../../../../../store/actions/ErrorActions';
+import Font from '../../../../../../constants/Font';
 
 const GroceryAndMeasurements = ({
   name,
@@ -85,14 +86,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     color: Colors.light,
     fontFamily: 'montserrat-regular',
-    fontSize: 16,
-    height: 60,
+    fontSize: Font.small,
+    height: 40,
     paddingLeft: 20
   },
   inputText: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 18
+    fontSize: Font.normal
   },
   measurementWrapper: {
     flexDirection: 'row',
@@ -105,6 +106,6 @@ const styles = StyleSheet.create({
   unitTypeText: {
     color: Colors.warningColor,
     fontFamily: 'montserrat-bold',
-    fontSize: 18
+    fontSize: Font.small
   }
 });

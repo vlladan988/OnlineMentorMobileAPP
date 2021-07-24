@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import avatar from '../../assets/images/richFroning.jpg';
 import Colors from '../../constants/Colors';
+import Font from '../../constants/Font';
 
 const HeaderSliderComp = ({ trainer }) => {
   return (
@@ -40,12 +41,12 @@ const styles = StyleSheet.create({
   itemText: {
     color: Colors.lightGray,
     fontFamily: 'montserrat-regular',
-    fontSize: 16
+    fontSize: Font.normal
   },
   nameText: {
     color: Colors.backgroundAppColor,
     fontFamily: 'montserrat-bold',
-    fontSize: 22
+    fontSize: Font.large
   },
   profileImage: {
     borderRadius: 50,

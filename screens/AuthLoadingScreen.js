@@ -47,7 +47,7 @@ const AuthLoadingScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ActivityIndicator style={styles.loading} />
-      <StatusBar barStyle="default" />
+      <StatusBar barStyle="light-content" />
     </View>
   );
 };

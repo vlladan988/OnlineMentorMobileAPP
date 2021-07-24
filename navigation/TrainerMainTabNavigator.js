@@ -76,7 +76,7 @@ HomeStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <Icon.Octicons
       name={IconName.home}
-      size={26}
+      size={22}
       color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
     />
   )
@@ -119,7 +119,7 @@ NutritionStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <Icon.MaterialCommunityIcons
       name={IconName.nutritions}
-      size={26}
+      size={22}
       color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
     />
   )
@@ -145,7 +145,7 @@ WorkoutStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <Icon.Entypo
       name={IconName.workout}
-      size={26}
+      size={22}
       color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
     />
   )
@@ -171,7 +171,7 @@ ChatStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <Icon.Entypo
       name={IconName.chat}
-      size={26}
+      size={22}
       color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
     />
   )

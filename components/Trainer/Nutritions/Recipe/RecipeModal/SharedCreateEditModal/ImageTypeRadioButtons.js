@@ -8,6 +8,7 @@ import RadioForm, {
   RadioButtonLabel
 } from 'react-native-simple-radio-button';
 import Colors from '../../../../../../constants/Colors';
+import Font from '../../../../../../constants/Font';
 
 const ImageTypeRadioButtons = ({ changeImageType, imageId }) => {
   // console.log('asddd', imageId);
@@ -79,6 +80,6 @@ export const styles = StyleSheet.create({
   labels: {
     color: Colors.light,
     fontFamily: 'montserrat-regular',
-    fontSize: 16
+    fontSize: Font.small
   }
 });

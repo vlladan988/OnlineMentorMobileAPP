@@ -7,6 +7,7 @@ import Colors from '../../../../../../constants/Colors';
 import ShadowStyleHigh from '../../../../../../constants/ShadowStyleHigh';
 import SharedImportedGroceryList from '../../../../../shared/SharedImportedGroceryList';
 import SharedLinearGradientBackgroundHorizontal from '../../../../../shared/SharedLinearGradientBackgroundHorizontal';
+import Font from '../../../../../../constants/Font';
 
 const ImportAddGrocery = ({ handleImportGroceryModalVisible }) => {
   return (
@@ -38,22 +39,21 @@ ImportAddGrocery.propTypes = {
 
 export const styles = StyleSheet.create({
   gradientGroceriesButtonWrapper: {
-    borderRadius: 15
+    borderRadius: 20
   },
   groceriesButtonWrapper: {
     alignSelf: 'center',
-    marginVertical: 20,
-    width: '35%'
+    marginVertical: 20
   },
   importButtonText: {
     color: 'white',
     fontFamily: 'montserrat-bold',
-    fontSize: 18
+    fontSize: Font.normal,
+    paddingHorizontal: 40
   },
   importGroceryButton: {
     alignItems: 'center',
-    paddingVertical: 10,
-    width: '100%'
+    paddingVertical: 10
   },
   inputGroceriesWrapper: {
     borderBottomColor: Colors.light,
@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
   inputText: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 26,
+    fontSize: Font.large,
     paddingBottom: 10,
     textAlign: 'center'
   }

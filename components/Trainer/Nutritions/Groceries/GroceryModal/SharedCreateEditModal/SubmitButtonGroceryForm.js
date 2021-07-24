@@ -6,6 +6,7 @@ import Colors from '../../../../../../constants/Colors';
 import ShadowStyleHigh from '../../../../../../constants/ShadowStyleHigh';
 import { IsEditScreen } from '../../../../../../helpers/IsEditScreen';
 import SharedLinearGradientBackgroundHorizontal from '../../../../../shared/SharedLinearGradientBackgroundHorizontal';
+import Font from '../../../../../../constants/Font';
 
 const SubmitButtonGroceryForm = ({ submitForm, screen }) => {
   return (
@@ -34,17 +35,17 @@ SubmitButtonGroceryForm.propTypes = {
 export const styles = StyleSheet.create({
   buttonSubmitGradientWrapper: {
     alignSelf: 'center',
-    borderRadius: 40,
+    borderRadius: 20,
     marginTop: 30
   },
   submitButton: {
     alignItems: 'center',
     paddingHorizontal: 40,
-    paddingVertical: 20
+    paddingVertical: 10
   },
   submitButtonText: {
     color: 'white',
     fontFamily: 'montserrat-bold',
-    fontSize: 18
+    fontSize: Font.normal
   }
 });

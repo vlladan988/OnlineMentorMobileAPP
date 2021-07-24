@@ -18,6 +18,7 @@ import { searchFilterListByMealType } from '../../../../helpers/SearchFilterList
 import CountRecipe from './CountRecipe';
 import SharedRecipeModal from '../../../shared/modal/SharedRecipeModal';
 import IconName from '../../../../constants/IconName';
+import Font from '../../../../constants/Font';
 
 const Recipes = () => {
   const dispatch = useDispatch();
@@ -111,7 +112,7 @@ const Recipes = () => {
             </View>
             <View style={styles.iconWrapper}>
               <View style={styles.importGroceryIcon} />
-              <Icon.AntDesign name={IconName.success} size={30} color={Colors.cloudColor} />
+              <Icon.AntDesign name={IconName.success} size={26} color={Colors.cloudColor} />
             </View>
           </TouchableOpacity>
         ))}
@@ -194,7 +195,7 @@ export const styles = StyleSheet.create({
   itemNameText: {
     color: Colors.backgroundAppColor,
     fontFamily: 'montserrat-regular',
-    fontSize: 22
+    fontSize: Font.normal
   },
   itemWrapper: {
     alignItems: 'center',

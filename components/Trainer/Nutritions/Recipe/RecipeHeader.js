@@ -7,6 +7,7 @@ import IconName from '../../../../constants/IconName';
 import Colors from '../../../../constants/Colors';
 import ShadowStyleLow from '../../../../constants/ShadowStyleLow';
 import SharedLinearGradientBackgroundHorizontal from '../../../shared/SharedLinearGradientBackgroundHorizontal';
+import Font from '../../../../constants/Font';
 
 const RecipeHeader = ({
   searchText,
@@ -19,7 +20,7 @@ const RecipeHeader = ({
       <View style={styles.searchWrapper}>
         <Icon.AntDesign
           name={IconName.search}
-          size={26}
+          size={20}
           style={styles.searchIcon}
           color={Colors.light}
         />
@@ -90,12 +91,14 @@ const styles = StyleSheet.create({
   },
   headerButtonText: {
     color: 'white',
-    fontFamily: 'montserrat-bold'
+    fontFamily: 'montserrat-bold',
+    fontSize: Font.small
   },
   inputSearchField: {
     color: Colors.light,
     flex: 1,
     fontFamily: 'montserrat-regular',
+    fontSize: Font.small,
     height: 40
   },
   searchIcon: {

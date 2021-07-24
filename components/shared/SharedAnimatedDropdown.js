@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Colors from '../../constants/Colors';
 
 const SharedAnimatedDropdown = ({ deleteItem, editItem }) => {
-  const animationValue = new Animated.Value(70);
+  const animationValue = new Animated.Value(50);
   const [viewState, setViewState] = useState(true);
 
   useEffect(() => {
@@ -14,14 +14,14 @@ const SharedAnimatedDropdown = ({ deleteItem, editItem }) => {
   const toggleAnimation = () => {
     if (viewState === true) {
       Animated.timing(animationValue, {
-        toValue: 120,
+        toValue: 90,
         timing: 1500
       }).start(() => {
         setViewState(false);
       });
     } else {
       Animated.timing(animationValue, {
-        toValue: 120,
+        toValue: 90,
         timing: 1500
       }).start(setViewState(true));
     }
@@ -29,7 +29,7 @@ const SharedAnimatedDropdown = ({ deleteItem, editItem }) => {
 
   const animatedStyle = {
     width: animationValue,
-    height: 81
+    height: 72
   };
 
   return (
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   item: {
     fontFamily: 'montserrat-bold',
-    fontSize: 16,
+    fontSize: 14,
     paddingLeft: 10,
     paddingVertical: 10
   }

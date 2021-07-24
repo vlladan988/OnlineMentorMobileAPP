@@ -14,6 +14,7 @@ import Colors from '../../../../../../constants/Colors';
 import { IsEditScreen } from '../../../../../../helpers/IsEditScreen';
 import { isDefaultImage } from '../../../../../../helpers/IsDefaultImage';
 import IconName from '../../../../../../constants/IconName';
+import Font from '../../../../../../constants/Font';
 
 const RecipeImage = ({ handleIsCustomImage, screen, recipe, goBack }) => {
   let image = [breakfast, lunch, dinner];
@@ -74,7 +75,7 @@ const RecipeImage = ({ handleIsCustomImage, screen, recipe, goBack }) => {
         imageId={isCustomImage ? null : imageName}
       />
       <TouchableOpacity onPress={handleGoBack} style={styles.goBackIconWrapper}>
-        <Icon.MaterialCommunityIcons name={IconName.backCircle} size={50} color={Colors.light} />
+        <Icon.MaterialCommunityIcons name={IconName.backCircle} size={40} color={Colors.light} />
       </TouchableOpacity>
     </>
   );
@@ -94,7 +95,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     color: Colors.lightOker,
     fontFamily: 'montserrat-italic',
-    fontSize: 16,
+    fontSize: Font.small,
     textAlign: 'center',
     width: '80%'
   },
@@ -105,7 +106,7 @@ export const styles = StyleSheet.create({
   },
   mealImage: {
     alignSelf: 'center',
-    height: 250,
+    height: 200,
     marginBottom: 30,
     resizeMode: 'cover',
     width: '100%'

@@ -18,6 +18,7 @@ import { updateGroceryByNumber } from '../../helpers/UpdateGroceryByNumber';
 import { updateGroceryByIncrementDecrement } from '../../helpers/updateGroceryByIncrementDecrement';
 import { removeItemFromArrayById } from '../../helpers/RemoveItemFromArrayById';
 import SharedLinearGradientBackgroundHorizontal from './SharedLinearGradientBackgroundHorizontal';
+import Font from '../../constants/Font';
 
 const SharedImportedGroceryList = ({ closeIcon }) => {
   const dispatch = useDispatch();
@@ -74,7 +75,7 @@ const SharedImportedGroceryList = ({ closeIcon }) => {
                 <Icon.AntDesign
                   onPress={() => deleteRecipeGroceryFromImportedList(item)}
                   name={IconName.closeCircle}
-                  size={30}
+                  size={26}
                   color={Colors.warningColor}
                 />
               )}
@@ -84,7 +85,7 @@ const SharedImportedGroceryList = ({ closeIcon }) => {
             <Icon.AntDesign
               onPress={() => handleChangeValueByIncrementDecrement(false, item)}
               name={IconName.minus}
-              size={30}
+              size={22}
               color={Colors.light}
               style={styles.incDecrIcon}
             />
@@ -98,7 +99,7 @@ const SharedImportedGroceryList = ({ closeIcon }) => {
             <Icon.AntDesign
               onPress={() => handleChangeValueByIncrementDecrement(true, item)}
               name={IconName.plus}
-              size={30}
+              size={22}
               color={Colors.light}
               style={styles.incDecrIcon}
             />
@@ -147,11 +148,11 @@ SharedImportedGroceryList.propTypes = {
 const styles = StyleSheet.create({
   calorieValText: {
     color: Colors.cloudColor,
-    fontSize: 22
+    fontSize: Font.normal
   },
   carbonsValText: {
     color: Colors.oker,
-    fontSize: 22
+    fontSize: Font.normal
   },
   container: {
     marginHorizontal: 10,
@@ -159,7 +160,7 @@ const styles = StyleSheet.create({
   },
   fatValText: {
     color: Colors.oker,
-    fontSize: 22
+    fontSize: Font.normal
   },
   gradientWrapper: {
     borderRadius: 10,
@@ -188,20 +189,22 @@ const styles = StyleSheet.create({
   },
   nameText: {
     color: Colors.light,
-    fontSize: 20
+    fontFamily: 'montserrat-bold',
+    fontSize: Font.normal
   },
   proteinValText: {
     color: Colors.oker,
-    fontSize: 22
+    fontSize: Font.normal
   },
   val: {
-    color: Colors.light
+    color: Colors.light,
+    fontSize: Font.small
   },
   valueText: {
     borderBottomColor: Colors.light,
     borderBottomWidth: 1,
     color: Colors.light,
-    fontSize: 18,
+    fontSize: Font.small,
     textAlign: 'center',
     width: 100
   }

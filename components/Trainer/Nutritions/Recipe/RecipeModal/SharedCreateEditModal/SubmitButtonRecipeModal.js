@@ -35,18 +35,18 @@ SubmitButtonRecipeModal.propTypes = {
 export const styles = StyleSheet.create({
   buttonSubmitGradientWrapper: {
     alignSelf: 'center',
-    borderRadius: 40,
+    borderRadius: 20,
     marginBottom: 20,
     marginTop: 60
   },
   submitButton: {
-    alignItems: 'center',
-    paddingHorizontal: 40,
-    paddingVertical: 20
+    alignItems: 'center'
   },
   submitButtonText: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 18
+    fontSize: 18,
+    paddingHorizontal: 40,
+    paddingVertical: 10
   }
 });

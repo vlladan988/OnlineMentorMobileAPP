@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -12,9 +12,11 @@ const TrainerLeftSlider = ({ navigation }) => {
   const user = useSelector(userSelector());
   return (
     <SafeAreaView style={styles.container}>
-      <HeaderSliderComp trainer={user} />
-      <DetailSliderComp trainer={user} />
-      <OptionTrainerSliderComp navigation={navigation} />
+      <ScrollView>
+        <HeaderSliderComp trainer={user} />
+        <DetailSliderComp trainer={user} />
+        <OptionTrainerSliderComp navigation={navigation} />
+      </ScrollView>
     </SafeAreaView>
   );
 };

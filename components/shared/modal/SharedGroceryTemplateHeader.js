@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import IconName from '../../../constants/IconName';
 import ShadowStyleLow from '../../../constants/ShadowStyleLow';
 import Colors from '../../../constants/Colors';
+import Font from '../../../constants/Font';
 
 const SharedGroceryTemplateHeader = ({ showModal, handleSearch, placeHolder, filteredList }) => {
   const [searchText, setSearchText] = useState('');
@@ -21,7 +22,7 @@ const SharedGroceryTemplateHeader = ({ showModal, handleSearch, placeHolder, fil
         <View style={styles.searchWrapper}>
           <Icon.AntDesign
             name={IconName.search}
-            size={26}
+            size={20}
             style={styles.searchIcon}
             color={Colors.light}
           />
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   addButtonWrapper: {
     alignItems: 'flex-end',
     paddingRight: 5,
-    width: '25%'
+    width: '15%'
   },
   buttonWrapper: {
     alignItems: 'center',
@@ -70,9 +71,9 @@ const styles = StyleSheet.create({
     borderBottomEndRadius: 40,
     borderTopEndRadius: 40,
     borderTopStartRadius: 40,
-    height: 60,
+    height: 45,
     justifyContent: 'center',
-    width: 60
+    width: 45
   },
   container: {
     alignItems: 'center',
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
   countText: {
     color: Colors.light,
     fontFamily: 'montserrat-regular',
-    fontSize: 20,
+    fontSize: Font.normal,
     paddingVertical: 2
   },
   countTextWrapper: {
@@ -95,12 +96,13 @@ const styles = StyleSheet.create({
   },
   countWrapper: {
     flexDirection: 'row',
-    marginVertical: 10
+    marginVertical: 5
   },
   inputSearchField: {
     color: Colors.light,
     flex: 1,
     fontFamily: 'montserrat-italic',
+    fontSize: Font.small,
     height: 40
   },
   searchIcon: {
@@ -112,11 +114,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     flexDirection: 'row',
     marginTop: 20,
-    width: '75%'
+    width: '80%'
   },
   text: {
     color: Colors.light,
-    fontSize: 36,
+    fontSize: 30,
     fontWeight: 'bold'
   }
 });

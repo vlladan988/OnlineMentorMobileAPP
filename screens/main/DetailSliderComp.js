@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import IconName from '../../constants/IconName';
 import Colors from '../../constants/Colors';
+import Font from '../../constants/Font';
 
 const DetailSliderComp = ({ trainer }) => {
   return (
@@ -15,37 +16,37 @@ const DetailSliderComp = ({ trainer }) => {
       <View style={styles.detailWrapper}>
         <View style={styles.iconWrapper}>
           <View style={styles.detailIconWrapper}>
-            <Icon.MaterialIcons name={IconName.email} color={Colors.light} size={22} />
+            <Icon.MaterialIcons name={IconName.email} color={Colors.light} size={20} />
           </View>
           <Text style={styles.itemText}>{trainer.email}</Text>
         </View>
         <View style={styles.iconWrapper}>
           <View style={styles.detailIconWrapper}>
-            <Icon.Entypo name={IconName.workout} color={Colors.light} size={22} />
+            <Icon.Entypo name={IconName.workout} color={Colors.light} size={20} />
           </View>
           <Text style={styles.itemText}>{trainer.main_sport}</Text>
         </View>
         <View style={styles.iconWrapper}>
           <View style={styles.detailIconWrapper}>
-            <Icon.Feather name={IconName.facebook} color={Colors.light} size={22} />
+            <Icon.Feather name={IconName.facebook} color={Colors.light} size={20} />
           </View>
           <Text style={styles.itemText}>{trainer.facebook}</Text>
         </View>
         <View style={styles.iconWrapper}>
           <View style={styles.detailIconWrapper}>
-            <Icon.AntDesign name={IconName.instagram} color={Colors.light} size={22} />
+            <Icon.AntDesign name={IconName.instagram} color={Colors.light} size={20} />
           </View>
           <Text style={styles.itemText}>{trainer.instagram}</Text>
         </View>
         <View style={styles.iconWrapper}>
           <View style={styles.detailIconWrapper}>
-            <Icon.AntDesign name={IconName.phone} color={Colors.light} size={22} />
+            <Icon.AntDesign name={IconName.phone} color={Colors.light} size={20} />
           </View>
           <Text style={styles.itemText}>{trainer.phone_number}</Text>
         </View>
         <View style={styles.iconWrapper}>
           <View style={styles.detailIconWrapper}>
-            <Icon.Ionicons name={IconName.body} color={Colors.light} size={22} />
+            <Icon.Ionicons name={IconName.body} color={Colors.light} size={20} />
           </View>
           <Text style={styles.itemText}>
             {trainer.height} Cm, {trainer.weight} Kg
@@ -53,7 +54,7 @@ const DetailSliderComp = ({ trainer }) => {
         </View>
         <View style={styles.iconWrapper}>
           <View style={styles.detailIconWrapper}>
-            <Icon.FontAwesome name={IconName.age} color={Colors.light} size={22} />
+            <Icon.FontAwesome name={IconName.age} color={Colors.light} size={20} />
           </View>
           <Text style={styles.itemText}>{trainer.age}</Text>
         </View>
@@ -89,12 +90,13 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   itemText: {
-    fontFamily: 'montserrat-regular'
+    fontFamily: 'montserrat-regular',
+    fontSize: Font.small
   },
   trainerText: {
     color: Colors.backgroundAppColor,
     fontFamily: 'montserrat-bold',
-    fontSize: 30,
+    fontSize: Font.large,
     paddingBottom: 5
   },
   trainerWrapper: {

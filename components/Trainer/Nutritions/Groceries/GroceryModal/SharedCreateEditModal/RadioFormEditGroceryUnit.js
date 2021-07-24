@@ -8,6 +8,7 @@ import RadioForm, {
   RadioButtonLabel
 } from 'react-native-simple-radio-button';
 import Colors from '../../../../../../constants/Colors';
+import Font from '../../../../../../constants/Font';
 
 const RadioFormEditGroceryUnit = ({ setSelectedUnit, initValue }) => {
   const [selected, setSelected] = useState(initValue);
@@ -77,7 +78,7 @@ export const styles = StyleSheet.create({
   labels: {
     color: Colors.lightGray,
     fontFamily: 'montserrat-regular',
-    fontSize: 16
+    fontSize: Font.small
   },
   typeWrap: {
     alignItems: 'center',

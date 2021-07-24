@@ -12,6 +12,7 @@ import SharedLinearGradientBackgroundHorizontal from '../../../shared/SharedLine
 import { recipePercentValue } from '../../../../helpers/RecipePercentValue';
 import SharedAnimatedDropdown from '../../../shared/SharedAnimatedDropdown';
 import { formatGroceryUnit } from '../../../../helpers/FormatGroceryUnit';
+import Font from '../../../../constants/Font';
 
 const GroceryList = ({
   renderListGroceries,
@@ -78,7 +79,7 @@ const GroceryList = ({
                 <Icon.MaterialCommunityIcons
                   name={IconName.dotsIcon}
                   color={Colors.light}
-                  size={30}
+                  size={26}
                   style={styles.optionIcon}
                 />
               </TouchableOpacity>
@@ -170,12 +171,12 @@ const styles = StyleSheet.create({
   calorieValText: {
     color: Colors.cloudColor,
     fontFamily: 'montserrat-regular',
-    fontSize: 22
+    fontSize: Font.normal
   },
   carbonsValText: {
     color: Colors.oker,
     fontFamily: 'montserrat-regular',
-    fontSize: 22
+    fontSize: Font.normal
   },
   container: {
     marginVertical: 5
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
   fatValText: {
     color: Colors.oker,
     fontFamily: 'montserrat-regular',
-    fontSize: 22
+    fontSize: Font.normal
   },
   flatListStyle: {
     paddingTop: 15
@@ -217,7 +218,7 @@ const styles = StyleSheet.create({
   nameText: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 21
+    fontSize: Font.normal
   },
   optionIcon: {
     paddingHorizontal: 5
@@ -225,12 +226,12 @@ const styles = StyleSheet.create({
   percentText: {
     color: Colors.lightGrayL,
     fontFamily: 'montserrat-regular',
-    fontSize: 17
+    fontSize: Font.normal
   },
   proteinValText: {
     color: Colors.oker,
     fontFamily: 'montserrat-regular',
-    fontSize: 22
+    fontSize: Font.normal
   },
   val: {
     color: Colors.light,

@@ -57,13 +57,14 @@ export default createMaterialTopTabNavigator(
             shadowOpacity: 0, // remove shadow on iOS,
             borderBottomWidth: 1,
             borderColor: Colors.borderLine,
-            paddingTop: Constants.statusBarHeight // dodatooo
+            paddingTop: Constants.statusBarHeight // dodatooo,
           },
           indicatorStyle: {
             backgroundColor: Colors.cloudColor
           },
           labelStyle: {
             color: Colors.white,
+            fontSize: 10,
             fontFamily: 'montserrat-bold'
           }
         }

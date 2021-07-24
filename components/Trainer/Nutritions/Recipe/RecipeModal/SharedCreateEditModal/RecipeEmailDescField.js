@@ -8,6 +8,7 @@ import Colors from '../../../../../../constants/Colors';
 import ErrorText from '../../../../../shared/Text/ErrorText';
 import { inputFealdErrorMessage } from '../../../../../../store/selectors/ErrorSelector';
 import { setInputFealdError } from '../../../../../../store/actions/ErrorActions';
+import Font from '../../../../../../constants/Font';
 
 const RecipeEmailDescField = ({ name, setName, description, setDescription }) => {
   const dispatch = useDispatch();
@@ -67,6 +68,7 @@ const styles = StyleSheet.create({
     color: Colors.light,
     flex: 1,
     fontFamily: 'montserrat-italic',
+    fontSize: Font.small,
     minHeight: 40,
     paddingLeft: 10
   },
@@ -84,6 +86,6 @@ const styles = StyleSheet.create({
   inputText: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 18
+    fontSize: Font.normal
   }
 });
