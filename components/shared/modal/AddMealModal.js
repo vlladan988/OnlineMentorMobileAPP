@@ -10,6 +10,7 @@ import ErrorText from '../Text/ErrorText';
 import { useSelector, useDispatch } from 'react-redux';
 import { inputFealdErrorMessage } from '../../../store/selectors/ErrorSelector';
 import { setInputFealdError } from '../../../store/actions/ErrorActions';
+import Font from '../../../constants/Font';
 
 const AddMealModal = ({ isVisible, closeModal, handleSave, setMealText, mealText }) => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const AddMealModal = ({ isVisible, closeModal, handleSave, setMealText, mealText
               style={styles.closeIcon}
               name={IconName.close}
               color={Colors.light}
-              size={24}
+              size={22}
               onPress={closeModal}
             />
           </View>
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 18
+    fontSize: Font.small
   },
   buttonWrapper: {
     alignSelf: 'center',
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
   },
   createEditButton: {
     alignItems: 'center',
-    paddingHorizontal: 30,
+    paddingHorizontal: 40,
     paddingVertical: 10
   },
   gradientModalWrapper: {
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
   headerText: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 22,
+    fontSize: Font.large,
     paddingVertical: 20,
     textAlign: 'center'
   },
@@ -121,6 +122,7 @@ const styles = StyleSheet.create({
   input: {
     color: Colors.light,
     fontFamily: 'montserrat-italic',
+    fontSize: Font.small,
     minHeight: 40,
     paddingLeft: 10
   },
@@ -133,7 +135,6 @@ const styles = StyleSheet.create({
   inputText: {
     color: Colors.light,
     fontFamily: 'montserrat-regular',
-    fontSize: 18,
-    fontWeight: 'bold'
+    fontSize: Font.normal
   }
 });

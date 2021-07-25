@@ -15,6 +15,7 @@ import { inputFealdErrorMessage } from '../../../store/selectors/ErrorSelector';
 import ErrorText from '../Text/ErrorText';
 import { requiredFieldsValidation } from '../../../helpers/RequiredFieldsValidation';
 import { setInputFealdError } from '../../../store/actions/ErrorActions';
+import Font from '../../../constants/Font';
 
 const SharedCreateEditTemplateModal = ({ isVisible, template, screen, closeModal }) => {
   const dispatch = useDispatch();
@@ -200,7 +201,7 @@ const styles = StyleSheet.create({
   daysText: {
     color: Colors.oker,
     fontFamily: 'montserrat-regular',
-    fontSize: 18
+    fontSize: Font.small
   },
   durationWrapper: {
     alignItems: 'center',
@@ -211,6 +212,7 @@ const styles = StyleSheet.create({
     color: Colors.light,
     flex: 1,
     fontFamily: 'montserrat-italic',
+    fontSize: Font.small,
     minHeight: 40,
     paddingLeft: 10
   },
@@ -227,7 +229,7 @@ const styles = StyleSheet.create({
   inputText: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 18
+    fontSize: Font.normal
   },
   modalWrapper: {
     alignSelf: 'center',

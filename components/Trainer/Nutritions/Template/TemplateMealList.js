@@ -11,6 +11,7 @@ import Colors from '../../../../constants/Colors';
 import IconName from '../../../../constants/IconName';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeTemplateMealOrder } from '../../../../store/actions/TemplateMealActions';
+import Font from '../../../../constants/Font';
 
 const TemplateMealList = ({ template, showMealDetails }) => {
   const dispatch = useDispatch();
@@ -112,7 +113,8 @@ const styles = StyleSheet.create({
   },
   countText: {
     color: Colors.light,
-    fontSize: 20,
+    fontFamily: 'montserrat-regular',
+    fontSize: Font.normal,
     textAlign: 'center'
   },
   detailWrapper: {
@@ -124,8 +126,8 @@ const styles = StyleSheet.create({
   },
   durationText: {
     color: Colors.oker,
-    fontSize: 16,
-    fontWeight: 'bold'
+    fontFamily: 'montserrat-bold',
+    fontSize: Font.normal
   },
   gradientWrapper: {
     alignItems: 'center',
@@ -157,7 +159,7 @@ const styles = StyleSheet.create({
   },
   typeText: {
     color: Colors.light,
-    fontSize: 16,
-    fontWeight: 'bold'
+    fontFamily: 'montserrat-bold',
+    fontSize: Font.normal
   }
 });

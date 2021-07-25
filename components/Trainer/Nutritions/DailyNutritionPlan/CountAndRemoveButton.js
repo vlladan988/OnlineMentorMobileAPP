@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Colors from '../../../../constants/Colors';
 import ShadowStyleLow from '../../../../constants/ShadowStyleLow';
 import IconName from '../../../../constants/IconName';
+import Font from '../../../../constants/Font';
 
 const CountAndRemoveButton = ({ choosedMeal, handleRemoveMeal }) => {
   return (
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
   countText: {
     color: Colors.light,
     fontFamily: 'montserrat-regular',
-    fontSize: 20,
+    fontSize: Font.small,
     paddingVertical: 2
   },
   countTextWrapper: {
@@ -58,6 +59,6 @@ const styles = StyleSheet.create({
   deleteMealText: {
     color: Colors.warningColor,
     fontFamily: 'montserrat-regular',
-    fontSize: 18
+    fontSize: Font.small
   }
 });

@@ -13,6 +13,7 @@ import { clientListSelector } from '../../../../store/selectors/ClientSelector';
 import ShadowStyleLow from '../../../../constants/ShadowStyleLow';
 import IconName from '../../../../constants/IconName';
 import NavigationService from '../../../../services/NavigationService';
+import Font from '../../../../constants/Font';
 
 const DailyNutritionPlan = () => {
   const [startDate, setStartDate] = useState(
@@ -111,7 +112,7 @@ const DailyNutritionPlan = () => {
       </SharedLinearGradientBackgroundVertical>
       <BottomSheet
         ref={sheetRef}
-        snapPoints={[400, 0, 0]}
+        snapPoints={[300, 0, 0]}
         borderRadius={10}
         renderContent={renderContent}
         initialSnap={1}
@@ -134,14 +135,16 @@ const styles = StyleSheet.create({
   },
   calendarTextStyle: {
     color: Colors.light,
-    fontFamily: 'montserrat-italic'
+    fontFamily: 'montserrat-italic',
+    fontSize: Font.small
   },
   cityText: {
-    fontFamily: 'montserrat-italic'
+    fontFamily: 'montserrat-italic',
+    fontSize: Font.small
   },
   contentWrapper: {
     backgroundColor: Colors.light,
-    height: 400
+    height: 300
   },
   detailWrapper: {
     alignItems: 'center',
@@ -160,8 +163,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: Colors.lightGrayL,
     borderRadius: 20,
-    height: 10,
-    marginVertical: 20,
+    height: 5,
+    marginVertical: 10,
     width: 80
   },
   linearGradientWrapper: {
@@ -171,7 +174,7 @@ const styles = StyleSheet.create({
   },
   nameText: {
     fontFamily: 'montserrat-regular',
-    fontSize: 18
+    fontSize: Font.normal
   },
   profileImage: {
     borderRadius: 50,
@@ -187,12 +190,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 26,
+    fontSize: Font.large,
     paddingVertical: 20
   },
   text: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 24
+    fontSize: Font.normal
   }
 });

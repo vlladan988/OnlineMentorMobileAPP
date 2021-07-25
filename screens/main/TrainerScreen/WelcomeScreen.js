@@ -1,14 +1,5 @@
 import React, { useEffect, useCallback, useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  TextInput,
-  Image,
-  FlatList,
-  ImageBackground
-} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image, FlatList } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import $t from 'i18n';
 import * as Icon from '@expo/vector-icons';
@@ -17,7 +8,6 @@ import { addHeaderRightNavigator } from '../../../helpers';
 import Colors from '../../../constants/Colors';
 import HeaderBarStyle from '../../../constants/HeaderBarStyle';
 import avatar from '../../../assets/images/richFroning.jpg';
-import background from '../../../assets/images/LightBackground.png';
 import { fetchClients, getClient, deleteClient } from '../../../store/actions/ClientActions';
 import { clientListSelector } from '../../../store/selectors/ClientSelector';
 import { userSelector } from '../../../store/selectors/UserSelector';
@@ -121,7 +111,7 @@ const WelcomeScreen = () => {
   );
 
   return (
-    <ImageBackground source={background} style={styles.image}>
+    <View style={styles.image}>
       <SharedDeleteModal isVisible={isDeleteModalVisible} handleDelete={handleDeleteClient} />
       <View style={styles.headerWrapper}>
         <Text style={styles.helloText}>Hello</Text>
@@ -153,7 +143,7 @@ const WelcomeScreen = () => {
         getItemLayout={getItemLayout}
         contentContainerStyle={styles.listWrapper}
       />
-    </ImageBackground>
+    </View>
   );
 };
 
@@ -164,7 +154,7 @@ WelcomeScreen.navigationOptions = ({ navigation }) => {
     headerStyle: HeaderBarStyle,
     headerTitleStyle: {
       color: Colors.white,
-      fontSize: Font.normall,
+      fontSize: Font.normal,
       fontFamily: 'montserrat-bold'
     },
     title: 'Client List'
@@ -235,6 +225,7 @@ const styles = StyleSheet.create({
     fontSize: Font.normal
   },
   image: {
+    backgroundColor: Colors.lightGrayBackground,
     flex: 1,
     justifyContent: 'center',
     resizeMode: 'contain'

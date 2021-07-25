@@ -36,13 +36,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 30,
     marginBottom: 20,
-    marginTop: 30,
-    width: '50%'
+    marginTop: 30
   },
   submitButton: {
     alignItems: 'center',
-    paddingVertical: 20,
-    width: '100%'
+    paddingHorizontal: 40,
+    paddingVertical: 10
   },
   submitButtonText: {
     color: Colors.light,

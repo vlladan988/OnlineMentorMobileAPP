@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Colors from '../../../../constants/Colors';
 import ShadowStyleLow from '../../../../constants/ShadowStyleLow';
 import IconName from '../../../../constants/IconName';
+import Font from '../../../../constants/Font';
 
 const DailyMeals = ({ showAddMealModal, meals, setMeal }) => {
   const [choosedMealId, setChoosedMealId] = useState(null);
@@ -46,7 +47,7 @@ const DailyMeals = ({ showAddMealModal, meals, setMeal }) => {
           </TouchableOpacity>
         ))}
         <TouchableOpacity style={styles.addMealIconWrapper} onPress={showAddMealModal}>
-          <Icon.AntDesign name={IconName.plus} size={30} color={Colors.lightOker} />
+          <Icon.AntDesign name={IconName.plus} size={25} color={Colors.lightOker} />
         </TouchableOpacity>
       </ScrollView>
     </View>
@@ -83,7 +84,8 @@ const styles = StyleSheet.create({
   },
   mealText: {
     color: Colors.darkBackgroundAppColor,
-    fontFamily: 'montserrat-bold'
+    fontFamily: 'montserrat-bold',
+    fontSize: Font.small
   },
   scrollMealsWrapper: {
     paddingVertical: 30

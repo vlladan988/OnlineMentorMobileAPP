@@ -6,6 +6,7 @@ import Colors from '../../constants/Colors';
 import Layout from '../../constants/Layout';
 import cover from '../../assets/images/crossfit.jpg';
 import richFroning from '../../assets/images/richFroning.jpg';
+import Font from '../../constants/Font';
 
 const SharedClientProfileImage = ({ client }) => {
   return (
@@ -47,26 +48,26 @@ const styles = StyleSheet.create({
   cityText: {
     color: Colors.light,
     fontFamily: 'montserrat-italic',
-    fontSize: 18
+    fontSize: Font.small
   },
   container: {
-    height: 300
+    height: 200
   },
   coverImage: {
-    height: 300,
+    height: 200,
     width: Layout.window.width
   },
   coverImageSmall: {
     borderColor: Colors.white,
-    borderRadius: 70,
+    borderRadius: 45,
     borderWidth: 1,
-    height: 130,
-    width: 130
+    height: 90,
+    width: 90
   },
   nameText: {
     color: Colors.light,
     fontFamily: 'montserrat-regular',
-    fontSize: 24,
+    fontSize: Font.normal,
     marginTop: 10
   }
 });

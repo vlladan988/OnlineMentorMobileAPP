@@ -11,6 +11,7 @@ import SharedLinearGradientBackgroundHorizontal from '../SharedLinearGradientBac
 import { recipeListSelector } from '../../../store/selectors/RecipeSelector';
 import { searchFilterListByName } from '../../../helpers/SearchFilterListByName';
 import { IsInMealRecipe } from '../../../helpers/IsInMealRecipe';
+import Font from '../../../constants/Font';
 
 const ChooseRecipeModal = ({ isVisible, closeModal, recipes, chooseRecipe }) => {
   const [searchText, setSearchText] = useState('');
@@ -35,7 +36,7 @@ const ChooseRecipeModal = ({ isVisible, closeModal, recipes, chooseRecipe }) => 
           name={
             !IsInMealRecipe(recipes.daily_meal_recipes, item) ? IconName.plus : IconName.success
           }
-          size={30}
+          size={25}
           color={Colors.cloudColor}
         />
       </View>
@@ -68,7 +69,7 @@ const ChooseRecipeModal = ({ isVisible, closeModal, recipes, chooseRecipe }) => 
             <View style={styles.searchWrapper}>
               <Icon.AntDesign
                 name={IconName.search}
-                size={26}
+                size={20}
                 style={styles.searchIcon}
                 color={Colors.light}
               />
@@ -82,7 +83,7 @@ const ChooseRecipeModal = ({ isVisible, closeModal, recipes, chooseRecipe }) => 
             </View>
             <View style={[ShadowStyleHigh, styles.closeIconWrapper]}>
               <TouchableOpacity onPress={closeModal}>
-                <Icon.Fontisto name={IconName.close} size={32} color={Colors.light} />
+                <Icon.Fontisto name={IconName.close} size={27} color={Colors.light} />
               </TouchableOpacity>
             </View>
           </View>
@@ -133,12 +134,13 @@ const styles = StyleSheet.create({
     color: Colors.light,
     flex: 1,
     fontFamily: 'montserrat-italic',
+    fontSize: Font.small,
     height: 40
   },
   itemNameText: {
     color: Colors.light,
     fontFamily: 'montserrat-regular',
-    fontSize: 20,
+    fontSize: Font.normal,
     width: '80%'
   },
   itemWrapper: {

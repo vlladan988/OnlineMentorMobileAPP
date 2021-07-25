@@ -19,6 +19,7 @@ import IconName from '../../../../constants/IconName';
 import { recipePercentValue } from '../../../../helpers/RecipePercentValue';
 import SharedAnimatedDropdown from '../../../shared/SharedAnimatedDropdown';
 import { isDefaultImage } from '../../../../helpers/IsDefaultImage';
+import Font from '../../../../constants/Font';
 
 const DailyMealList = ({
   showCreateEditModal,
@@ -142,7 +143,7 @@ const DailyMealList = ({
                         <Icon.MaterialCommunityIcons
                           name={IconName.dotsIcon}
                           color={Colors.light}
-                          size={30}
+                          size={26}
                           style={styles.optionIcon}
                         />
                       </TouchableOpacity>
@@ -216,7 +217,7 @@ const styles = StyleSheet.create({
   calorieText: {
     color: Colors.cloudColor,
     fontFamily: 'montserrat-bold',
-    fontSize: 18
+    fontSize: Font.normal
   },
   container: {
     margin: 5
@@ -236,7 +237,7 @@ const styles = StyleSheet.create({
   gramsText: {
     color: Colors.oker,
     fontFamily: 'montserrat-bold',
-    fontSize: 18
+    fontSize: Font.normal
   },
   groceryValueWrapper: {
     alignItems: 'center',
@@ -251,7 +252,7 @@ const styles = StyleSheet.create({
   itemNameText: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 22,
+    fontSize: Font.normal,
     paddingBottom: 20
   },
   itemWrapper: {
@@ -260,16 +261,16 @@ const styles = StyleSheet.create({
   mealImage: {
     alignSelf: 'center',
     borderColor: Colors.light,
-    borderRadius: 75,
+    borderRadius: 60,
     borderWidth: 1,
-    height: 140,
+    height: 120,
     resizeMode: 'cover',
-    width: 140
+    width: 120
   },
   noMealList: {
     color: Colors.light,
     fontFamily: 'montserrat-italic',
-    fontSize: 20
+    fontSize: Font.normal
   },
   noMealListWrapper: {
     alignItems: 'center',
@@ -284,21 +285,14 @@ const styles = StyleSheet.create({
   percentText: {
     color: Colors.lightGrayL,
     fontFamily: 'montserrat-regular',
-    fontSize: 17
+    fontSize: Font.normal
   },
   sectionItem: {
     width: '50%'
   },
-  skeletonChild: {
-    height: 70
-  },
-  skeletonViewWrapper: {
-    padding: 5,
-    width: '100%'
-  },
   text: {
     color: Colors.light,
-    fontSize: 22,
+    fontSize: Font.small,
     fontWeight: 'bold',
     paddingHorizontal: 20,
     paddingVertical: 10

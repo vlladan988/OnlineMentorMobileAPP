@@ -10,6 +10,7 @@ import ShadowStyleLow from '../../../../constants/ShadowStyleLow';
 import IconName from '../../../../constants/IconName';
 import NavigationService from '../../../../services/NavigationService';
 import { CutTextLength } from '../../../../helpers/CutTextLength';
+import Font from '../../../../constants/Font';
 
 const TemplateList = ({ filteredList }) => {
   return (
@@ -89,12 +90,12 @@ const styles = StyleSheet.create({
   itemDurationAndType: {
     color: Colors.oker,
     fontFamily: 'montserrat-italic',
-    fontSize: 16
+    fontSize: Font.small
   },
   itemName: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 20,
+    fontSize: Font.normal,
     marginBottom: 10
   },
   itemWrapper: {

@@ -48,7 +48,7 @@ const CreateEditTemplateHeaderImage = ({
         style={styles.templateImage}
       />
       <TouchableOpacity onPress={goBack} style={styles.goBackIconWrapper}>
-        <Icon.MaterialCommunityIcons name={IconName.backCircle} size={50} color={Colors.light} />
+        <Icon.MaterialCommunityIcons name={IconName.backCircle} size={40} color={Colors.light} />
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -71,10 +71,10 @@ const styles = StyleSheet.create({
     top: Constants.statusBarHeight
   },
   headerWrapper: {
-    height: 250
+    height: 200
   },
   templateImage: {
-    height: 250,
+    height: 200,
     resizeMode: 'cover',
     width: '100%'
   }

@@ -21,6 +21,7 @@ import IconName from '../../../../constants/IconName';
 import Colors from '../../../../constants/Colors';
 import { useDispatch } from 'react-redux';
 import { deleteTemplate } from '../../../../store/actions/TemplateActions';
+import Font from '../../../../constants/Font';
 
 const TemplateMealHeader = ({
   showCreateEditModal,
@@ -119,7 +120,8 @@ const styles = StyleSheet.create({
   },
   descText: {
     color: Colors.light,
-    fontSize: 16
+    fontFamily: 'montserrat-regular',
+    fontSize: Font.small
   },
   descWrapper: {
     marginVertical: 10,
@@ -162,15 +164,16 @@ const styles = StyleSheet.create({
   headerWrapper: {
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.2)',
-    height: 250,
+    height: 200,
     justifyContent: 'center'
   },
   nameText: {
     color: Colors.light,
-    fontSize: 20
+    fontFamily: 'montserrat-bold',
+    fontSize: Font.normal
   },
   templateImage: {
-    height: 250,
+    height: 200,
     resizeMode: 'cover',
     width: '100%'
   }
