@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import IconName from '../../../../constants/IconName';
 import Colors from '../../../../constants/Colors';
 import { sumRecipeGrocery } from '../../../../helpers/SumRecipeGrocery';
+import Font from '../../../../constants/Font';
 
 const AnimatedInfo = ({ recipeExample }) => {
   const animationValue = new Animated.Value(150);
@@ -34,7 +35,7 @@ const AnimatedInfo = ({ recipeExample }) => {
 
   const animatedStyle = {
     width: animationValue,
-    height: 180
+    height: 170
   };
 
   return (
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
   calorieText: {
     color: Colors.lightCloudColor,
     fontFamily: 'montserrat-bold',
-    fontSize: 18,
+    fontSize: Font.normal,
     paddingHorizontal: 5,
     width: 60
   },
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
   gramsText: {
     color: Colors.oker,
     fontFamily: 'montserrat-bold',
-    fontSize: 18,
+    fontSize: Font.normal,
     paddingHorizontal: 5,
     width: 60
   },
@@ -113,6 +114,6 @@ const styles = StyleSheet.create({
   text: {
     color: Colors.backgroundAppColor,
     fontFamily: 'montserrat-regular',
-    fontSize: 18
+    fontSize: Font.normal
   }
 });

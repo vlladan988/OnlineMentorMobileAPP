@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, StatusBar } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import SharedClientProfileDetails from '../../../shared/SharedClientProfileDetails';
@@ -23,6 +23,7 @@ const SelectedClientProfile = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="dark-content" />
       <SharedClientProfileImage client={client} user={user} />
       <SharedClientProfileDetails client={client} />
     </View>

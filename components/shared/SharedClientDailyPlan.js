@@ -4,6 +4,7 @@ import CalendarPicker from 'react-native-calendar-picker';
 import moment from 'moment';
 import Colors from '../../constants/Colors';
 import NavigationService from '../../services/NavigationService';
+import Font from '../../constants/Font';
 
 const SharedClientDailyPlan = () => {
   const onDateChange = date =>
@@ -33,7 +34,8 @@ export default SharedClientDailyPlan;
 const styles = StyleSheet.create({
   calendarTextStyle: {
     color: Colors.backgroundAppColor,
-    fontFamily: 'montserrat-regular'
+    fontFamily: 'montserrat-regular',
+    fontSize: Font.small
   },
   container: {
     backgroundColor: Colors.lightGrayBackground,
@@ -45,7 +47,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: Colors.backgroundAppColor,
     fontFamily: 'montserrat-bold',
-    fontSize: 26,
+    fontSize: Font.large,
     paddingBottom: 40
   }
 });

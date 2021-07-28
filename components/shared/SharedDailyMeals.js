@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import ShadowStyleLow from '../../constants/ShadowStyleLow';
 import Colors from '../../constants/Colors';
+import Font from '../../constants/Font';
 
 const SharedDailyMeals = ({ meals, setMeal }) => {
   const [choosedMealId, setChoosedMealId] = useState(null);
@@ -72,7 +73,8 @@ const styles = StyleSheet.create({
   },
   mealText: {
     color: Colors.darkBackgroundAppColor,
-    fontFamily: 'montserrat-bold'
+    fontFamily: 'montserrat-bold',
+    fontSize: Font.small
   },
   scrollMealsWrapper: {
     paddingVertical: 30

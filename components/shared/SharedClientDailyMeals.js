@@ -13,6 +13,7 @@ import SharedClientMealsHeader from './SharedClientMealsHeader';
 import SharedDailyMeals from './SharedDailyMeals';
 import SharedClientDailyRecipes from './SharedClientDailyRecipes';
 import SharedRecipeDailyModal from './modal/SharedRecipeDailyModal';
+import Font from '../../constants/Font';
 
 const SharedClientDailyMeals = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
   countText: {
     color: Colors.light,
     fontFamily: 'montserrat-regular',
-    fontSize: 20,
+    fontSize: Font.small,
     paddingVertical: 2
   },
   countTextWrapper: {

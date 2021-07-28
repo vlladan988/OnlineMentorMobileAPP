@@ -9,17 +9,18 @@ import progressWomen from '../../assets/images/progressWomen.jpg';
 import Colors from '../../constants/Colors';
 import { isClient } from '../../helpers/IsClient';
 import IconName from '../../constants/IconName';
+import Font from '../../constants/Font';
 
 const SharedGoalHeaderImage = ({ user, showEditModal }) => {
   return (
-    <ImageBackground source={progressWomen} style={styles.coverImage2}>
+    <ImageBackground source={progressWomen} style={styles.coverImage}>
       <View style={styles.background}>
-        <Image source={progress} style={styles.coverImage3} />
+        <Image source={progress} style={styles.coverImageSmall} />
         <Text style={styles.nameText}>Set goal</Text>
       </View>
       {isClient(user) && (
         <TouchableOpacity style={styles.editIcon} onPress={showEditModal}>
-          <Icon.Entypo name={IconName.edit} size={26} color={Colors.light} />
+          <Icon.Entypo name={IconName.edit} size={22} color={Colors.light} />
         </TouchableOpacity>
       )}
     </ImageBackground>
@@ -44,16 +45,16 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0
   },
-  coverImage2: {
-    height: 300,
+  coverImage: {
+    height: 200,
     width: Layout.window.width
   },
-  coverImage3: {
+  coverImageSmall: {
     borderColor: Colors.white,
-    borderRadius: 70,
+    borderRadius: 45,
     borderWidth: 1,
-    height: 130,
-    width: 130
+    height: 90,
+    width: 90
   },
   editIcon: {
     position: 'absolute',
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
   nameText: {
     color: Colors.light,
     fontFamily: 'montserrat-regular',
-    fontSize: 24,
+    fontSize: Font.large,
     marginTop: 10
   }
 });

@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   nameText: {
     color: Colors.light,
     fontFamily: 'montserrat-regular',
-    fontSize: Font.normal,
+    fontSize: Font.large,
     marginTop: 10
   }
 });

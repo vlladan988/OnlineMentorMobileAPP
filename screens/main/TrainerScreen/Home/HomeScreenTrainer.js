@@ -1,5 +1,7 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
+import Constants from 'expo-constants';
+
 import Colors from '../../../../constants/Colors';
 import SelectedClientProfile from '../../../../components/Trainer/Home/Profile/SelectedClientProfile';
 import SelectedClientGoals from '../../../../components/Trainer/Home/Goal/SelectedClientGoals';
@@ -59,13 +61,15 @@ export default createMaterialTopTabNavigator(
             elevation: 0, // remove shadow on Android
             shadowOpacity: 0, // remove shadow on iOS,
             borderBottomWidth: 1,
-            borderColor: Colors.borderLine
+            borderColor: Colors.borderLine,
+            paddingTop: Constants.statusBarHeight
           },
           indicatorStyle: {
             backgroundColor: Colors.cloudColor
           },
           labelStyle: {
             color: Colors.black,
+            fontSize: 10,
             fontFamily: 'montserrat-bold'
           }
         }

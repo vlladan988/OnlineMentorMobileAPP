@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Colors from '../../constants/Colors';
 import IconName from '../../constants/IconName';
 import { dateFormat } from '../../helpers/DateFormat';
+import Font from '../../constants/Font';
 
 const SharedGoalDetails = ({ goal }) => {
   return (
@@ -91,20 +92,20 @@ const styles = StyleSheet.create({
   itemNameAndDesc: {
     color: Colors.backgroundAppColor,
     fontFamily: 'montserrat-regular',
-    fontSize: 18,
+    fontSize: Font.small,
     paddingVertical: 5,
     textAlign: 'center'
   },
   startEndText: {
     color: Colors.lightGray,
     fontFamily: 'montserrat-regular',
-    fontSize: 18,
+    fontSize: Font.small,
     paddingBottom: 20
   },
   startEndValue: {
     color: Colors.backgroundAppColor,
     fontFamily: 'montserrat-italic',
-    fontSize: 18
+    fontSize: Font.small
   },
   textAndIconWrapper: {
     flexDirection: 'row',
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
   weightValue: {
     color: Colors.backgroundAppColor,
     fontFamily: 'montserrat-italic',
-    fontSize: 22,
+    fontSize: Font.large,
     paddingHorizontal: 20
   }
 });

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import IconName from '../../constants/IconName';
 import Colors from '../../constants/Colors';
 import NavigationService from '../../services/NavigationService';
+import Font from '../../constants/Font';
 
 const SharedClientMealsHeader = ({ client, date }) => {
   return (
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
   nameWrapper: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 30,
+    fontSize: Font.large,
     paddingTop: 30,
     textAlign: 'center'
   }

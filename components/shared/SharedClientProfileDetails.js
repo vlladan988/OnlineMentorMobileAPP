@@ -5,6 +5,7 @@ import $t from 'i18n';
 import PropTypes from 'prop-types';
 import IconName from '../../constants/IconName';
 import Colors from '../../constants/Colors';
+import Font from '../../constants/Font';
 
 const SharedClientProfileDetails = ({ client }) => {
   return (
@@ -35,7 +36,7 @@ const SharedClientProfileDetails = ({ client }) => {
           <Icon.MaterialIcons
             name={IconName.email}
             color={Colors.backgroundAppColor}
-            size={26}
+            size={22}
             style={styles.icon}
           />
           <Text style={styles.credText}>{client.email}</Text>
@@ -44,7 +45,7 @@ const SharedClientProfileDetails = ({ client }) => {
           <Icon.AntDesign
             name={IconName.phone}
             color={Colors.backgroundAppColor}
-            size={26}
+            size={22}
             style={styles.icon}
           />
           <Text style={styles.credText}>{client.phone_number}</Text>
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
   credText: {
     color: Colors.backgroundAppColor,
     fontFamily: 'montserrat-regular',
-    fontSize: 18
+    fontSize: Font.normal
   },
   credWrapper: {
     alignItems: 'center',
@@ -86,6 +87,7 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     fontFamily: 'montserrat-italic',
+    fontSize: Font.small,
     textAlign: 'center'
   },
   detailWrapper: {
@@ -100,12 +102,13 @@ const styles = StyleSheet.create({
   },
   itemName: {
     color: Colors.lightGray,
-    fontFamily: 'montserrat-regular'
+    fontFamily: 'montserrat-regular',
+    fontSize: Font.small
   },
   itemValue: {
     color: Colors.backgroundAppColor,
     fontFamily: 'montserrat-regular',
-    fontSize: 22
+    fontSize: Font.large
   },
   itemWrapper: {
     alignItems: 'center',

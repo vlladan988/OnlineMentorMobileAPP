@@ -13,102 +13,108 @@ import { sumRecipeGrocery } from '../../helpers/SumRecipeGrocery';
 import { recipePercentValue } from '../../helpers/RecipePercentValue';
 import { isDefaultImage } from '../../helpers/IsDefaultImage';
 import IconName from '../../constants/IconName';
+import Font from '../../constants/Font';
 
 const SharedClientDailyRecipes = ({ recipes, showRecipeModal }) => {
   let image = [breakfast, lunch, dinner];
 
   return (
-    recipes &&
-    recipes.daily_meal_recipes.length && (
-      <ScrollView style={styles.container}>
-        {recipes.daily_meal_recipes.map((recipe, index) => (
-          <TouchableOpacity
-            key={index}
-            style={ShadowStyleLow}
-            activeOpacity={0.7}
-            onPress={() => showRecipeModal(recipe)}
-          >
-            <SharedLinearGradientBackgroundHorizontal
-              childrenColors={[
-                Colors.darkBackgroundAppColor,
-                Colors.backgroundAppColor,
-                Colors.lightBackgroundAppColor
-              ]}
-              childrenStyle={styles.gradientWrapper}
+    <>
+      {recipes && recipes.daily_meal_recipes.length ? (
+        <ScrollView style={styles.container}>
+          {recipes.daily_meal_recipes.map((recipe, index) => (
+            <TouchableOpacity
+              key={index}
+              style={ShadowStyleLow}
+              activeOpacity={0.7}
+              onPress={() => showRecipeModal(recipe)}
             >
-              <View style={styles.itemWrapper}>
-                <View style={styles.sectionItem}>
-                  <Text style={styles.itemNameText}>{recipe && recipe.name}</Text>
-                  <View style={styles.groceryValueWrapper}>
-                    <Text style={styles.gramsText}>
-                      {sumRecipeGrocery(recipe.daily_recipe_groceries).proteins}g
-                    </Text>
-                    <Text style={styles.percentText}>
-                      (
-                      {recipePercentValue(
-                        sumRecipeGrocery(recipe.daily_recipe_groceries),
-                        sumRecipeGrocery(recipe.daily_recipe_groceries).proteins
-                      )}
-                      %)
-                    </Text>
+              <SharedLinearGradientBackgroundHorizontal
+                childrenColors={[
+                  Colors.darkBackgroundAppColor,
+                  Colors.backgroundAppColor,
+                  Colors.lightBackgroundAppColor
+                ]}
+                childrenStyle={styles.gradientWrapper}
+              >
+                <View style={styles.itemWrapper}>
+                  <View style={styles.sectionItem}>
+                    <Text style={styles.itemNameText}>{recipe && recipe.name}</Text>
+                    <View style={styles.groceryValueWrapper}>
+                      <Text style={styles.gramsText}>
+                        {sumRecipeGrocery(recipe.daily_recipe_groceries).proteins}g
+                      </Text>
+                      <Text style={styles.percentText}>
+                        (
+                        {recipePercentValue(
+                          sumRecipeGrocery(recipe.daily_recipe_groceries),
+                          sumRecipeGrocery(recipe.daily_recipe_groceries).proteins
+                        )}
+                        %)
+                      </Text>
+                    </View>
+                    <View style={styles.groceryValueWrapper}>
+                      <Text style={styles.gramsText}>
+                        {sumRecipeGrocery(recipe.daily_recipe_groceries).carbons}g{' '}
+                      </Text>
+                      <Text style={styles.percentText}>
+                        (
+                        {recipePercentValue(
+                          sumRecipeGrocery(recipe.daily_recipe_groceries),
+                          sumRecipeGrocery(recipe.daily_recipe_groceries).carbons
+                        )}
+                        %)
+                      </Text>
+                    </View>
+                    <View style={styles.groceryValueWrapper}>
+                      <Text style={styles.gramsText}>
+                        {sumRecipeGrocery(recipe.daily_recipe_groceries).fats}g{' '}
+                      </Text>
+                      <Text style={styles.percentText}>
+                        (
+                        {recipePercentValue(
+                          sumRecipeGrocery(recipe.daily_recipe_groceries),
+                          sumRecipeGrocery(recipe.daily_recipe_groceries).fats
+                        )}
+                        %)
+                      </Text>
+                    </View>
+                    <View style={styles.groceryValueWrapper}>
+                      <Text style={styles.calorieText}>
+                        {sumRecipeGrocery(recipe.daily_recipe_groceries).calories}{' '}
+                      </Text>
+                      <Text style={styles.percentText}> Calories </Text>
+                    </View>
                   </View>
-                  <View style={styles.groceryValueWrapper}>
-                    <Text style={styles.gramsText}>
-                      {sumRecipeGrocery(recipe.daily_recipe_groceries).carbons}g{' '}
-                    </Text>
-                    <Text style={styles.percentText}>
-                      (
-                      {recipePercentValue(
-                        sumRecipeGrocery(recipe.daily_recipe_groceries),
-                        sumRecipeGrocery(recipe.daily_recipe_groceries).carbons
-                      )}
-                      %)
-                    </Text>
-                  </View>
-                  <View style={styles.groceryValueWrapper}>
-                    <Text style={styles.gramsText}>
-                      {sumRecipeGrocery(recipe.daily_recipe_groceries).fats}g{' '}
-                    </Text>
-                    <Text style={styles.percentText}>
-                      (
-                      {recipePercentValue(
-                        sumRecipeGrocery(recipe.daily_recipe_groceries),
-                        sumRecipeGrocery(recipe.daily_recipe_groceries).fats
-                      )}
-                      %)
-                    </Text>
-                  </View>
-                  <View style={styles.groceryValueWrapper}>
-                    <Text style={styles.calorieText}>
-                      {sumRecipeGrocery(recipe.daily_recipe_groceries).calories}{' '}
-                    </Text>
-                    <Text style={styles.percentText}> Calories </Text>
-                  </View>
-                </View>
-                <View style={[ShadowStyleLow, styles.imgWrapper]}>
-                  <Image
-                    source={
-                      isDefaultImage(recipe.recipe_image_url)
-                        ? image[recipe.recipe_image_url]
-                        : { uri: recipe.recipe_image_url }
-                    }
-                    style={styles.mealImage}
-                  />
-                  <View style={styles.eyeIconWrapper}>
-                    <Icon.AntDesign
-                      name={IconName.right}
-                      color={Colors.light}
-                      size={24}
-                      style={styles.optionIcon}
+                  <View style={[ShadowStyleLow, styles.imgWrapper]}>
+                    <Image
+                      source={
+                        isDefaultImage(recipe.recipe_image_url)
+                          ? image[recipe.recipe_image_url]
+                          : { uri: recipe.recipe_image_url }
+                      }
+                      style={styles.mealImage}
                     />
+                    <View style={styles.eyeIconWrapper}>
+                      <Icon.AntDesign
+                        name={IconName.right}
+                        color={Colors.light}
+                        size={24}
+                        style={styles.optionIcon}
+                      />
+                    </View>
                   </View>
                 </View>
-              </View>
-            </SharedLinearGradientBackgroundHorizontal>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
-    )
+              </SharedLinearGradientBackgroundHorizontal>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      ) : (
+        <View style={styles.noRecipesWrapper}>
+          <Text style={styles.noRecipesText}>No Recipes</Text>
+        </View>
+      )}
+    </>
   );
 };
 
@@ -134,7 +140,7 @@ const styles = StyleSheet.create({
   calorieText: {
     color: Colors.cloudColor,
     fontFamily: 'montserrat-bold',
-    fontSize: 18
+    fontSize: Font.normal
   },
   container: {
     margin: 5
@@ -154,7 +160,7 @@ const styles = StyleSheet.create({
   gramsText: {
     color: Colors.oker,
     fontFamily: 'montserrat-bold',
-    fontSize: 18
+    fontSize: Font.normal
   },
   groceryValueWrapper: {
     alignItems: 'center',
@@ -169,7 +175,7 @@ const styles = StyleSheet.create({
   itemNameText: {
     color: Colors.light,
     fontFamily: 'montserrat-bold',
-    fontSize: 22,
+    fontSize: Font.normal,
     paddingBottom: 20
   },
   itemWrapper: {
@@ -187,11 +193,21 @@ const styles = StyleSheet.create({
   noMealList: {
     color: Colors.light,
     fontFamily: 'montserrat-italic',
-    fontSize: 20
+    fontSize: Font.normal
   },
   noMealListWrapper: {
     alignItems: 'center',
     paddingTop: 50
+  },
+  noRecipesText: {
+    color: Colors.light,
+    fontFamily: 'montserrat-italic',
+    fontSize: Font.large
+  },
+  noRecipesWrapper: {
+    alignItems: 'center',
+    height: 200,
+    justifyContent: 'center'
   },
   noResultIcon: {
     paddingVertical: 25
@@ -202,7 +218,7 @@ const styles = StyleSheet.create({
   percentText: {
     color: Colors.lightGrayL,
     fontFamily: 'montserrat-regular',
-    fontSize: 17
+    fontSize: Font.normal
   },
   sectionItem: {
     width: '50%'
@@ -216,8 +232,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: Colors.light,
-    fontSize: 22,
-    fontWeight: 'bold',
+    fontFamily: 'montserrat-bold',
+    fontSize: Font.small,
     paddingHorizontal: 20,
     paddingVertical: 10
   }

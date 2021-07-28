@@ -11,6 +11,7 @@ import Colors from '../../constants/Colors';
 import IconName from '../../constants/IconName';
 import { isDefaultImage } from '../../helpers/IsDefaultImage';
 import { isClient } from '../../helpers/IsClient';
+import Font from '../../constants/Font';
 
 const SharedClientTemplateHeader = ({
   clientTemplates,
@@ -43,7 +44,7 @@ const SharedClientTemplateHeader = ({
           >
             <Icon.MaterialCommunityIcons
               name={IconName.deleteCircle}
-              size={36}
+              size={28}
               style={styles.deleteIcon}
               color={Colors.light}
             />
@@ -52,7 +53,7 @@ const SharedClientTemplateHeader = ({
         <TouchableOpacity style={styles.infoIconWrapper} onPress={showDescription}>
           <Icon.AntDesign
             name={IconName.info}
-            size={30}
+            size={22}
             color={Colors.light}
             style={styles.infoIcon}
           />
@@ -99,13 +100,13 @@ const styles = StyleSheet.create({
     top: 0
   },
   coverImageBig: {
-    height: 250,
+    height: 200,
     width: Layout.window.width
   },
   coverImageSmall: {
-    borderRadius: 70,
-    height: 130,
-    width: 130
+    borderRadius: 45,
+    height: 90,
+    width: 90
   },
   deleteIcon: {
     padding: 15
@@ -117,11 +118,11 @@ const styles = StyleSheet.create({
   },
   durationText: {
     color: Colors.oker,
-    fontSize: 16,
+    fontSize: Font.small,
     fontWeight: 'bold'
   },
   headerContainer: {
-    height: 250
+    height: 200
   },
   infoIcon: {
     padding: 15
@@ -132,13 +133,13 @@ const styles = StyleSheet.create({
   },
   mealCount: {
     color: Colors.light,
-    fontSize: 20,
+    fontSize: Font.normal,
     textAlign: 'center'
   },
   nameText: {
     color: Colors.light,
     fontFamily: 'montserrat-regular',
-    fontSize: 24,
+    fontSize: Font.large,
     marginTop: 5
   },
   templateDetails: {
@@ -152,7 +153,7 @@ const styles = StyleSheet.create({
   },
   typeText: {
     color: Colors.light,
-    fontSize: 16,
+    fontSize: Font.small,
     fontWeight: 'bold'
   }
 });

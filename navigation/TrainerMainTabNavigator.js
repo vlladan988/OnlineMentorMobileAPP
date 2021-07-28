@@ -21,6 +21,7 @@ import WorkoutScreen from '../screens/main/TrainerScreen/Workout/WorkoutScreen';
 import ChatScreen from '../screens/main/TrainerScreen/ChatScreen/ChatScreen';
 import HeaderBarStyle from '../constants/HeaderBarStyle';
 import WelcomeScreen from '../screens/main/TrainerScreen/WelcomeScreen';
+// eslint-disable-next-line no-unused-vars
 import { addHeaderLeftNavigator, addHeaderRightNavigator } from '../helpers';
 import Layout from '../constants/Layout';
 import TemplateMealScreenTrainer from '../screens/main/TrainerScreen/Nutrition/TemplateMealScreenTrainer';
@@ -31,15 +32,19 @@ const HomeStack = createStackNavigator({
   Welcome: WelcomeScreen,
   Home: {
     screen: HomeScreenTrainer,
+    // eslint-disable-next-line no-unused-vars
     navigationOptions: ({ navigation }) => {
-      const headerLeftNav = addHeaderLeftNavigator(navigation);
-      const headerRightNav = addHeaderRightNavigator(navigation);
+      // const headerLeftNav = addHeaderLeftNavigator(navigation);
+      // const headerRightNav = addHeaderRightNavigator(navigation);
+      // return {
+      //   ...headerLeftNav,
+      //   ...headerRightNav,
+      //   headerStyle: HeaderBarStyle,
+      //   headerTitleStyle: { color: Colors.white, fontWeight: 'bold' },
+      //   title: 'Home'
+      // };
       return {
-        ...headerLeftNav,
-        ...headerRightNav,
-        headerStyle: HeaderBarStyle,
-        headerTitleStyle: { color: Colors.white, fontWeight: 'bold' },
-        title: 'Home'
+        header: null
       };
     }
   },

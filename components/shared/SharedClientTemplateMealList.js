@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import SharedLinearGradientBackgroundHorizontal from './SharedLinearGradientBackgroundHorizontal';
 import Colors from '../../constants/Colors';
 import IconName from '../../constants/IconName';
+import Font from '../../constants/Font';
 
 const SharedClientTemplateMealList = ({ clientTemplates, showMealDetails, refresh }) => {
   return (
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
   },
   noTemplateText: {
     fontFamily: 'montserrat-italic',
-    fontSize: 20
+    fontSize: Font.large
   },
   noTemplateWrapper: {
     alignItems: 'center',
